@@ -9,7 +9,7 @@
     <div>
         <a href="{{ route('employees.create') }}" class="btn btn-sm btn-primary">
             <span data-feather="plus-circle" class="align-text-bottom me-1"></span>
-            Tambah Data Karyawaan
+            Tambah Data Mahasiswa
         </a>
     </div>
 </div>

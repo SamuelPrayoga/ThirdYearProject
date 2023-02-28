@@ -14,28 +14,27 @@
             <center><strong><h2 class="h3 mb-3 fw-normal">DEL CANTEEN MANAGEMENT SYSTEM INSTITUT TEKNOLOGI DEL</h2></strong></center>
 
             <div class="mb-3">
-                <label for="floatingInputEmail">Username</label>
+                <label for="floatingInputEmail"><i class="bi bi-person-circle"></i> Username</label>
                 <input type="text" class="form-control" id="floatingInputEmail" name="email"
-                    placeholder="">
+                    placeholder="" required>
             </div>
             <div class="mb-3">
-                <label for="floatingPassword">Password</label>
+                <label for="floatingPassword"><i class="bi bi-key"></i> Password</label>
                 <input type="password" class="form-control" id="floatingPassword" name="password"
-                    placeholder="">
+                    placeholder="" required>
             </div>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" name="remember" id="flexCheckRemember">
+                <input class="form-check-input" type="checkbox" name="remember" id="flexCheckRemember" required>
                 <label class="form-check-label" for="flexCheckRemember">
-                    Remember Me
+                    I Agree in Privacy and Policy
                 </label>
             </div>
 
             <button class="w-100 btn btn-primary" type="submit" id="login-form-button">Masuk</button>
-            <center><p class="mt-5 mb-3 text-muted">Pengembangan Sistem Informasi Dilindungi&copy;Institut Teknologi Del 2023</p></center>
+            <center><p class="mt-5 mb-3 text-muted">Pengembangan Sistem Informasi Dilindungi &copy;Institut Teknologi Del 2023</p></center>
         </form>
     </main>
-
 </div>
 @endsection
 

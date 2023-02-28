@@ -59,7 +59,7 @@ final class EmployeeTable extends PowerGridComponent
 
             try {
                 User::whereIn('id', $ids)->delete();
-                $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => 'Data karyawaan berhasi dihapus.']);
+                $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => 'Data Mahasiswa berhasi dihapus.']);
             } catch (\Illuminate\Database\QueryException $ex) {
                 $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => 'Data gagal dihapus, kemungkinan ada data lain yang menggunakan data tersebut.']);
             }

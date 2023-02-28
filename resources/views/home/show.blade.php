@@ -13,10 +13,10 @@
             <p class="text-muted">{{ $attendance->description }}</p>
 
             <div class="mb-4">
-                <span class="badge text-bg-light border shadow-sm">Masuk : {{
+                <span class="badge text-bg-light border shadow-sm">Waktu Mulai : {{
                     substr($attendance->data->start_time, 0 , -3) }} - {{
                     substr($attendance->data->batas_start_time,0,-3 )}}</span>
-                <span class="badge text-bg-light border shadow-sm">Pulang : {{
+                <span class="badge text-bg-light border shadow-sm">Waktu Selesai : {{
                     substr($attendance->data->end_time, 0 , -3) }} - {{
                     substr($attendance->data->batas_end_time,0,-3 )}}</span>
             </div>
@@ -28,15 +28,15 @@
                 @endif
         </div>
         <div class="col-md-6">
-            <h5 class="mb-3">Histori 30 Hari Terakhir</h5>
+            <h5 class="mb-3">Data Makan Mahasiswa 30 Hari Terakhir</h5>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">No</th>
                             <th scope="col">Tanggal</th>
-                            <th scope="col">Jam Masuk</th>
-                            <th scope="col">Jam Pulang</th>
+                            <th scope="col">Waktu Masuk</th>
+                            <th scope="col">Waktu Selesai</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
@@ -49,19 +49,19 @@
                             $histo = $history->where('presence_date', $date)->first();
                             @endphp
                             @if (!$histo)
-                            <td>{{ $date }}</td>
+                            <td>{{ $date }} </td>
                             <td colspan="3">
                                 @if($date == now()->toDateString())
-                                <div class="badge text-bg-info">Belum Hadir</div>
+                                <div class="badge text-bg-info">Belum Makan</div>
                                 @else
-                                <div class="badge text-bg-danger">Tidak Hadir</div>
+                                <div class="badge text-bg-danger">Tidak Makan</div>
                                 @endif
                             </td>
                             @else
-                            <td>{{ $histo->presence_date }}</td>
-                            <td>{{ $histo->presence_enter_time }}</td>
+                            <td>{{ $histo->presence_date }} </td>
+                            <td>{{ $histo->presence_enter_time }} WIB</td>
                             <td>@if($histo->presence_out_time)
-                                {{ $histo->presence_out_time }}
+                                {{ $histo->presence_out_time }} WIB
                                 @else
                                 <span class="badge text-bg-danger">Belum Absensi Pulang</span>
                                 @endif
@@ -70,7 +70,7 @@
                                 @if ($histo->is_permission)
                                 <div class="badge text-bg-warning">Izin</div>
                                 @else
-                                <div class="badge text-bg-success">Hadir</div>
+                                <div class="badge text-bg-success">Makan</div>
                                 @endif
                             </td>
                             @endif

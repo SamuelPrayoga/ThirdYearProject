@@ -38,7 +38,7 @@
 
     {{-- jika sudah absen masuk dan belum saatnya absen pulang --}}
     @if ($data['is_has_enter_today'] && !$attendance->data->is_end)
-    <div class="alert alert-danger">
+    <div class="alert alert-warning">
         <small class="fw-bold">Belum saatnya melakukan absensi pulang.</small>
     </div>
     @endif
