@@ -96,7 +96,7 @@
                     <a class="nav-link {{ request()->routeIs('presences.*') ? 'active' : '' }}"
                         href="{{ route('presences.index') }}">
                         <i class="bi bi-clipboard-check"></i>
-                        Record Data Kehadiran Makan
+                        Record Data Makan
                     </a>
                 </li>
                 <li class="nav-item">
@@ -111,17 +111,16 @@
                         Role
                     </a>
                 </li>
-                <li class="nav-link">
-                    <form action="{{ route('auth.logout') }}" method="POST"
-                    onsubmit="return confirm('Apakah anda yakin ingin keluar?')">
+                <li class="nav-item nav-link">
+                    <form action="{{ route('auth.logout') }}" method="post">
                         @method('DELETE')
                         @csrf
-                        <button class="nav-link btn-danger" type="submit">
-                            <i class="bi bi-box-arrow-in-left"></i>
-                            <span>Keluar</span>
-                        </button>
+
+                        <button class="btn fw-bold btn-sm"><i class="bi bi-lock"></i>
+                            Keluar</button>
                     </form>
                 </li>
+
             @endif
         </ul>
     </div>

@@ -45,12 +45,12 @@
                             <tr>
                                 <td><i class="bi bi-houses-fill"></i> Asrama</td>
                                 <td>:</td>
-                                <td>DANAU TOBA</a></td>
+                                <td>{{ auth()->user()->asrama }}</a></td>
                             </tr>
                             <tr>
                                 <td><i class="bi bi-bar-chart-fill"></i> Angkatan</td>
                                 <td>:</td>
-                                <td>2020</a></td>
+                                <td>{{ auth()->user()->angkatan }}</a></td>
                             </tr>
                             <tr>
                                 <td><i class="bi bi-envelope-fill"></i> Email</td>
@@ -69,8 +69,9 @@
                                     auth()->user()->created_at->format('d M Y') }})</td>
                             </tr>
                         </table>
+                        <br>
                         <a class="btn btn-primary btn-sm" href="#" role="button" style="font-weight: bolder">
-                            <i class="bi bi-person-lines-fill"></i> Update Information</a>
+                            <i class="bi bi-person-lines-fill"></i> Ganti Password</a>
                         {{-- <ul class="ps-3">
                         <li class="mb-1">
                             <span class="fw-bold d-block">Nama : </span>

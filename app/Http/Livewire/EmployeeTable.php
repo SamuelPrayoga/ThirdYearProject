@@ -36,11 +36,11 @@ final class EmployeeTable extends PowerGridComponent
         return [
             Button::add('bulk-checked')
                 ->caption(__('Hapus'))
-                ->class('btn btn-danger border-0')
+                ->class('btn btn-danger')
                 ->emit('bulkCheckedDelete', []),
             Button::add('bulk-edit-checked')
                 ->caption(__('Edit'))
-                ->class('btn btn-success border-0')
+                ->class('btn btn-success')
                 ->emit('bulkCheckedEdit', []),
         ];
     }
@@ -153,7 +153,10 @@ final class EmployeeTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
+            ->addColumn('nim')
             ->addColumn('name')
+            ->addColumn('angkatan')
+            ->addColumn('asrama')
             ->addColumn('email')
             ->addColumn('phone')
             ->addColumn('role', function (User $model) {
@@ -183,11 +186,22 @@ final class EmployeeTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id', 'users.id')
+
+            Column::make('NIM', 'nim', 'users.nim')
                 ->searchable()
                 ->sortable(),
 
             Column::make('Name', 'name', 'users.name')
+                ->searchable()
+                ->makeInputText()
+                ->editOnClick()
+                ->sortable(),
+            Column::make('Angkatan', 'angkatan', 'users.angkatan')
+                ->searchable()
+                ->makeInputText()
+                ->editOnClick()
+                ->sortable(),
+            Column::make('Asrama', 'asrama', 'users.asrama')
                 ->searchable()
                 ->makeInputText()
                 ->editOnClick()
@@ -213,12 +227,12 @@ final class EmployeeTable extends PowerGridComponent
                 ->makeInputMultiSelect(Role::all(), 'name', 'role_id')
                 ->sortable(),
 
-            Column::make('Created at', 'created_at', 'users.created_at')
-                ->hidden(),
+            // Column::make('Created at', 'created_at', 'users.created_at')
+            //     ->hidden(),
 
-            Column::make('Created at', 'created_at_formatted', 'users.created_at')
-                ->makeInputDatePicker()
-                ->searchable()
+            // Column::make('Created at', 'created_at_formatted', 'users.created_at')
+            //     ->makeInputDatePicker()
+            //     ->searchable()
         ];
     }
 }

@@ -20,13 +20,13 @@ class EmployeeCreateForm extends Component
         $this->positions = Position::all();
         $this->roles = Role::all();
         $this->employees = [
-            ['name' => '', 'email' => '', 'phone' => '', 'password' => '', 'role_id' => User::USER_ROLE_ID, 'position_id' => $this->positions->first()->id]
+            ['nim'=> '', 'name' => '', 'angkatan'=> '', 'asrama'=> '', 'email' => '', 'phone' => '', 'password' => '', 'role_id' => User::USER_ROLE_ID, 'position_id' => $this->positions->first()->id]
         ];
     }
 
     public function addEmployeeInput(): void
     {
-        $this->employees[] = ['name' => '', 'email' => '', 'phone' => '', 'password' => '', 'role_id' => User::USER_ROLE_ID, 'position_id' => $this->positions->first()->id];
+        $this->employees[] = ['nim'=> '', 'name' => '', 'angkatan'=> '', 'asrama'=> '', 'email' => '', 'phone' => '', 'password' => '', 'role_id' => User::USER_ROLE_ID, 'position_id' => $this->positions->first()->id];
     }
 
     public function removeEmployeeInput(int $index): void
@@ -45,7 +45,10 @@ class EmployeeCreateForm extends Component
         // setidaknya input pertama yang hanya required,
         // karena nanti akan difilter apakah input kedua dan input selanjutnya apakah berisi
         $this->validate([
+            'employees.*.nim' => 'required',
             'employees.*.name' => 'required',
+            'employees.*.angkatan' => 'required',
+            'employees.*.asrama' => 'required',
             'employees.*.email' => 'required|email|unique:users,email',
             'employees.*.phone' => 'required|unique:users,phone',
             'employees.*.password' => '',
@@ -73,7 +76,7 @@ class EmployeeCreateForm extends Component
             $affected++;
         }
 
-        redirect()->route('employees.index')->with('success', "Ada ($affected) data karyawaan yang berhasil ditambahkan.");
+        redirect()->route('employees.index')->with('success', "Ada ($affected) data yang berhasil ditambahkan.");
     }
 
     public function render()

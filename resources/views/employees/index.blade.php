@@ -12,6 +12,13 @@
             Tambah Data Mahasiswa
         </a>
     </div>
+&nbsp;
+    <div>
+        <a href="#" class="btn btn-sm btn-success">
+            <i class="bi bi-upload"></i> <span class="align-text-bottom me-1"></span>
+            Import Data Mahasiswa
+        </a>
+    </div>
 </div>
 @endsection
 

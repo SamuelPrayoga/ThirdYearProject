@@ -5,12 +5,27 @@
         <div class="mb-3">
             <div class="w-100">
                 <div class="mb-3">
-                    <x-form-label id="name{{ $i }}" label='Nama Karyawaan {{ $i + 1 }}' />
+                    <x-form-label id="name{{ $i }}" label='NIM {{ $i + 1 }}' />
+                    <x-form-input id="nim{{ $i }}" name="nim{{ $i }}" wire:model.defer="employees.{{ $i }}.nim" />
+                    <x-form-error key="employees.{{ $i }}.nim" />
+                </div>
+                <div class="mb-3">
+                    <x-form-label id="name{{ $i }}" label='Nama{{ $i + 1 }}' />
                     <x-form-input id="name{{ $i }}" name="name{{ $i }}" wire:model.defer="employees.{{ $i }}.name" />
                     <x-form-error key="employees.{{ $i }}.name" />
                 </div>
                 <div class="mb-3">
-                    <x-form-label id="email{{ $i }}" label='Email Karyawaan {{ $i + 1 }}' />
+                    <x-form-label id="angkatan{{ $i }}" label='Angkatan{{ $i + 1 }}' />
+                    <x-form-input id="angkatan{{ $i }}" name="angkatan{{ $i }}" wire:model.defer="employees.{{ $i }}.angkatan" />
+                    <x-form-error key="employees.{{ $i }}.angkatan" />
+                </div>
+                <div class="mb-3">
+                    <x-form-label id="asrama{{ $i }}" label='Asrama{{ $i + 1 }}' />
+                    <x-form-input id="asrama{{ $i }}" name="asrama{{ $i }}" wire:model.defer="employees.{{ $i }}.asrama" />
+                    <x-form-error key="employees.{{ $i }}.asrama" />
+                </div>
+                <div class="mb-3">
+                    <x-form-label id="email{{ $i }}" label='Email Zimbra {{ $i + 1 }}' />
                     <x-form-input id="email{{ $i }}" name="email{{ $i }}" type="email"
                         wire:model.defer="employees.{{ $i }}.email" placeholder="Email aktif" />
                     <x-form-error key="employees.{{ $i }}.email" />
