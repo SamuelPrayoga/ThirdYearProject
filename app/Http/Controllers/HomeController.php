@@ -59,7 +59,7 @@ class HomeController extends Controller
             ->where('attendance_id', $attendance->id)
             ->get();
 
-        // untuku melihat karyawan yang tidak hadir
+        // untuku melihat mahasiswa yang tidak hadir
         $priodDate = CarbonPeriod::create($attendance->created_at->toDateString(), now()->toDateString())
             ->toArray();
 

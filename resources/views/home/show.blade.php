@@ -28,7 +28,7 @@
                 @endif
         </div>
         <div class="col-md-6">
-            <h5 class="mb-3">Data Makan Mahasiswa 30 Hari Terakhir</h5>
+            <h5 class="mb-3">Data Makan Mahasiswa 30 Hari Terakhir a.n "{{ Auth::user()->name }}"</h5>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>

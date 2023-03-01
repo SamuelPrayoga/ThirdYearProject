@@ -59,7 +59,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nama Karyawan</th>
+                    <th scope="col">Nama Mahasiswa</th>
                     <th scope="col">Kontak</th>
                     <th scope="col">Posisi</th>
                     <th scope="col">Handle</th>

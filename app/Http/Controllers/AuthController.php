@@ -45,4 +45,11 @@ class AuthController extends Controller
 
         return redirect()->route('auth.login')->with('success', 'Anda berhasil keluar.');
     }
+
+    // public function showForgotForm()
+    // {
+    //     return view('auth.forgetPassword', [
+    //         "title" => "Masuk"
+    //     ]);
+    // }
 }

@@ -73,7 +73,7 @@ class PresenceController extends Controller
             ->where('presence_date', $byDate)
             ->get(['presence_date', 'user_id']);
 
-        // jika semua karyawan tidak hadir
+        // jika semua mahasiswa tidak hadir
         if ($presences->isEmpty()) {
             $notPresentData[] =
                 [
@@ -90,7 +90,7 @@ class PresenceController extends Controller
 
 
         return view('presences.not-present', [
-            "title" => "Data Karyawan Tidak Hadir",
+            "title" => "Data Mahasiswa Tidak Hadir",
             "attendance" => $attendance,
             "notPresentData" => $notPresentData
         ]);
@@ -109,7 +109,7 @@ class PresenceController extends Controller
             ->get();
 
         return view('presences.permissions', [
-            "title" => "Data Karyawan Izin",
+            "title" => "Data Mahasiswa Izin",
             "attendance" => $attendance,
             "permissions" => $permissions,
             "date" => $byDate
@@ -186,7 +186,7 @@ class PresenceController extends Controller
         ]);
 
         return back()
-            ->with('success', "Berhasil menerima data izin karyawan atas nama \"$user->name\".");
+            ->with('success', "Berhasil menerima data izin mahasiswa atas nama \"$user->name\".");
     }
 
     private function getNotPresentEmployees($presences)
