@@ -13,8 +13,18 @@ body {
    */
 
   .sidebar {
+
+    /* width: 23.2rem;
+    height: 100%;
+    padding: 2.1rem 1.2rem;
+    background-color: #17171e;
     position: fixed;
-    top: 0;
+    transition: all 0.5s ease;
+    top: 0; */
+
+
+    position: fixed;
+    top: 10px;
     /* rtl:raw:
     right: 0;
     */
@@ -44,11 +54,13 @@ body {
   .sidebar .nav-link {
     font-weight: 500;
     color: #333;
+    font-family: sans-serif;
   }
 
   .sidebar .nav-link .feather {
     margin-right: 4px;
     color: #727272;
+
   }
 
   .sidebar .nav-link.active {

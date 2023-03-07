@@ -20,6 +20,13 @@
                     <x-form-error key="employees.{{ $loop->index }}.name" />
                 </div>
                 <div class="mb-3">
+                    <x-form-label id="prodi{{ $employee['id'] }}"
+                        label="Nama {{ $loop->iteration }} (ID: {{ $employee['id'] }})" />
+                    <x-form-input id="prodi{{ $employee['id'] }}" name="prodi{{ $employee['id'] }}"
+                        wire:model.defer="employees.{{ $loop->index }}.prodi" />
+                    <x-form-error key="employees.{{ $loop->index }}.prodi" />
+                </div>
+                <div class="mb-3">
                     <x-form-label id="angkatan{{ $employee['id'] }}"
                         label="Angkatan {{ $loop->iteration }} (ID: {{ $employee['id'] }})" />
                     <x-form-input id="angkatan{{ $employee['id'] }}" name="angkatan{{ $employee['id'] }}"

@@ -15,6 +15,9 @@ class User extends Authenticatable
     const ADMIN_ROLE_ID = 1;
     const OPERATOR_ROLE_ID = 2;
     const USER_ROLE_ID = 3;
+    // const PENGELOLA_ROLE_ID = 4;
+    // const KOORDINATOR_ROLE_ID = 5;
+    // const DEPKEBDIS_ROLE_ID = 6;
 
     /**
      * The attributes that are mass assignable.
@@ -26,10 +29,11 @@ class User extends Authenticatable
         'angkatan',
         'asrama',
         'name',
+        'prodi',
         'email',
         'password',
-        'role_id',
-        'position_id',
+        'role_id', //3
+        'position_id', //1
         'phone',
     ];
 
@@ -74,11 +78,23 @@ class User extends Authenticatable
 
     public function isOperator()
     {
-        return $this->role_id === self::OPERATOR_ROLE_ID;
+        return $this->role_id === self::OPERATOR_ROLE_ID; //keasramaan
     }
 
     public function isUser()
     {
         return $this->role_id === self::USER_ROLE_ID;
     }
+    // public function isPengelola()
+    // {
+    //     return $this->role_id === self::PENGELOLA_ROLE_ID;
+    // }
+    // public function isKoordinator()
+    // {
+    //     return $this->role_id === self::KOORDINATOR_ROLE_ID;
+    // }
+    // public function isDepkebdis()
+    // {
+    //     return $this->role_id === self::DEPKEBDIS_ROLE_ID;
+    // }
 }

@@ -35,7 +35,12 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><img src="{{asset('img/logo.png')}}" alt="" width="70px"></td>
+                                <td><img src="{{ asset('img/logo.png') }}" alt="" width="70px"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="bi bi-person-vcard-fill"></i> NIM</td>
+                                <td>:</td>
+                                <td>{{ auth()->user()->nim }}</td>
                             </tr>
                             <tr>
                                 <td><i class="bi bi-person-circle"></i> Nama</td>
@@ -65,8 +70,8 @@
                             <tr>
                                 <td><i class="bi bi-person-fill-lock"></i> Joined At</td>
                                 <td>:</td>
-                                <td>{{ auth()->user()->created_at->diffForHumans() }} ({{
-                                    auth()->user()->created_at->format('d M Y') }})</td>
+                                <td>{{ auth()->user()->created_at->diffForHumans() }}
+                                    ({{ auth()->user()->created_at->format('d M Y') }})</td>
                             </tr>
                         </table>
                         <br>
@@ -96,4 +101,6 @@
             </div>
         </div>
     </div>
+    <!-- Footer -->
+@include('partials.footer')
 @endsection

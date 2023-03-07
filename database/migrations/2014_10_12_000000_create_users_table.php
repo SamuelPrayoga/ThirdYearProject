@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nim');
             $table->string('name');
+            $table->string('prodi');
             $table->string('angkatan');
             $table->string('asrama');
             $table->string('email')->unique();

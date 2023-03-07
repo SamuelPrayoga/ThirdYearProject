@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\User;
+use App\Imports\UserImport;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -12,6 +14,15 @@ class EmployeeController extends Controller
         return view('employees.index', [
             "title" => "Mahasiswa"
         ]);
+    }
+
+    public function userImportExcel(Request $request){
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataUser', $namaFile);
+
+        Excel::import(new UserImport, public_path('/DataUser/'.$namaFile));
+        return redirect('/employees');
     }
 
     public function create()
@@ -28,13 +39,13 @@ class EmployeeController extends Controller
             return redirect()->back();
         $ids = explode('-', $ids);
 
-        // ambil data user yang hanya memiliki User::USER_ROLE_ID / role untuk karyawaan
+        // ambil data user yang hanya memiliki User::USER_ROLE_ID / role untuk mahasiswa
         $employees = User::query()
             ->whereIn('id', $ids)
             ->get();
 
         return view('employees.edit', [
-            "title" => "Edit Data Karyawaan",
+            "title" => "Edit Data Mahasiswa",
             "employees" => $employees
         ]);
     }

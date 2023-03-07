@@ -15,6 +15,11 @@
                     <x-form-error key="employees.{{ $i }}.name" />
                 </div>
                 <div class="mb-3">
+                    <x-form-label id="prodi{{ $i }}" label='Program Studi{{ $i + 1 }}' />
+                    <x-form-input id="prodi{{ $i }}" name="prodi{{ $i }}" wire:model.defer="employees.{{ $i }}.prodi" />
+                    <x-form-error key="employees.{{ $i }}.prodi" />
+                </div>
+                <div class="mb-3">
                     <x-form-label id="angkatan{{ $i }}" label='Angkatan{{ $i + 1 }}' />
                     <x-form-input id="angkatan{{ $i }}" name="angkatan{{ $i }}" wire:model.defer="employees.{{ $i }}.angkatan" />
                     <x-form-error key="employees.{{ $i }}.angkatan" />

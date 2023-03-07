@@ -91,7 +91,7 @@ final class PresenceTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('id')
+            ->addColumn('nim')
             ->addColumn('user_name')
             ->addColumn("presence_date")
             ->addColumn("presence_enter_time")
@@ -119,9 +119,9 @@ final class PresenceTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
+            // Column::make('NIM', 'nim')
+            //     ->searchable()
+            //     ->sortable(),
 
             Column::make('Nama', 'user_name')
                 ->searchable()

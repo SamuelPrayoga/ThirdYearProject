@@ -20,10 +20,11 @@ class DatabaseSeeder extends Seeder
         $this->call(PositionSeeder::class);
 
         \App\Models\User::factory()->create([
-            'nim' => '11420029',
+            'nim' => '111111',
             'asrama' => 'Danau Toba',
+            'prodi' => 'D4TRPL',
             'angkatan' => '2020',
-            'name' => 'Samuel (Admin)',
+            'name' => 'ADMINISTRATOR',
             'email' => 'admin@gmail.com',
             'role_id' => Role::where('name', 'admin')->first('id'),
             'position_id' => Position::where('name', 'Operator')->first('id'),
@@ -33,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'position_id' => Position::where('name', 'Operator')->first('id'),
         ]);
         \App\Models\User::factory(10)->create([
-            'role_id' => Role::where('name', 'user')->first('id'), // user === employee
+            'role_id' => Role::where('name', 'user')->first('id'), // user === mahasiswa
             'position_id' => Position::select('id')->inRandomOrder()->first()->id
         ]);
     }

@@ -16,38 +16,51 @@
                         Pengumuman
                     </a>
                 </li>
+            @endif
+            @if (auth()->user()->isAdmin())
                 <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-cart-plus"></i>
+                        Pembelian Bahan Makanan
+                    </a>
+                </li>
+            @endif
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-cart-plus"></i>
                         Pemesanan Makanan
                     </a>
-                </li>
+                </li> --}}
+                @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <strong>INFORMASI KANTIN</strong>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('menumakan.*') ? 'active' : '' }}"
                         href="{{ route('menumakan.index') }}">
                         <i class="bi bi-menu-down"></i> Menu Makanan
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href=#>
                         <i class="bi bi-person-exclamation"></i> Piket Kantin
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href=#>
                         <i class="bi bi-info-circle"></i> Kritik dan Saran
                     </a>
                 </li>
+            @endif
                 <li class="nav-item">
                     <a class="nav-link">
                         <strong>LAPORAN MAHASISWA</strong>
                     </a>
                 </li>
+            @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('employees.*') ? 'active' : '' }}"
                         href="{{ route('employees.index') }}">
@@ -55,6 +68,8 @@
                         Mahasiswa
                     </a>
                 </li>
+            @endif
+            @if (auth()->user()->isOperator())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-person"></i>
@@ -64,10 +79,12 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('holidays.*') ? 'active' : '' }}"
                         href="{{ route('holidays.index') }}">
-                        <i class="bi bi-file-earmark-medical"></i>
-                        Izin Sakit
+                        <i class="bi bi-calendar-event"></i>
+                        Data Hari Libur
                     </a>
                 </li>
+            @endif
+            @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-clipboard2-minus"></i>
@@ -80,25 +97,29 @@
                         Laporan Temuan Barang
                     </a>
                 </li>
+            @endif
                 <li class="nav-item">
                     <a class="nav-link">
                         <strong>ABSENSI MAKAN</strong>
                     </a>
                 </li>
+            @if (auth()->user()->isOperator())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('attendances.*') ? 'active' : '' }}"
                         href="{{ route('attendances.index') }}">
-                        <i class="bi bi-clipboard"></i>
+                        <i class="bi bi-qr-code"></i>
                         Absensi Makan Kantin
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('presences.*') ? 'active' : '' }}"
                         href="{{ route('presences.index') }}">
-                        <i class="bi bi-clipboard-check"></i>
+                        <i class="bi bi-qr-code-scan"></i>
                         Record Data Makan
                     </a>
                 </li>
+            @endif
+                @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link">
                         <strong>USER MANAGEMENT</strong>
@@ -111,7 +132,15 @@
                         Role
                     </a>
                 </li>
-                <li class="nav-item nav-link">
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('positions.*') ? 'active' : '' }}"
+                        href="{{ route('positions.index') }}">
+                        <i class="bi bi-activity"></i>
+                        Profiling
+                    </a>
+                </li>
+                @endif
+                {{-- <li class="nav-item nav-link">
                     <form action="{{ route('auth.logout') }}" method="post">
                         @method('DELETE')
                         @csrf
@@ -119,9 +148,9 @@
                         <button class="btn fw-bold btn-sm"><i class="bi bi-lock"></i>
                             Keluar</button>
                     </form>
-                </li>
+                </li> --}}
 
-            @endif
+            {{-- @endif --}}
         </ul>
     </div>
 </nav>

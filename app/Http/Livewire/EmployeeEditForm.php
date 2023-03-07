@@ -26,6 +26,7 @@ class EmployeeEditForm extends Component
             $this->employees[] = [
                 'id' => $employee->id,
                 'nim' => $employee->nim,
+                'prodi' => $employee->prodi,
                 'angkatan' => $employee->angkatan,
                 'asrama' => $employee->asrama,
                 'name' => $employee->name,
@@ -48,6 +49,7 @@ class EmployeeEditForm extends Component
         $this->validate([
             'employees.*.nim' => 'required',
             'employees.*.name' => 'required',
+            'employees.*.prodi' => 'required',
             'employees.*.angkatan' => 'required',
             'employees.*.asrama' => 'required',
             'employees.*.email' => 'required|email',
@@ -96,6 +98,7 @@ class EmployeeEditForm extends Component
             $affected += $employeeBeforeUpdated->update([
                 'nim' => $employee['nim'],
                 'name' => $employee['name'],
+                'prodi' => $employee['prodi'],
                 'angkatan' => $employee['angkatan'],
                 'asrama' => $employee['asrama'],
                 'email' => $employee['email'],

@@ -55,4 +55,5 @@
             $('#example').DataTable();
         });
     </script>
+@include('partials.footer')
 @endsection

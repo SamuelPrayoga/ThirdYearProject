@@ -28,7 +28,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('home.menumakan') }}"><i class="bi bi-menu-down"></i>
                             Menu Makanan</a>
-                        <a class="dropdown-item" href="#"><i class="bi bi-calendar2-week"></i> Jadwal Piket</a>
+                        {{-- <a class="dropdown-item" href="#"><i class="bi bi-calendar2-week"></i> Jadwal Piket</a> --}}
                         {{-- <a class="dropdown-item" href="#"><i class="bi bi-map"></i> Denah Makan</a> --}}
                         {{-- <div class="dropdown-divider"></div> --}}
                         <a class="dropdown-item" href="#"><i class="bi bi-info-circle"></i> Kritik dan Saran</a>
@@ -49,9 +49,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Pengumuman</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pemesanan</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

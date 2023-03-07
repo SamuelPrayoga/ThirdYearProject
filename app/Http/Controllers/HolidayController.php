@@ -10,14 +10,14 @@ class HolidayController extends Controller
     public function index()
     {
         return view('holidays.index', [
-            "title" => "Izin Sakit"
+            "title" => "Data Hari Libur"
         ]);
     }
 
     public function create()
     {
         return view('holidays.create', [
-            "title" => "Tambah Data Izin Sakit"
+            "title" => "Tambah Data Hari Libur"
         ]);
     }
 
@@ -33,7 +33,7 @@ class HolidayController extends Controller
             ->get();
 
         return view('holidays.edit', [
-            "title" => "Edit Data Izin Sakit",
+            "title" => "Edit Data Hari Libur",
             "holidays" => $holidays
         ]);
     }

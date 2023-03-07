@@ -1,8 +1,22 @@
-<footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Institut Teknologi Del
+<style>
+    #footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        /* Height of the footer */
+        background: #00337C;
+    }
+</style>
+
+<footer class="text-center text-lg-start bg-light text-muted" id="footer">
+    <!-- Section: Social media -->
+    <!-- Copyright -->
+    <div class="text-center p-4 text-secondary" style="background: #00337C">
+        Del Canteen Management System Copyright &copy; 2023 -
+        <script>
+            document.write(new Date().getFullYear())
+        </script> Your Name All Rights Reserved
     </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2023-2025 <a href="#">Del Canteen Management System</a>.</strong> All rights reserved.
-  </footer>
+    <!-- Copyright -->
+</footer>

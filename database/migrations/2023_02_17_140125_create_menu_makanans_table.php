@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('menu_pagi');
             $table->string('menu_siang');
             $table->string('menu_malam');
-            $table->string('menu_makan');
             $table->timestamps();
         });
     }

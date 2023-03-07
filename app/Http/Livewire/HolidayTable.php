@@ -49,7 +49,7 @@ final class HolidayTable extends PowerGridComponent
 
             try {
                 Holiday::whereIn('id', $ids)->delete();
-                $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => 'Data Izin Sakit berhasi dihapus.']);
+                $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => 'Data hari Libur berhasil dihapus.']);
             } catch (\Illuminate\Database\QueryException $ex) {
                 $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => 'Data gagal dihapus, kemungkinan ada data lain yang menggunakan data tersebut.']);
             }
@@ -169,7 +169,7 @@ final class HolidayTable extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Nama Mahasiswa', 'title')
+            Column::make('Nama Hari Libur', 'title')
                 ->searchable()
                 ->makeInputText('title')
                 ->sortable(),
@@ -179,10 +179,10 @@ final class HolidayTable extends PowerGridComponent
                 ->makeInputText('description')
                 ->sortable(),
 
-            Column::make('Tanggal Izin Sakit', 'holiday_date')
+            Column::make('Tanggal Libur', 'holiday_date')
                 ->hidden(),
 
-            Column::make('Tanggal Izin Sakit', 'holiday_date_formatted', 'holiday_date')
+            Column::make('Tanggal Libur', 'holiday_date_formatted', 'holiday_date')
                 ->makeInputDatePicker()
                 ->searchable(),
 

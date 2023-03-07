@@ -20,13 +20,13 @@ class EmployeeCreateForm extends Component
         $this->positions = Position::all();
         $this->roles = Role::all();
         $this->employees = [
-            ['nim'=> '', 'name' => '', 'angkatan'=> '', 'asrama'=> '', 'email' => '', 'phone' => '', 'password' => '', 'role_id' => User::USER_ROLE_ID, 'position_id' => $this->positions->first()->id]
+            ['nim'=> '', 'name' => '', 'prodi' => '', 'angkatan'=> '', 'asrama'=> '', 'email' => '', 'phone' => '', 'password' => '', 'role_id' => User::USER_ROLE_ID, 'position_id' => $this->positions->first()->id]
         ];
     }
 
     public function addEmployeeInput(): void
     {
-        $this->employees[] = ['nim'=> '', 'name' => '', 'angkatan'=> '', 'asrama'=> '', 'email' => '', 'phone' => '', 'password' => '', 'role_id' => User::USER_ROLE_ID, 'position_id' => $this->positions->first()->id];
+        $this->employees[] = ['nim'=> '', 'name' => '', 'prodi'=> '','angkatan'=> '', 'asrama'=> '', 'email' => '', 'phone' => '', 'password' => '', 'role_id' => User::USER_ROLE_ID, 'position_id' => $this->positions->first()->id];
     }
 
     public function removeEmployeeInput(int $index): void
@@ -47,6 +47,7 @@ class EmployeeCreateForm extends Component
         $this->validate([
             'employees.*.nim' => 'required',
             'employees.*.name' => 'required',
+            'employees.*.prodi' => 'required',
             'employees.*.angkatan' => 'required',
             'employees.*.asrama' => 'required',
             'employees.*.email' => 'required|email|unique:users,email',

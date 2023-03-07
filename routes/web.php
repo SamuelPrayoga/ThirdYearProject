@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/positions', PositionController::class)->only(['index', 'create']);
         Route::get('/positions/edit', [PositionController::class, 'edit'])->name('positions.edit');
         // employees
+        Route::post('/importuser', [EmployeeController::class, 'userImportExcel'])->name('importuser');
         Route::resource('/employees', EmployeeController::class)->only(['index', 'create']);
         Route::get('/employees/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
         // holidays (hari libur)

@@ -36,11 +36,11 @@ final class EmployeeTable extends PowerGridComponent
         return [
             Button::add('bulk-checked')
                 ->caption(__('Hapus'))
-                ->class('btn btn-danger')
+                ->class('btn btn-danger btn-sm')
                 ->emit('bulkCheckedDelete', []),
             Button::add('bulk-edit-checked')
                 ->caption(__('Edit'))
-                ->class('btn btn-success')
+                ->class('btn btn-success btn-sm')
                 ->emit('bulkCheckedEdit', []),
         ];
     }
@@ -155,6 +155,7 @@ final class EmployeeTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('nim')
             ->addColumn('name')
+            ->addColumn('prodi')
             ->addColumn('angkatan')
             ->addColumn('asrama')
             ->addColumn('email')
@@ -189,9 +190,14 @@ final class EmployeeTable extends PowerGridComponent
 
             Column::make('NIM', 'nim', 'users.nim')
                 ->searchable()
+                ->makeInputText()
                 ->sortable(),
-
             Column::make('Name', 'name', 'users.name')
+                ->searchable()
+                ->makeInputText()
+                ->editOnClick()
+                ->sortable(),
+            Column::make('Program Studi', 'prodi', 'users.prodi')
                 ->searchable()
                 ->makeInputText()
                 ->editOnClick()

@@ -62,10 +62,14 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">No</th>
                     <th scope="col">Nama Mahasiswa</th>
+                    <th scope="col">NIM</th>
+                    <th scope="col">Program Studi</th>
+                    <th scope="col">Angkatan</th>
+                    <th scope="col">Asrama</th>
                     <th scope="col">Kontak</th>
-                    <th scope="col">Posisi</th>
+                    <th scope="col">Role</th>
                     <th scope="col">Handle</th>
                 </tr>
             </thead>
@@ -74,6 +78,10 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $user['name'] }}</td>
+                    <td>{{ $user['nim'] }}</td>
+                    <td>{{ $user['prodi'] }}</td>
+                    <td>{{ $user['angkatan'] }}</td>
+                    <td>{{ $user['asrama'] }}</td>
                     <td>
                         <a href="mailto:{{ $user['email'] }}">{{ $user['email'] }}</a>
                         <span class="fw-bold"> / </span>

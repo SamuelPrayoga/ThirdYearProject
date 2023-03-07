@@ -49,7 +49,7 @@
             </div>
 
             <div class="mb-3">
-                <x-form-label id="positions" label='Posisi Karyawaan' />
+                <x-form-label id="positions" label='Posisi User' />
                 <div class="row ms-1">
                     @foreach ($positions as $position)
                     <div class="form-check col-sm-4">
@@ -62,7 +62,7 @@
                     </div>
                     @endforeach
                 </div>
-                <small class="text-muted d-block mt-1">Pilih posisi karyawaan yang akan menggunakan absensi ini.</small>
+                <small class="text-muted d-block mt-1">Pilih Role yang akan menggunakan absensi ini.</small>
                 <x-form-error key="position_ids" />
                 {{-- tom-select init script ada di create.blade.php attendances --}}
             </div>
