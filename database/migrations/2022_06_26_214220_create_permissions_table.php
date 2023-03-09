@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->string('description', 500);
+            $table->string('file', 500);
             $table->timestamps();
         });
     }

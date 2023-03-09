@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="save" method="post" novalidate>
+    <form wire:submit.prevent="save" method="post" novalidate >
         @include('partials.alerts')
 
         <div class="w-100">
@@ -13,6 +13,11 @@
                 <textarea id="description" name="description" class="form-control"
                     wire:model.defer="permission.description"></textarea>
                 <x-form-error key="permission.description" />
+            </div>
+            <div class="mb-3">
+                <x-form-label id="file" label='Upload Bukti Izin' />
+                <x-form-upload id="file" name="file" wire:model.defer="permission.file" />
+                <x-form-error key="permission.file" />
             </div>
 
         </div>

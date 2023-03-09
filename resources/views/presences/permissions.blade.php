@@ -115,11 +115,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <ul>
-                    <li>Judul Izin : <span id="permission-title"></span></li>
-                    <li>Keterangan Izin : <p id="permission-description"></p>
-                    </li>
-                </ul>
+                <table>
+                    <tr>
+                        <td>Judul Izin</td>
+                        <td>:</td>
+                        <td><span id="permission-title"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Alasan Lengkap</td>
+                        <td>:</td>
+                        <td><span id="permission-description"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bukti Izin</td>
+                        <td>:</td>
+                        <td><span id="permission-file"></span></td>
+                    </tr>
+                </table>
+                {{-- <tr>
+                    <td>Judul Izin wkw : <span id="permission-title"></span></td>
+                    <td>Keterangan Izin : <p id="permission-description"></p></td>
+                </tr> --}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

@@ -21,6 +21,10 @@ permissionDetailModal.addEventListener("show.bs.modal", async (event) => {
     const permissionDescriptionModal = permissionDetailModal.querySelector(
         "#permission-description"
     );
+    const permissionFileModal = permissionDetailModal.querySelector(
+        "#permission-file"
+    );
     permissionTitleModal.textContent = data.title;
     permissionDescriptionModal.textContent = data.description;
+    permissionFileModal.textContent = data.file;
 });
