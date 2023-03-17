@@ -38,37 +38,37 @@
                                 <td><img src="{{ asset('img/logo.png') }}" alt="" width="70px"></td>
                             </tr>
                             <tr>
-                                <td><i class="bi bi-person-vcard-fill"></i> NIM</td>
+                                <td>NIM</td>
                                 <td>:</td>
                                 <td>{{ auth()->user()->nim }}</td>
                             </tr>
                             <tr>
-                                <td><i class="bi bi-person-circle"></i> Nama</td>
+                                <td>Nama</td>
                                 <td>:</td>
                                 <td>{{ auth()->user()->name }}</td>
                             </tr>
                             <tr>
-                                <td><i class="bi bi-houses-fill"></i> Asrama</td>
+                                <td>Asrama</td>
                                 <td>:</td>
                                 <td>{{ auth()->user()->asrama }}</a></td>
                             </tr>
                             <tr>
-                                <td><i class="bi bi-bar-chart-fill"></i> Angkatan</td>
+                                <td>Angkatan</td>
                                 <td>:</td>
                                 <td>{{ auth()->user()->angkatan }}</a></td>
                             </tr>
                             <tr>
-                                <td><i class="bi bi-envelope-fill"></i> Email</td>
+                                <td>Email</td>
                                 <td>:</td>
                                 <td><a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a></td>
                             </tr>
                             <tr>
-                                <td><i class="bi bi-telephone-fill"></i> Telepon</td>
+                                <td>Telepon</td>
                                 <td>:</td>
                                 <td><a href="tel:{{ auth()->user()->phone }}">{{ auth()->user()->phone }}</a></td>
                             </tr>
                             <tr>
-                                <td><i class="bi bi-person-fill-lock"></i> Joined At</td>
+                                <td>Joined At</td>
                                 <td>:</td>
                                 <td>{{ auth()->user()->created_at->diffForHumans() }}
                                     ({{ auth()->user()->created_at->format('d M Y') }})</td>

@@ -31,7 +31,7 @@
                 <h5 class="mb-3">Data Makan Mahasiswa 30 Hari Terakhir </h5>
                 <h5 class="mb-3">Nama: {{ Auth::user()->name }}</h5>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="example" style="width: 100%">
+                    <table class="table table-bordered" id="exampl" style="width: 100%">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -84,12 +84,4 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
-    </script>
-
 @endsection

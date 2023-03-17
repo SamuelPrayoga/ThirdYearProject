@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="card-body">
-                        <table id="example" class="table table-bordered">
+                        <table class="table table-bordered">
                             <thead class="bg-light">
                                 <tr>
                                     <th scope="row">Tanggal</th>
@@ -31,7 +31,7 @@
                             <tbody>
                                 @foreach ($menumakan as $menu)
                                     <tr>
-                                        <td width="20%">{{ date('l, d M Y', strtotime($menu->tanggal_makan)) }}</td>
+                                        <td width="20%">{{ date('d M Y', strtotime($menu->tanggal_makan)) }}</td>
                                         <td width="20%">
                                             <center>{!! $menu->menu_pagi !!}</center>
                                         </td>
@@ -62,19 +62,22 @@
         width: 100%;
         height: 60px;
         /* Height of the footer */
-        background: #00337C;
-        font-family: sans-serif
+        background: #367FA9;
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: rgb(231, 231, 231);
+        font-weight: lighter;
     }
 </style>
 
-<footer class="text-center text-lg-start bg-light text-muted" id="footer">
+<footer class="text-center text-lg-start bg-dark " id="footer">
     <!-- Section: Social media -->
     <!-- Copyright -->
-    <div class="text-center p-4 text-secondary" style="background: #00337C">
-        Del Canteen Management System Copyright &copy; 2023 -
+    <div class="text-center p-4" style="background: #367FA9">
+        Del Canteen Management System Copyright &copy;
         <script>
             document.write(new Date().getFullYear())
-        </script> Your Name All Rights Reserved
+        </script> Kantin Institut Teknologi Del Rights Reserved
     </div>
     <!-- Copyright -->
 </footer>

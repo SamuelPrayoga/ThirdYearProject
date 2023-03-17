@@ -22,7 +22,7 @@ class EmployeeController extends Controller
         $file->move('DataUser', $namaFile);
 
         Excel::import(new UserImport, public_path('/DataUser/'.$namaFile));
-        return redirect('/employees');
+        return redirect('/pengguna');
     }
 
     public function create()

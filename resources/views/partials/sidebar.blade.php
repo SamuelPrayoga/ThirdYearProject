@@ -63,7 +63,7 @@
             @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('employees.*') ? 'active' : '' }}"
-                        href="{{ route('employees.index') }}">
+                        href="{{ route('pengguna.index') }}">
                         <i class="bi bi-people"></i>
                         Mahasiswa
                     </a>
@@ -140,17 +140,6 @@
                     </a>
                 </li>
                 @endif
-                {{-- <li class="nav-item nav-link">
-                    <form action="{{ route('auth.logout') }}" method="post">
-                        @method('DELETE')
-                        @csrf
-
-                        <button class="btn fw-bold btn-sm"><i class="bi bi-lock"></i>
-                            Keluar</button>
-                    </form>
-                </li> --}}
-
-            {{-- @endif --}}
         </ul>
     </div>
 </nav>

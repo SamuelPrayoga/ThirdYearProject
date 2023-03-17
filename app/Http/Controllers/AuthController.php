@@ -24,7 +24,7 @@ class AuthController extends Controller
             $data = [
                 "success" => true,
                 "redirect_to" => auth()->user()->isUser() ? route('home.index') : route('dashboard.index'),
-                "message" => "Login berhasil, silahkan tunggu!"
+                "message" => "Login berhasil, silahkan klik tombol kembali!"
             ];
             return response()->json($data);
         }

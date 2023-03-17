@@ -112,7 +112,7 @@ class EmployeeEditForm extends Component
             "Tidak ada data pengguna     yang diubah." :
             "Ada $affected data pengguna yang berhasil diedit.";
 
-        return redirect()->route('employees.index')->with('success', $message);
+        return redirect()->route('pengguna.index')->with('success', $message);
     }
 
     public function render()

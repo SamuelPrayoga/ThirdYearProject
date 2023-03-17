@@ -20,5 +20,7 @@
     <div class="col-md-7">
         <livewire:attendance-create-form />
     </div>
+
 </div>
+
 @endsection

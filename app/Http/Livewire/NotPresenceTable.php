@@ -33,7 +33,7 @@ final class PresenceTable extends PowerGridComponent
         return [
             Exportable::make('export')
                 ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV,),
+                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->showToggleColumns(),
             Footer::make()
                 ->showPerPage()
@@ -148,12 +148,12 @@ final class PresenceTable extends PowerGridComponent
             Column::make('Status', 'is_permission')
                 ->sortable(),
 
-            // Column::make('Created at', 'created_at')
-            //     ->hidden(),
+            Column::make('Created at', 'created_at')
+                ->hidden(),
 
-            // Column::make('Created at', 'created_at_formatted')
-            //     ->makeInputDatePicker()
-            //     ->searchable()
+            Column::make('Created at', 'created_at_formatted')
+                ->makeInputDatePicker()
+                ->searchable()
         ];
     }
 

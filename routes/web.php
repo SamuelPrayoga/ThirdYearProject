@@ -48,8 +48,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/positions/edit', [PositionController::class, 'edit'])->name('positions.edit');
         // employees
         Route::post('/importuser', [EmployeeController::class, 'userImportExcel'])->name('importuser');
-        Route::resource('/employees', EmployeeController::class)->only(['index', 'create']);
-        Route::get('/employees/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
+        Route::resource('/pengguna', EmployeeController::class)->only(['index', 'create']);
+        Route::get('/pengguna/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
         // holidays (hari libur)
         Route::resource('/holidays', HolidayController::class)->only(['index', 'create']);
         Route::get('/holidays/edit', [HolidayController::class, 'edit'])->name('holidays.edit');

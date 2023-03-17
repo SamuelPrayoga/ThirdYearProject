@@ -9,8 +9,7 @@
             </div>
             <div class="mb-3">
                 <x-form-label id="description" label='Keterangan' />
-                <textarea id="description" name="description" class="form-control"
-                    wire:model.defer="attendance.description"></textarea>
+                <textarea id="description" name="description" class="form-control" wire:model.defer="attendance.description"></textarea>
                 <x-form-error key="attendance.description" />
             </div>
             <div class="mb-3">
@@ -52,14 +51,14 @@
                 <x-form-label id="positions" label='Posisi User' />
                 <div class="row ms-1">
                     @foreach ($positions as $position)
-                    <div class="form-check col-sm-4">
-                        <input class="form-check-input" type="checkbox" value="{{ $position->id }}"
-                            wire:model.defer="position_ids.{{ $position->id }}"
-                            id="flexCheckPosition{{ $loop->index }}">
-                        <label class="form-check-label" for="flexCheckPosition{{ $loop->index }}">
-                            {{ $position->name }}
-                        </label>
-                    </div>
+                        <div class="form-check col-sm-4">
+                            <input class="form-check-input" type="checkbox" value="{{ $position->id }}"
+                                wire:model.defer="position_ids.{{ $position->id }}"
+                                id="flexCheckPosition{{ $loop->index }}">
+                            <label class="form-check-label" for="flexCheckPosition{{ $loop->index }}">
+                                {{ $position->name }}
+                            </label>
+                        </div>
                     @endforeach
                 </div>
                 <small class="text-muted d-block mt-1">Pilih Role yang akan menggunakan absensi ini.</small>
@@ -71,14 +70,18 @@
             <div class="mb-3">
                 <x-form-label id="flexCheckCode" label='Ingin Menggunakan QRCode (default menggunakan tombol)' />
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" wire:model.defer="attendance.code"
-                        id="flexCheckCode">
+                    <input class="form-check-input" type="checkbox" value="on" wire:model.defer="attendance.code"
+                        id="flexCheckCode" required>
                     <label class="form-check-label" for="flexCheckCode">
-                        Menggunakan QRCode
+                        Generate QRCode
                     </label>
                     <x-form-error key="attendance.code" />
                 </div>
+                {{-- <script>
+                    document.getElementById("flexCheckCode").checked = true
+                </script> --}}
             </div>
+
 
         </div>
 

@@ -86,6 +86,8 @@ class PresenceController extends Controller
                 ];
         } else {
             $notPresentData = $this->getNotPresentEmployees($presences);
+
+            // 'users' => DB::table('users')->paginate(15)
         }
 
 
