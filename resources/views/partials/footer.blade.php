@@ -1,16 +1,10 @@
 <style>
-    #footer {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 13px;
-        font-weight:inherit;
-        color: rgb(237, 237, 237);
-        position:absolute
-        bottom: 0;
-        width: 100%;
-        height: 60px;
-        /* Height of the footer */
+    #footer{
         background: #367FA9;
-
+        color: #d6d6d6;
+        font-size: 13px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: lighter;
     }
 </style>
 

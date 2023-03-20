@@ -70,7 +70,7 @@ class HomeController extends Controller
         $priodDate = array_slice(array_reverse($priodDate), 0, 30);
 
         return view('home.show', [
-            "title" => "Informasi Absensi Kehadiran",
+            "title" => "Informasi Absensi Kehadiran Makan",
             "attendance" => $attendance,
             "data" => $data,
             "holiday" => $holiday,

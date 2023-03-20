@@ -36,12 +36,17 @@
                 </div>
 
                 <button class="w-100 btn btn-primary" type="submit" id="login-form-button">Masuk</button>
-                <br> <br>
+                <br>
                 @if (Session::has('message'))
                     <div class="alert alert-success" role="alert">
                         {{ Session::get('message') }}
                     </div>
                 @endif
+                {{-- @if (Session::has('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('message') }}
+                    </div>
+                @endif --}}
                 <a href="/forget-passwords" id="lupapassword">Lupa atau Reset Password ?</a>
                 <center>
                     <p class="mt-5 mb-3 text-muted" id="lupapassword">Pengembangan Sistem Informasi Dilindungi &copy;Institut Teknologi Del

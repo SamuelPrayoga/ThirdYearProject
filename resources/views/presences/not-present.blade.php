@@ -23,7 +23,7 @@
                     <br><br>
                     <h6 class="card-subtitle mb-2 text-muted">{{ $attendance->description }}</h6>
                     <div class="d-flex align-items-center gap-2">
-                        <span href="" class="badge text-bg-warning">Tidak Hadir</span>
+                        <span href="" class="badge text-bg-warning">Tidak Makan</span>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -72,7 +72,7 @@
                             <th scope="col">Asrama</th>
                             <th scope="col">Kontak</th>
                             <th scope="col">Role</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +86,7 @@
                                 <td>{{ $user['asrama'] }}</td>
                                 <td>
                                     <a href="mailto:{{ $user['email'] }}">{{ $user['email'] }}</a>
-                                    <span class="fw-bold">/</span>
+
                                     <a href="tel:{{ $user['phone'] }}">{{ $user['phone'] }}</a>
                                 </td>
                                 <td>{{ $user['position']['name'] }}</td>
@@ -96,7 +96,7 @@
                                         <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                                         <input type="hidden" name="presence_date"
                                             value="{{ $data['not_presence_date'] }}">
-                                        <button class="badge text-bg-primary border-0" type="submit">Tidak Hadir</button>
+                                        <button class="badge text-bg-primary border-0" type="submit">Tidak Makan</button>
                                     </form>
                                 </td>
                             </tr>

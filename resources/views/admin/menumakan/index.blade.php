@@ -41,7 +41,7 @@
                     <td>
                         <a href="/menumakan/edit/{{ $menumakans->id }}" class="badge text-bg-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                         <a href="" data-toggle="modal" data-target="#myModal{{ $menumakans->id }}" class="badge text-bg-danger"><i class="bi bi-trash-fill"></i> Hapus</a>
-                        <a href="" class="badge text-bg-success"><i class="bi bi-send-exclamation-fill"></i> Ajukan Perubahan</a>
+                        {{-- <a href="" class="badge text-bg-success"><i class="bi bi-send-exclamation-fill"></i> Ajukan Perubahan</a> --}}
                     </td>
                 </tr>
             @endforeach

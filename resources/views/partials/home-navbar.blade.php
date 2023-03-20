@@ -32,7 +32,11 @@
                     <a class="nav-link" href="{{ route('home.index') }}">Beranda <span
                             class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home.menumakan') }}">Menu Makan <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
                             class="sr-only">(current)</span>
@@ -41,9 +45,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
                         <a class="dropdown-item" href="{{ route('home.menumakan') }}"><i class="bi bi-menu-down"></i>
                             Menu Makanan</a>
-                        <a class="dropdown-item" href="#"><i class="bi bi-info-circle"></i> Kritik dan Saran</a>
+                        <a class="dropdown-item" href="{{ route('home.feedback') }}"><i class="bi bi-info-circle"></i> Kritik dan Saran</a>
                     </div>
-                </li>
+                </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

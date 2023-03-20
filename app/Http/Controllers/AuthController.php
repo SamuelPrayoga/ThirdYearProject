@@ -33,6 +33,7 @@ class AuthController extends Controller
             "success" => false,
             "message" => "Login gagal, silahkan coba lagi!"
         ];
+        //return redirect()->route('auth.login')->with('danger', 'Anda Berhasil Keluar.');
         return response()->json($data)->setStatusCode(400);
     }
 
@@ -43,7 +44,8 @@ class AuthController extends Controller
         request()->session()->regenerate();
         request()->session()->regenerateToken();
 
-        return redirect()->route('auth.login')->with('success', 'Anda berhasil keluar.');
+        return redirect()->route('auth.login');
+        // return redirect()->route('auth.login')->with('success', 'Anda Berhasil Keluar.');
     }
 
     // public function showForgotForm()

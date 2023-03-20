@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reset Password</title>
     <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+    <script type="text/javascript" src="{{asset('js/auth/jquery.js')}}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
@@ -19,25 +20,25 @@
         <main class="form-signin w-100 m-auto">
             <center><img src="{{ asset('img/logo.png') }}" alt="" width="100px"></center><br>
             <center>
-                <h4>Reset Password</h4>
+                <h4  id="judul">Reset Password</h4>
             </center>
             <form action="{{ route('reset.password.post') }}" method="POST" id="login-form">
                 @csrf
                 <input type="hidden" name="token" value="{{ $token }}">
 
-                    <label for="email_address">Alamat Email</label>
+                    <label for="email_address" id="labels">Alamat Email</label>
                         <input type="text" id="email_address" class="form-control" name="email" placeholder="Email Zimbra Mahasiswa"
                             required autofocus>
                         @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
-                    <label for="password">Password Baru</label>
+                    <label for="password" id="labels">Password Baru</label>
                         <input type="password" id="password" class="form-control" name="password"
                             required autofocus>
                         @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
                         @endif
-                    <label for="password-confirm">Konfirmasi Password Baru</label>
+                    <label for="password-confirm" id="labels">Konfirmasi Password Baru</label>
                         <input type="password" id="password-confirm" class="form-control"
                             name="password_confirmation" required autofocus>
                         @if ($errors->has('password_confirmation'))
@@ -84,6 +85,32 @@
             </form> --}}
         </main>
     </div>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #login-form-button {
+            background: #367fa9;
+            border-color: #367fa9;
+            font-size: 14px;
+        }
+
+        #footer {
+            font-size: 13px;
+        }
+
+        #judul {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: medium;
+        }
+
+        #labels {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+            font-weight: lighter;
+        }
+    </style>
 </body>
 
 </html>

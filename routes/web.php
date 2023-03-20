@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuMakananController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\FeedbackController;
 use App\Models\MenuMakanan;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -75,9 +76,9 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:user')->name('home.')->group(function () {
 
+        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+        Route::post('/feedback', [FeedbackController::class, 'create'])->name('feedback-form');
         Route::get('/menumakan', [MenuMakananController::class, 'index'])->name('menumakan');
-
-
 
         Route::get('/', [HomeController::class, 'index'])->name('index');
         // desctination after scan qrcode

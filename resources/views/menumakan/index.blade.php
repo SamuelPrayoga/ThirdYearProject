@@ -55,31 +55,6 @@
             $('#example').DataTable();
         });
     </script>
-<style>
-    #footer {
-        position:absolute;
-        bottom: 0;
-        width: 100%;
-        height: 60px;
-        /* Height of the footer */
-        background: #367FA9;
-        font-family:Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        color: rgb(231, 231, 231);
-        font-weight: lighter;
-    }
-</style>
 
-<footer class="text-center text-lg-start bg-dark " id="footer">
-    <!-- Section: Social media -->
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background: #367FA9">
-        Del Canteen Management System Copyright &copy;
-        <script>
-            document.write(new Date().getFullYear())
-        </script> Kantin Institut Teknologi Del Rights Reserved
-    </div>
-    <!-- Copyright -->
-</footer>
-
+    @include('partials.footer')
 @endsection

@@ -17,14 +17,14 @@
     <div class="w-100">
 
         <main class="form-signin w-100 m-auto">
-            <center><img src="{{ asset('img/logo.png') }}" alt="" width="100px"></center><br>
+            <center><img src="{{ asset('img/logo.png') }}" alt="" width="76px" height="80px"></center><br>
             <center>
-                <h4>Reset Password</h4>
+                <h4 id="judul">Reset Password</h4>
             </center>
             <form action="{{ route('forget.password.post') }}" method="POST" id="login-form">
                 @csrf
                 <div class="mb-3">
-                    <label for="floatingInputEmail"><i class="bi bi-person-circle"></i> Email Aktif Mahasiswa</label>
+                    <label for="floatingInputEmail" id="labels">Email Aktif Mahasiswa</label>
                     <input type="text" class="form-control" id="floatingInputEmail" name="email"
                         placeholder="Email Zimbra" required autofocus>
                     @if ($errors->has('email'))
@@ -40,7 +40,8 @@
                     </div>
                 @endif
                 <center>
-                    <p class="mt-5 mb-3 text-muted">Pengembangan Sistem Informasi Dilindungi &copy;Institut Teknologi
+                    <p class="mt-5 mb-3 text-muted" id="footer">Pengembangan Sistem Informasi Dilindungi
+                        &copy;Institut Teknologi
                         Del 2023</p>
                 </center>
             </form>
@@ -84,6 +85,32 @@
             </div>
         </div>
       </main> --}}
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #login-form-button {
+            background: #367fa9;
+            border-color: #367fa9;
+            font-size: 14px;
+        }
+
+        #footer {
+            font-size: 13px;
+        }
+
+        #judul {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: medium;
+        }
+
+        #labels {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+            font-weight: lighter;
+        }
+    </style>
 </body>
 
 </html>

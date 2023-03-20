@@ -92,7 +92,7 @@ class PresenceController extends Controller
 
 
         return view('presences.not-present', [
-            "title" => "Data Mahasiswa Tidak Hadir",
+            "title" => "Data Mahasiswa Tidak Makan",
             "attendance" => $attendance,
             "notPresentData" => $notPresentData
         ]);

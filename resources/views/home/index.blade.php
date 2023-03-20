@@ -5,9 +5,10 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card shadow-sm mb-2">
-                    <div class="card-header">
+                    <div class="card-header" id="fonts">
                         Daftar Jadwal Makan Kantin
                     </div>
+
                     <div class="card-body">
                         <ul class="list-group">
                             @foreach ($attendances as $attendance)
@@ -23,8 +24,18 @@
                         </ul>
                     </div>
                 </div>
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </div>
-
+            <br>
             <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-header">
@@ -75,32 +86,147 @@
                             </tr>
                         </table>
                         <br>
-                        <a class="btn btn-primary btn-sm" href="#" role="button" style="font-weight: bolder">
-                            <i class="bi bi-person-lines-fill"></i> Ganti Password</a>
-                        {{-- <ul class="ps-3">
-                        <li class="mb-1">
-                            <span class="fw-bold d-block">Nama : </span>
-                            <span>{{ auth()->user()->name }}</span>
-                        </li>
-                        <li class="mb-1">
-                            <span class="fw-bold d-block">Email : </span>
-                            <a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a>
-                        </li>
-                        <li class="mb-1">
-                            <span class="fw-bold d-block">No. Telp : </span>
-                            <a href="tel:{{ auth()->user()->phone }}">{{ auth()->user()->phone }}</a>
-                        </li>
-                        <li class="mb-1">
-                            <span class="fw-bold d-block">Joined at : </span>
-                            <span>{{ auth()->user()->created_at->diffForHumans() }} ({{
-                                auth()->user()->created_at->format('d M Y') }})</span>
-                        </li>
-                    </ul> --}}
+
+                        {{-- <a class="btn btn-primary btn-sm" href="#" role="button" style="font-weight: bolder">
+                                <i class="bi bi-person-lines-fill"></i> Ganti Password</a> --}}
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal" style="font-weight: bolder">
+                            <i class="bi bi-chat-left-text-fill"></i> Sampaikan Kritik dan Saran
+                        </button>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <img src="{{ asset('img/logo.png') }}" alt="" width="40px"
+                                            height="45px"> &nbsp;
+                                        <h5 class="modal-title" id="exampleModalLabel">Form Kritik dan Saran Kantin Del</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="theForm" action="{{ route('home.feedback-form') }}" method="post"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="input-one">Catatan: </label>
+                                                    <ul>
+                                                        <li><small>Form ini disarankan diisi satu kali dalam satu hari supaya pihak kantin dapat mengetahui keluhan mahasiswa</small></li>
+                                                        <li><small>Form ini bersifat rahasia, identitas Anda akan kami rahasiakan !</small></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input-one">Nama</label>
+                                                    {{-- <input type="hidden" name="form_token" value="{{ session('form_token') }}"> --}}
+                                                    <input type=hidden name=last id=last>
+                                                    <input type="text" class="form-control" id="input-zero"
+                                                        value="{{ auth()->user()->name }}" name="nama" readonly
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input-one">NIM</label>
+
+                                                    <input type="text" class="form-control" id="input-zero-one"
+                                                        value="{{ auth()->user()->nim }}" name="nim" readonly required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input-one">Tanggal Ulasan</label>
+                                                    <input type="date" class="form-control" name="tanggal_ulasan"
+                                                        id="tanggal_ulasan" placeholder="" value="" required>
+                                                    {{-- <script>
+                                                            document.getElementById("tanggal_ulasan").value = new Date().toLocaleDateString();
+                                                        </script> --}}
+                                                </div>
+                                                <label for="exampleFormControlTextarea1">Bagaimana rating Penilaian Anda
+                                                    terhadap Pengalaman Makan Anda hari ini?</label>
+                                                <div class="rating-input-wrapper d-flex justify-content-between mt-2">
+                                                    <label><input type="radio" name="nilai_rating"
+                                                            value="Sangat Tidak Menyukai" /><span
+                                                            class="border rounded px-3 py-2">1</span></label>
+                                                    <label><input type="radio" name="nilai_rating"
+                                                            value="Tidak Menyukai" /><span
+                                                            class="border rounded px-3 py-2">2</span></label>
+                                                    <label><input type="radio" name="nilai_rating"
+                                                            value="Biasa Saja" /><span
+                                                            class="border rounded px-3 py-2">3</span></label>
+                                                    <label><input type="radio" name="nilai_rating"
+                                                            value="Menyukai" /><span
+                                                            class="border rounded px-3 py-2">4</span></label>
+                                                    <label><input type="radio" name="nilai_rating"
+                                                            value="Sangat Menyukai" /><span
+                                                            class="border rounded px-3 py-2">5</span></label>
+                                                </div>
+                                                <div class="rating-labels d-flex justify-content-between mt-1">
+                                                    <label><small>Sangat Tidak Suka</small></label>
+                                                    <label><small>Sangat Menyukai</small></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-one">Subjek Ulasan</label>
+                                                <input type="text" class="form-control" id="input-one"
+                                                    name="subjek_ulasan" placeholder="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-two">Deskripsi</label>
+                                                <textarea class="form-control" id="input-two" rows="2" name="deskripsi" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-two">Gambar (opsional)</label>
+                                                <input type="file" class="form-control" name="file"
+                                                    id="input-three" placeholder="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    id="submitButton">Kirim</button>
+                                            </div>
+
+                                        </form>
+                                            {{-- <script>
+                                                submitFunction = function() {
+                                                    var ONE_DAY = 60 * 60 * 1000 * 24; /* ms */
+                                                    var lastTime = document.getElementById('last').value;
+                                                    document.getElementById('last').value = new Date();
+                                                    if (lastTime == "" || !lastTime) {
+                                                        document.getElementById('last').value = new Date();
+                                                        document.getElementById('theForm').submit();
+                                                    } else if (((new Date()) - lastTime) < ONE_DAY) {
+                                                        alert('you must wait one day');
+                                                    } else {
+                                                        document.getElementById('theForm').submit();
+                                                    }
+
+                                                }
+                                        </script> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
+        {{-- @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif --}}
     </div>
+
+
     <!-- Footer -->
-@include('partials.footer')
+    @include('partials.footer')
 @endsection
