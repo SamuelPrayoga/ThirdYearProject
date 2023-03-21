@@ -1,5 +1,12 @@
 <style>
-    #footer{
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* set the minimum height of the body to the full viewport height */
+    }
+
+    #footer {
+        margin-top: auto; /* push the footer to the bottom of the page */
         background: #367FA9;
         color: #d6d6d6;
         font-size: 13px;
@@ -7,6 +14,7 @@
         font-weight: lighter;
     }
 </style>
+
 
 <footer class="text-center text-lg-start bg-light text-muted" id="footer">
     <!-- Section: Social media -->

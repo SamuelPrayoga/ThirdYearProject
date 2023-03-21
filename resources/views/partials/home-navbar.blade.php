@@ -3,14 +3,16 @@
         #bg {
             background-color: #367FA9;
         }
-        #navbarfont{
+
+        #navbarfont {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 17px;
             font-weight: lighter;
 
 
         }
-        #navbarfonts{
+
+        #navbarfonts {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
             font-weight: lighter;
@@ -18,7 +20,7 @@
         }
     </style>
     <div class="container">
-        <img src="{{ asset('img/logo.png') }}" width="65px" height="74px" alt="/"  srcset="">
+        <img src="{{ asset('img/logo.png') }}" width="65px" height="74px" alt="/" srcset="">
         &nbsp;
         <strong><a class="navbar-brand" href="/" id="navbarfont"> Kantin Institut Teknologi Del</a></strong>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,7 +28,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" >
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav align-items-md-center gap-md-4 py-2 py-md-0" id="navbarfonts">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('home.index') }}">Beranda <span
@@ -43,7 +45,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
                         <a class="dropdown-item" href="#"><i class="bi bi-clipboard-x"></i> Alergi Makanan</a>
-                        <a class="dropdown-item" href="{{ route('home.laporan-barang')}}"><i class="bi bi-question-circle"></i></i> Barang Hilang dan Temuan</a>
+                        <a class="dropdown-item" href="{{ route('home.laporan-barang') }}"><i
+                                class="bi bi-question-circle"></i></i> Barang Hilang dan Temuan</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -57,10 +60,12 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
                         <a class="dropdown-item" type="button" href="#"><i class="bi bi-people"></i> My
                             Profile</a>
+                        <a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i class="bi bi-chat-left"></i> Kritik dan Saranku</a>
                         <form action="{{ route('auth.logout') }}" method="post">
                             @method('DELETE')
                             @csrf
-                            <button class="btn fw-bold btn-danger btn-sm w-100" type="submit" id="navbarfonts">Keluar</button>
+                            <button class="btn fw-bold btn-danger btn-sm w-100" type="submit"
+                                id="navbarfonts">Keluar</button>
                         </form>
                     </div>
                 </li>

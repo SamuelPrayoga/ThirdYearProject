@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
@@ -27,82 +28,37 @@ class FeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create(Request $req)
-    // {
-    //     // Generate a unique token and store it in the session
-    //     $token = Str::random(32);
-    //     session(['form_token' => $token]);
 
-    //     // Check if the form has already been submitted
-    //     if ($req->input('form_token') !== session('form_token')) {
-    //         return redirect()->back()->with('error', 'Form already submitted.');
-    //     }
+     public function create(Request $req)
+     {
+         $feedback = new Feedback;
+         $feedback->user_id = $req->UserID;
+         $feedback->date = $req->date;
+         $feedback->value_rating = $req->value_rating;
+         $feedback->subject_review = $req->subject_review;
+         $feedback->description = $req->description;
 
-    //     // return $req->file('file')->store()
-    //     $feedback = new Feedback;
-    //     $feedback->nama = $req->nama;
-    //     $feedback->nim = $req->nim;
-    //     $feedback->tanggal_ulasan = $req->tanggal_ulasan;
-    //     $feedback->nilai_rating = $req->nilai_rating;
-    //     $feedback->subjek_ulasan = $req->subjek_ulasan;
-    //     $feedback->deskripsi = $req->deskripsi;
+         if ($req->hasFile('file')) {
+             $file = $req->file('file');
+             // Get the file extension
+             $extension = $file->getClientOriginalExtension();
+             // Only allow image extensions
 
-    //     if ($req->hasFile('file')) {
-    //         $file = $req->file('file');
-    //         // Get the file extension
-    //         $extension = $file->getClientOriginalExtension();
-    //         // Only allow image extensions
-    //         if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
-    //             $fileName = time() . '.' . $extension;
-    //             $file->move('img/Feedback', $fileName);
-    //             $feedback->file = $fileName;
-    //         } else {
-    //             return redirect()->back()->with('error', 'Only image files are allowed.');
-    //         }
-    //     }
+             if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+                 $fileName = time() . '.' . $extension;
+                 $path = $file->storeAs('public/img/Feedback', $fileName);
+                 // Remove the 'public/' prefix to get the public path
+                 $publicPath = str_replace('public/', '', $path);
+                 $feedback->file = $publicPath;
+             } else {
+                 return redirect()->back()->with('error', 'Submit Form Gagal! Hanya file yang berekstensi .jpg .jpeg .png .gif yang diizinkan.');
+             }
+         }
 
-    //     $feedback->save();
+         $feedback->save();
+         return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
+     }
 
-    //     // Remove the token from the session
-    //     session()->forget('form_token');
-
-    //     return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
-    // }
-    public function create(Request $req)
-    {
-        // return $req->file('file')->store()
-        $feedback = new Feedback;
-        $feedback->user_id = $req->UserID;
-        $feedback->date = $req->date;
-        $feedback->value_rating = $req->value_rating;
-        $feedback->subject_review = $req->subject_review;
-        $feedback->description = $req->description;
-
-        if ($req->hasFile('file')) {
-            $file = $req->file('file');
-            // Get the file extension
-            $extension = $file->getClientOriginalExtension();
-            // Only allow image extensions
-            if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
-                $fileName = time() . '.' . $extension;
-                $path = $file->storeAs('public/img/Feedback', $fileName);
-                $feedback->file = $path;
-            } else {
-                return redirect()->back()->with('error', 'Submit Form Gagal! Hanya file yang berekstensi .jpg .jpeg .png .gif yang diizinkan.');
-            }
-            // if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
-            //     $fileName = time() . '.' . $extension;
-            //     $file->move('img/Feedback', $fileName);
-            //     $feedback->file = $fileName;
-            // } else {
-            //     return redirect()->back()->with('error', 'Submit Form Gagal! Hanya file yang berekstensi .jpg .jpeg .png .gif yang diizinkan.');
-            // }
-        }
-
-        $feedback->save();
-        return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
-        // return redirect()->back()->with('success', 'Your message here.');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -115,15 +71,29 @@ class FeedbackController extends Controller
         //
     }
 
+    public function forbidden(Request $request)
+    {
+        return view('home.forbidden', [
+            "title" => "Restricted"
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function show(Feedback $feedback)
+    public function show()
     {
-        //
+        $feedbacks = DB::table('feedback')->get();
+        return view('home.feedbackku', [
+            "title" => "Kritik dan Saranku",
+            "feedback" => $feedbacks
+        ]);
+        // $feedbacks = DB::table('feedback')->get();
+        // "title" => "Kritik dan Saranku";
+        // return view('home.feedbackku', ['feedback' => $feedbacks]);
     }
 
     /**
