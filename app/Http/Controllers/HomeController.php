@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\Feedback;
 use App\Models\Holiday;
 use App\Models\Permission;
 use App\Models\Presence;
+use App\Models\User;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 
@@ -28,6 +30,7 @@ class HomeController extends Controller
 
     public function show(Attendance $attendance)
     {
+
         $presences = Presence::query()
             ->where('attendance_id', $attendance->id)
             ->where('user_id', auth()->user()->id)
@@ -151,5 +154,10 @@ class HomeController extends Controller
             "success" => true,
             "message" => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."
         ]);
+    }
+
+    public function showFeedback(Feedback $feedback){
+        $getFeedback = User::query()->where('id',$feedback->user_id)->get();
+
     }
 }

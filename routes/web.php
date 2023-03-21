@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:user')->name('home.')->group(function () {
 
+        Route::get('/laporan-barang', [BarangController::class, 'index'])->name('laporan-barang');
+        Route::post('/laporan-barang', [BarangController::class, 'create'])->name('laporan-barang-form');
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
         Route::post('/feedback', [FeedbackController::class, 'create'])->name('feedback-form');
         Route::get('/menumakan', [MenuMakananController::class, 'index'])->name('menumakan');

@@ -138,9 +138,10 @@
                                                     <input type="text" class="form-control" id="input-zero-one"
                                                         value="{{ auth()->user()->nim }}" name="nim" readonly required>
                                                 </div>
+                                                <input type=hidden name=UserID value={{auth()->user()->id}}>
                                                 <div class="form-group">
                                                     <label for="input-one">Tanggal Ulasan</label>
-                                                    <input type="date" class="form-control" name="tanggal_ulasan"
+                                                    <input type="date" class="form-control" name="date"
                                                         id="tanggal_ulasan" placeholder="" value="" required readonly>
                                                 </div>
                                                 <script>
@@ -154,19 +155,19 @@
                                                     terhadap Pengalaman Makan Anda hari ini?</label>
                                                 <div
                                                     class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
-                                                    <label><input type="radio" name="nilai_rating"
+                                                    <label><input type="radio" name="value_rating"
                                                             value="Sangat Tidak Menyukai" /><span
                                                             class="border rounded px-3 py-2">1</span></label>
-                                                    <label><input type="radio" name="nilai_rating"
+                                                    <label><input type="radio" name="value_rating"
                                                             value="Tidak Menyukai" /><span
                                                             class="border rounded px-3 py-2">2</span></label>
-                                                    <label><input type="radio" name="nilai_rating"
+                                                    <label><input type="radio" name="value_rating"
                                                             value="Biasa Saja" /><span
                                                             class="border rounded px-3 py-2">3</span></label>
-                                                    <label><input type="radio" name="nilai_rating"
+                                                    <label><input type="radio" name="value_rating"
                                                             value="Menyukai" /><span
                                                             class="border rounded px-3 py-2">4</span></label>
-                                                    <label><input type="radio" name="nilai_rating"
+                                                    <label><input type="radio" name="value_rating"
                                                             value="Sangat Menyukai" /><span
                                                             class="border rounded px-3 py-2">5</span></label>
                                                 </div>
@@ -178,7 +179,7 @@
                                             <div class="form-group">
                                                 <label for="ulasan">Kategori Ulasan:</label>
                                                 <select class="form-control" id="ulasan" required="required"
-                                                    name="subjek_ulasan" aria-label="Default select example">
+                                                    name="subject_review" aria-label="Default select example">
                                                     <option disabled selected value>-- select an option --</option>
                                                     <option value="Kebersihan Kantin">Kebersihan Kantin</option>
                                                     <option value="Menu Makanan">Menu Makanan</option>
@@ -192,7 +193,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="input-two">Deskripsi</label>
-                                                <textarea class="form-control" id="input-two" rows="2" name="deskripsi" required></textarea>
+                                                <textarea class="form-control" id="input-two" rows="2" name="description" required></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="input-two">Gambar (opsional)</label>

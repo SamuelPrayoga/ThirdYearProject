@@ -18,9 +18,9 @@
         }
     </style>
     <div class="container">
-        <img src="{{ asset('img/logo.png') }}" width="65px" height="74px" alt="" srcset="">
+        <img src="{{ asset('img/logo.png') }}" width="65px" height="74px" alt="/"  srcset="">
         &nbsp;
-        <strong><a class="navbar-brand" href="#" id="navbarfont"> Kantin Institut Teknologi Del</a></strong>
+        <strong><a class="navbar-brand" href="/" id="navbarfont"> Kantin Institut Teknologi Del</a></strong>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,18 +36,6 @@
                     <a class="nav-link" href="{{ route('home.menumakan') }}">Menu Makan <span
                             class="sr-only">(current)</span></a>
                 </li>
-                {{-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
-                            class="sr-only">(current)</span>
-                        Informasi Kantin
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
-                        <a class="dropdown-item" href="{{ route('home.menumakan') }}"><i class="bi bi-menu-down"></i>
-                            Menu Makanan</a>
-                        <a class="dropdown-item" href="{{ route('home.feedback') }}"><i class="bi bi-info-circle"></i> Kritik dan Saran</a>
-                    </div>
-                </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,10 +43,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
                         <a class="dropdown-item" href="#"><i class="bi bi-clipboard-x"></i> Alergi Makanan</a>
-                        <a class="dropdown-item" href="#"><i class="bi bi-question-circle"></i></i> Barang
-                            Hilang</a>
-                        {{-- <div class="dropdown-divider"></div> --}}
-                        <a class="dropdown-item" href="#"><i class="bi bi-search"></i> Barang Temuan</a>
+                        <a class="dropdown-item" href="{{ route('home.laporan-barang')}}"><i class="bi bi-question-circle"></i></i> Barang Hilang dan Temuan</a>
                     </div>
                 </li>
                 <li class="nav-item">

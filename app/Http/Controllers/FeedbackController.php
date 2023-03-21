@@ -72,12 +72,11 @@ class FeedbackController extends Controller
     {
         // return $req->file('file')->store()
         $feedback = new Feedback;
-        $feedback->nama = $req->nama;
-        $feedback->nim = $req->nim;
-        $feedback->tanggal_ulasan = $req->tanggal_ulasan;
-        $feedback->nilai_rating = $req->nilai_rating;
-        $feedback->subjek_ulasan = $req->subjek_ulasan;
-        $feedback->deskripsi = $req->deskripsi;
+        $feedback->user_id = $req->UserID;
+        $feedback->date = $req->date;
+        $feedback->value_rating = $req->value_rating;
+        $feedback->subject_review = $req->subject_review;
+        $feedback->description = $req->description;
 
         if ($req->hasFile('file')) {
             $file = $req->file('file');

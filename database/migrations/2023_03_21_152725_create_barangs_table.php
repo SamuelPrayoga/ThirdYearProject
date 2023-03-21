@@ -13,19 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('feedback', function (Blueprint $table) {
-            $table->integerIncrements('id');
+        Schema::create('barangs', function (Blueprint $table) {
+            $table->id();
+            $table->string('kategori');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('nama');
-            $table->string('nim');
-            $table->date('tanggal_ulasan');
-            $table->string('nilai_rating');
-            $table->string('subjek_ulasan');
-            $table->string('deskripsi');
+            $table->string('item_name');
+            $table->string('place');
+            $table->date('date');
+            $table->time('time');
+            $table->text('description')->nullable();
             $table->string('file')->nullable();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('barangs');
     }
 };

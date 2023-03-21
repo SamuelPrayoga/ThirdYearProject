@@ -25,6 +25,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'nim',
         'angkatan',
         'asrama',
@@ -97,4 +98,12 @@ class User extends Authenticatable
     // {
     //     return $this->role_id === self::DEPKEBDIS_ROLE_ID;
     // }
+
+    public function feedback() {
+        return $this->hasMany(Feedback::class);
+    }
+    public function barang() {
+        return $this->hasMany(barang::class);
+    }
+
 }
