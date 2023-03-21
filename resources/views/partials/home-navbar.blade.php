@@ -75,13 +75,11 @@
                         <form action="{{ route('auth.logout') }}" method="post">
                             @method('DELETE')
                             @csrf
-
-                            <button class="btn fw-bold btn-danger btn-sm w-100" id="navbarfonts">
-                                <a id="navbarfonts">Keluar</a></button>
+                            <button class="btn fw-bold btn-danger btn-sm w-100" type="submit" id="navbarfonts">Keluar</button>
                         </form>
-                        </a>
                     </div>
                 </li>
+
             </ul>
         </div>
     </div>

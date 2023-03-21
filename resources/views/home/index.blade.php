@@ -90,8 +90,8 @@
                         {{-- <a class="btn btn-primary btn-sm" href="#" role="button" style="font-weight: bolder">
                                 <i class="bi bi-person-lines-fill"></i> Ganti Password</a> --}}
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal" style="font-weight: bolder">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                            style="font-weight: bolder">
                             <i class="bi bi-chat-left-text-fill"></i> Sampaikan Kritik dan Saran
                         </button>
 
@@ -117,8 +117,11 @@
                                                 <div class="form-group">
                                                     <label for="input-one">Catatan: </label>
                                                     <ul>
-                                                        <li><small>Form ini disarankan diisi satu kali dalam satu hari supaya pihak kantin dapat mengetahui keluhan mahasiswa</small></li>
-                                                        <li><small>Form ini bersifat rahasia, identitas Anda akan kami rahasiakan !</small></li>
+                                                        <li><small>Form ini disarankan diisi satu kali dalam satu hari
+                                                                supaya pihak kantin dapat mengetahui keluhan
+                                                                mahasiswa</small></li>
+                                                        <li><small>Form ini bersifat rahasia, identitas Anda akan kami
+                                                                rahasiakan !</small></li>
                                                     </ul>
                                                 </div>
                                                 <div class="form-group">
@@ -138,14 +141,19 @@
                                                 <div class="form-group">
                                                     <label for="input-one">Tanggal Ulasan</label>
                                                     <input type="date" class="form-control" name="tanggal_ulasan"
-                                                        id="tanggal_ulasan" placeholder="" value="" required>
-                                                    {{-- <script>
-                                                            document.getElementById("tanggal_ulasan").value = new Date().toLocaleDateString();
-                                                        </script> --}}
+                                                        id="tanggal_ulasan" placeholder="" value="" required readonly>
                                                 </div>
+                                                <script>
+                                                    // Get the current date
+                                                    const currentDate = new Date().toISOString().slice(0, 10);
+
+                                                    // Set the value of the input field to the current date
+                                                    document.getElementById("tanggal_ulasan").value = currentDate;
+                                                </script>
                                                 <label for="exampleFormControlTextarea1">Bagaimana rating Penilaian Anda
                                                     terhadap Pengalaman Makan Anda hari ini?</label>
-                                                <div class="rating-input-wrapper d-flex justify-content-between mt-2">
+                                                <div
+                                                    class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
                                                     <label><input type="radio" name="nilai_rating"
                                                             value="Sangat Tidak Menyukai" /><span
                                                             class="border rounded px-3 py-2">1</span></label>
@@ -168,9 +176,19 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="input-one">Subjek Ulasan</label>
+                                                <label for="ulasan">Kategori Ulasan:</label>
+                                                <select class="form-control" id="ulasan" required="required"
+                                                    name="subjek_ulasan" aria-label="Default select example">
+                                                    <option disabled selected value>-- select an option --</option>
+                                                    <option value="Kebersihan Kantin">Kebersihan Kantin</option>
+                                                    <option value="Menu Makanan">Menu Makanan</option>
+                                                    <option value="Pelayanan Kantin">Pelayanan Kantin</option>
+                                                    <option value="Sistem Informasi Kantin">Sistem Informasi Kantin
+                                                    </option>
+                                                </select>
+                                                {{-- <label for="input-one">Subjek Ulasan</label>
                                                 <input type="text" class="form-control" id="input-one"
-                                                    name="subjek_ulasan" placeholder="" required>
+                                                    name="subjek_ulasan" placeholder="" required> --}}
                                             </div>
                                             <div class="form-group">
                                                 <label for="input-two">Deskripsi</label>
@@ -189,22 +207,6 @@
                                             </div>
 
                                         </form>
-                                            {{-- <script>
-                                                submitFunction = function() {
-                                                    var ONE_DAY = 60 * 60 * 1000 * 24; /* ms */
-                                                    var lastTime = document.getElementById('last').value;
-                                                    document.getElementById('last').value = new Date();
-                                                    if (lastTime == "" || !lastTime) {
-                                                        document.getElementById('last').value = new Date();
-                                                        document.getElementById('theForm').submit();
-                                                    } else if (((new Date()) - lastTime) < ONE_DAY) {
-                                                        alert('you must wait one day');
-                                                    } else {
-                                                        document.getElementById('theForm').submit();
-                                                    }
-
-                                                }
-                                        </script> --}}
                                     </div>
                                 </div>
                             </div>
