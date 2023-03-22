@@ -29,35 +29,41 @@ class FeedbackController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function create(Request $req)
-     {
-         $feedback = new Feedback;
-         $feedback->user_id = $req->UserID;
-         $feedback->date = $req->date;
-         $feedback->value_rating = $req->value_rating;
-         $feedback->subject_review = $req->subject_review;
-         $feedback->description = $req->description;
-
-         if ($req->hasFile('file')) {
-             $file = $req->file('file');
-             // Get the file extension
-             $extension = $file->getClientOriginalExtension();
-             // Only allow image extensions
-
-             if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
-                 $fileName = time() . '.' . $extension;
-                 $path = $file->storeAs('public/img/Feedback', $fileName);
-                 // Remove the 'public/' prefix to get the public path
-                 $publicPath = str_replace('public/', '', $path);
-                 $feedback->file = $publicPath;
-             } else {
-                 return redirect()->back()->with('error', 'Submit Form Gagal! Hanya file yang berekstensi .jpg .jpeg .png .gif yang diizinkan.');
-             }
-         }
-
-         $feedback->save();
-         return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
-     }
+    public function create(Request $req)
+    {
+        $feedback = new Feedback;
+        $feedback->user_id = $req->UserID;
+        $feedback->date = $req->date;
+        $feedback->value_rating = $req->value_rating;
+        $feedback->subject_review = $req->subject_review;
+        $feedback->description = $req->description;
+        if ($req->hasFile('file') && $req->file('file')->isValid()) {
+            $fileExtension = $req->file('file')->extension();
+            if (in_array($fileExtension, ['jpeg', 'jpg', 'png', 'gif'])) {
+                $user_id = auth()->user()->id; // Ambil id user yang sedang login
+                $file = $req->file('file')->getClientOriginalName();
+                $unique_file_name = $user_id . '_' . time() . '_' . $file;
+                $req->file('file')->move(public_path('img/Feedback/' . $user_id), $unique_file_name);
+                $feedback->file = $unique_file_name;
+            } else {
+                return redirect()->back()->with('error', 'File harus berupa gambar (jpeg, jpg, png, gif)');
+            }
+        }
+        $feedback->save();
+        return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
+        // if ($req->hasFile('file') && $req->file('file')->isValid()) {
+        //     $fileExtension = $req->file('file')->extension();
+        //     if (in_array($fileExtension, ['jpeg', 'jpg', 'png', 'gif'])) {
+        //         $file = $req->file('file')->getClientOriginalName();
+        //         $req->file('file')->move('img/Feedback', $file);
+        //         $feedback->file = $file;
+        //     } else {
+        //         return redirect()->back()->with('error', 'File harus berupa gambar (jpeg, jpg, png, gif)');
+        //     }
+        // }
+        // $feedback->save();
+        // return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
+    }
 
 
     /**

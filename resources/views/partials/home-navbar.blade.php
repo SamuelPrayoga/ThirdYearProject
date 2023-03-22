@@ -57,17 +57,18 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
-                        <a class="dropdown-item" type="button" href="#"><i class="bi bi-people"></i> My
-                            Profile</a>
-                        <a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i class="bi bi-chat-left"></i> Kritik dan Saranku</a>
-                        <form action="{{ route('auth.logout') }}" method="post">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn fw-bold btn-danger btn-sm w-100" type="submit"
-                                id="navbarfonts">Keluar</button>
-                        </form>
-                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
+                        <li><a class="dropdown-item" type="button" href="#"><i class="bi bi-people"></i> My Profile</a></li>
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i class="bi bi-chat-left"></i> Kritik dan Saranku</a></li>
+                        <li>
+                            <form action="{{ route('auth.logout') }}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn fw-bold btn-danger btn-sm w-100" type="submit"
+                                    id="navbarfonts">Keluar</button>
+                            </form>
+                        </li>
+                    </ul>
                 </li>
 
             </ul>

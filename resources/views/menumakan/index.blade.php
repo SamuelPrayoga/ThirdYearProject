@@ -29,20 +29,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($menumakan as $menu)
-                                    <tr>
-                                        <td width="20%">{{ date('d M Y', strtotime($menu->tanggal_makan)) }}</td>
-                                        <td width="20%">
-                                            <center>{!! $menu->menu_pagi !!}</center>
-                                        </td>
-                                        <td width="20%">
-                                            <center>{!! $menu->menu_siang !!}</center>
-                                        </td>
-                                        <td width="20%">
-                                            <center>{!! $menu->menu_malam !!}</center>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @if ($menumakan->isEmpty())
+                                    <td colspan="5" class="table-inactive"><small>Belum ada Menu Makanan ditambahkan</small></td>
+                                @else
+                                    @foreach ($menumakan as $menu)
+                                        <tr>
+                                            <td width="20%">{{ date('d M Y', strtotime($menu->tanggal_makan)) }}</td>
+                                            <td width="20%">
+                                                <center>{!! $menu->menu_pagi !!}</center>
+                                            </td>
+                                            <td width="20%">
+                                                <center>{!! $menu->menu_siang !!}</center>
+                                            </td>
+                                            <td width="20%">
+                                                <center>{!! $menu->menu_malam !!}</center>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -50,6 +54,12 @@
             </div>
         </div>
     </div>
+    <style>
+        .table-inactive{
+            background: #878787;
+            color: #858585;
+        }
+    </style>
     <script>
         $(document).ready(function() {
             $('#example').DataTable();

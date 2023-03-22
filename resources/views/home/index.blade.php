@@ -11,16 +11,21 @@
 
                     <div class="card-body">
                         <ul class="list-group">
-                            @foreach ($attendances as $attendance)
-                                <a href="{{ route('home.show', $attendance->id) }}"
-                                    class="list-group-item d-flex justify-content-between align-items-start py-3">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">{{ $attendance->title }}</div>
-                                        <p class="mb-0">{{ $attendance->description }}</p>
-                                    </div>
-                                    @include('partials.attendance-badges')
-                                </a>
-                            @endforeach
+                            @if ($attendances->isEmpty())
+                                <td colspan="5" class="table-inactive"><small class="text-muted">Belum ada Jadwal Makan Kantin diatur oleh Keasramaan</small>
+                                </td>
+                            @else
+                                @foreach ($attendances as $attendance)
+                                    <a href="{{ route('home.show', $attendance->id) }}"
+                                        class="list-group-item d-flex justify-content-between align-items-start py-3">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">{{ $attendance->title }}</div>
+                                            <p class="mb-0">{{ $attendance->description }}</p>
+                                        </div>
+                                        @include('partials.attendance-badges')
+                                    </a>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -138,7 +143,7 @@
                                                     <input type="text" class="form-control" id="input-zero-one"
                                                         value="{{ auth()->user()->nim }}" name="nim" readonly required>
                                                 </div>
-                                                <input type=hidden name=UserID value={{auth()->user()->id}}>
+                                                <input type=hidden name=UserID value={{ auth()->user()->id }}>
                                                 <div class="form-group">
                                                     <label for="input-one">Tanggal Ulasan</label>
                                                     <input type="date" class="form-control" name="date"
@@ -178,9 +183,9 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="ulasan">Kategori Ulasan:</label>
-                                                <select class="form-control" id="ulasan" required="required"
+                                                <select class="form-control" id="ulasan" required
                                                     name="subject_review" aria-label="Default select example">
-                                                    <option disabled selected value>-- select an option --</option>
+                                                    <option disabled selected value>-- Pilih Kategori --</option>
                                                     <option value="Kebersihan Kantin">Kebersihan Kantin</option>
                                                     <option value="Menu Makanan">Menu Makanan</option>
                                                     <option value="Pelayanan Kantin">Pelayanan Kantin</option>

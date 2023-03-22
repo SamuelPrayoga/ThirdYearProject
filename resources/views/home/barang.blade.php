@@ -44,32 +44,34 @@
                             </div>
                             <div class="mb-3">
                                 <label for="barang" class="form-label">Nama Barang</label>
-                                <input type="text" class="form-control" id="barang" name="item_name">
+                                <input type="text" class="form-control" id="barang" name="item_name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="tempat" class="form-label">Tempat Terakhir Dilihat/Ditemukan</label>
-                                <input type="text" class="form-control" id="tempat" name="place">
+                                <input type="text" class="form-control" id="tempat" name="place" required>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
                                     <label for="tanggal" class="form-label">Tanggal Hilang/Ditemukan</label>
-                                    <input type="date" class="form-control" id="tanggal" name="date">
+                                    <input type="date" class="form-control" id="tanggal" name="date" required>
                                 </div>
                                 <div class="col">
                                     <label for="waktu" class="form-label">Waktu Hilang/Ditemukan</label>
-                                    <input type="time" class="form-control" id="waktu" name="time">
+                                    <input type="time" class="form-control" id="waktu" name="time" required>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Ciri-Ciri / Deskripsi
                                     Tambahan</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="description"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="description" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="file" class="form-label">Gambar/Contoh Gambar</label>
-                                <input type="file" class="form-control" name="file" id="input-three" placeholder="">
+                                <input type="file" class="form-control" name="file" id="input-three" placeholder=""
+                                    required>
                             </div>
                             <div class="text-end">
+                                <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Laporkan</button>
                             </div>
                         </form>
@@ -90,5 +92,11 @@
             </div>
         </div>
     </div>
+    <style>
+        .table-inactive {
+            background: #878787;
+            color: #858585;
+        }
+    </style>
     @include('partials.footer')
 @endsection
