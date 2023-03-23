@@ -10,6 +10,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuMakananController;
+use App\Http\Controllers\FoodAllergyReportController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\FeedbackController;
@@ -78,6 +79,10 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:user')->name('home.')->group(function () {
 
         Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+
+        //Alergi
+        // Route::get('/laporkan-alergi', [AllergyReportController::class, 'index'])->name('alergi.index'); //Aman
+        Route::get('/laporkan-alergi-form', [AllergyReportController::class, 'create'])->name('lapor-alergi');
 
         Route::get('/laporan-barang', [BarangController::class, 'index'])->name('laporan-barang');
         Route::get('/my-feedback', [FeedbackController::class, 'show'])->name('feedbackku');

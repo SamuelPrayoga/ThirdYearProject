@@ -44,7 +44,7 @@
                         Pelaporan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
-                        <a class="dropdown-item" href="#"><i class="bi bi-clipboard-x"></i> Alergi Makanan</a>
+                        <a class="dropdown-item" href="{{ route('home.lapor-alergi')}}"><i class="bi bi-clipboard-x"></i> Alergi Makanan</a>
                         <a class="dropdown-item" href="{{ route('home.laporan-barang') }}"><i
                                 class="bi bi-question-circle"></i></i> Barang Hilang dan Temuan</a>
                     </div>
@@ -59,7 +59,8 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
                         <li><a class="dropdown-item" type="button" href="#"><i class="bi bi-people"></i> My Profile</a></li>
-                        <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i class="bi bi-chat-left"></i> Kritik dan Saranku</a></li>
+                        <li><a class="dropdown-item" type="button" href=""><i class="bi bi-flag"></i> Laporan ALergiku</a></li>
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i class="bi bi-chat-dots"></i> Kritik dan Saranku</a></li>
                         <li>
                             <form action="{{ route('auth.logout') }}" method="post">
                                 @method('DELETE')

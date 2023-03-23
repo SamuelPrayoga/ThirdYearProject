@@ -16,7 +16,7 @@
                                 <select class="form-control" id="laporan" required="required" name="kategori"
                                     aria-label="Default select example">
                                     <option disabled selected value>-- Pilih Laporan --</option>
-                                    <option value="Kehilangan Barang">Kehilangan Barang</option>
+                                    <option value="Kehilangan">Kehilangan Barang</option>
                                     <option value="Menemukan">Temuan Barang</option>
                                     </option>
                                 </select>

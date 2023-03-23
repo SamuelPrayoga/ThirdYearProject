@@ -6,7 +6,9 @@
             <div class="col-md-12">
                 <div class="card shadow-sm mb-2">
                     <div class="card-header">
-                        <center><p class="font-weight-bold">Pengumuman</p></center>
+                        <center>
+                            <p class="font-weight-bold">Pengumuman</p>
+                        </center>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered" id="exa">
@@ -36,26 +38,34 @@
                                         <td>{{ $p->expiry_date }}</td>
                                         <td>{{ $p->time }} WIB</td>
                                         <td>{{ $p->created_at }}</td>
-                                        <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal{{ $p->id }}">
-                                            <i class="bi bi-eye-fill"></i> Selengkapnya
+                                        <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                data-target="#exampleModal{{ $p->id }}">
+                                                <i class="bi bi-eye-fill"></i> <small>Selengkapnya</small>
                                             </button>
                                         </td>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{ $p->id }}" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal{{ $p->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel"><p
-                                                            class="{{ $p->kategori == 'Keasramaan' ? 'text-primary' : ($p->kategori == 'Kehilangan Barang' ? 'text-danger' : 'text-success') }}">
-                                                            {{ $p->kategori }}
-                                                        </p></h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            <p
+                                                                class="{{ $p->kategori == 'Keasramaan' ? 'text-primary' : ($p->kategori == 'Kehilangan Barang' ? 'text-danger' : 'text-success') }}">
+                                                                {{ $p->kategori }}
+                                                            </p>
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        ...
+                                                        <p>Seorang Mahasiswa telah {{ $p->kategori }} {{ $p->item_name }}
+                                                            dengan ciri ciri {{ $p->description }}.</p>
+                                                        <p>Pada pukul {{ $p->time }} di {{ $p->place }}, pada
+                                                            tanggal {{ $p->date }}</p>
+                                                            <img src="{{url('img/Barang/'.$p->file)}}" width="100%" height="100%" alt="">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary btn-sm"
@@ -74,7 +84,7 @@
             </div>
         </div>
         <style>
-            tbody{
+            tbody {
                 font-size: 14px;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             }
