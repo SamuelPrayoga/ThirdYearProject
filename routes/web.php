@@ -13,6 +13,7 @@ use App\Http\Controllers\MenuMakananController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\PengumumanController;
 use App\Models\MenuMakanan;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -75,6 +76,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:user')->name('home.')->group(function () {
+
+        Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
 
         Route::get('/laporan-barang', [BarangController::class, 'index'])->name('laporan-barang');
         Route::get('/my-feedback', [FeedbackController::class, 'show'])->name('feedbackku');

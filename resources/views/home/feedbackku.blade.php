@@ -21,7 +21,7 @@
                                 </tr>
                             </thead>
                             @if ($feedback->isEmpty())
-                                <p>Tidak ada ulasan yang tersedia.</p>
+                                <td colspan="6">Tidak ada ulasan yang tersedia.</td>
                             @else
                                 <tbody>
                                     @php $i=1 @endphp

@@ -43,13 +43,13 @@
                 </div>
                 <div class="mb-3">
                     <x-form-label id="password{{ $i }}"
-                        label='Password Karyawaan {{ $i + 1 }} (default: "123" jika tidak diisi)' required="false" />
+                        label='Password Mahasiswa {{ $i + 1 }} (default: "123" jika tidak diisi)' required="false" />
                     <x-form-input id="password{{ $i }}" name="password{{ $i }}"
                         wire:model.defer="employees.{{ $i }}.password" required="false" />
                     <x-form-error key=" employees.{{ $i }}.password" />
                 </div>
                 <div class="mb-3">
-                    <x-form-label id="position_id{{ $i }}" label='Jabatan / Posisi Karyawaan {{ $i + 1 }}' />
+                    <x-form-label id="position_id{{ $i }}" label='Jabatan / Posisi Mahasiswa {{ $i + 1 }}' />
                     <select class="form-select" aria-label="Default select example" name="position_id"
                         wire:model.defer="employees.{{ $i }}.position_id">
                         <option selected disabled>-- Pilih Posisi --</option>

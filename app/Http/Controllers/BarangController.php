@@ -26,7 +26,23 @@ class BarangController extends Controller
      */
     public function create(Request $req)
     {
-        $barang = new barang;
+        // Get the current date
+        $currentDate = date('Y-m-d');
+        // Check if the user has already submitted a form today
+        $existingReport = Barang::where('user_id', $req->UserID)
+            ->whereDate('created_at', $currentDate)
+            ->first();
+
+        if ($existingReport) {
+            // If the user has already submitted a form today, redirect back with an error message
+            return redirect()->back()->with('error', 'Anda sudah mengirimkan laporan hari ini!');
+        }
+
+        // Calculate the expiry date (4 days from now)
+        $expiryDate = date('Y-m-d', strtotime('+4 days'));
+
+        // If the user has not submitted a form today, create a new report
+        $barang = new Barang;
         $barang->user_id = $req->UserID;
         $barang->kategori = $req->kategori;
         $barang->item_name = $req->item_name;
@@ -34,6 +50,7 @@ class BarangController extends Controller
         $barang->date = $req->date;
         $barang->time = $req->time;
         $barang->description = $req->description;
+        $barang->expiry_date = $expiryDate;
 
         if ($req->hasFile('file')) {
             $file = $req->file('file');
@@ -47,19 +64,13 @@ class BarangController extends Controller
             } else {
                 return redirect()->back()->with('error', 'Submit Form Gagal! Hanya file yang berekstensi .jpg .jpeg .png .gif yang diizinkan.');
             }
-            // if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
-            //     $fileName = time() . '.' . $extension;
-            //     $file->move('img/Feedback', $fileName);
-            //     $feedback->file = $fileName;
-            // } else {
-            //     return redirect()->back()->with('error', 'Submit Form Gagal! Hanya file yang berekstensi .jpg .jpeg .png .gif yang diizinkan.');
-            // }
         }
 
         $barang->save();
-        return redirect()->back()->with('message', 'Laporan Anda berhasil dikirimkan!');
-        // return redirect()->back()->with('success', 'Your message here.');
+        return redirect()->route('home.pengumuman')->with('message', 'Laporan Anda berhasil dikirimkan!');
+        // return redirect()->back()->with('message', 'Laporan Anda berhasil dikirimkan!');
     }
+
 
     /**
      * Store a newly created resource in storage.

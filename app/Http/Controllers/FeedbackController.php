@@ -31,16 +31,28 @@ class FeedbackController extends Controller
 
     public function create(Request $req)
     {
+        // Ambil user_id dan tanggal hari ini
+        $user_id = $req->UserID;
+        $today = date('Y-m-d');
+
+        // Cek apakah user sudah mengisi feedback pada hari ini
+        $existingFeedback = Feedback::where('user_id', $user_id)->where('date', $today)->first();
+        if ($existingFeedback) {
+            return redirect()->back()->with('error', 'Gagal! Anda sudah mengisi Feedback pada hari ini. Feedback dapat diisi hanya sekali dalam sehari');
+        }
+
+        // Buat instance baru Feedback
         $feedback = new Feedback;
-        $feedback->user_id = $req->UserID;
-        $feedback->date = $req->date;
+        $feedback->user_id = $user_id;
+        $feedback->date = $today;
         $feedback->value_rating = $req->value_rating;
         $feedback->subject_review = $req->subject_review;
         $feedback->description = $req->description;
+
+        // Cek apakah file valid
         if ($req->hasFile('file') && $req->file('file')->isValid()) {
             $fileExtension = $req->file('file')->extension();
             if (in_array($fileExtension, ['jpeg', 'jpg', 'png', 'gif'])) {
-                $user_id = auth()->user()->id; // Ambil id user yang sedang login
                 $file = $req->file('file')->getClientOriginalName();
                 $unique_file_name = $user_id . '_' . time() . '_' . $file;
                 $req->file('file')->move(public_path('img/Feedback/' . $user_id), $unique_file_name);
@@ -49,21 +61,36 @@ class FeedbackController extends Controller
                 return redirect()->back()->with('error', 'File harus berupa gambar (jpeg, jpg, png, gif)');
             }
         }
+
+        // Simpan feedback ke database
         $feedback->save();
+
         return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
-        // if ($req->hasFile('file') && $req->file('file')->isValid()) {
-        //     $fileExtension = $req->file('file')->extension();
-        //     if (in_array($fileExtension, ['jpeg', 'jpg', 'png', 'gif'])) {
-        //         $file = $req->file('file')->getClientOriginalName();
-        //         $req->file('file')->move('img/Feedback', $file);
-        //         $feedback->file = $file;
-        //     } else {
-        //         return redirect()->back()->with('error', 'File harus berupa gambar (jpeg, jpg, png, gif)');
-        //     }
-        // }
-        // $feedback->save();
-        // return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
     }
+
+    // public function create(Request $req)
+    // {
+    //     $feedback = new Feedback;
+    //     $feedback->user_id = $req->UserID;
+    //     $feedback->date = $req->date;
+    //     $feedback->value_rating = $req->value_rating;
+    //     $feedback->subject_review = $req->subject_review;
+    //     $feedback->description = $req->description;
+    //     if ($req->hasFile('file') && $req->file('file')->isValid()) {
+    //         $fileExtension = $req->file('file')->extension();
+    //         if (in_array($fileExtension, ['jpeg', 'jpg', 'png', 'gif'])) {
+    //             $user_id = auth()->user()->id; // Ambil id user yang sedang login
+    //             $file = $req->file('file')->getClientOriginalName();
+    //             $unique_file_name = $user_id . '_' . time() . '_' . $file;
+    //             $req->file('file')->move(public_path('img/Feedback/' . $user_id), $unique_file_name);
+    //             $feedback->file = $unique_file_name;
+    //         } else {
+    //             return redirect()->back()->with('error', 'File harus berupa gambar (jpeg, jpg, png, gif)');
+    //         }
+    //     }
+    //     $feedback->save();
+    //     return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
+    // }
 
 
     /**
@@ -97,9 +124,6 @@ class FeedbackController extends Controller
             "title" => "Kritik dan Saranku",
             "feedback" => $feedbacks
         ]);
-        // $feedbacks = DB::table('feedback')->get();
-        // "title" => "Kritik dan Saranku";
-        // return view('home.feedbackku', ['feedback' => $feedbacks]);
     }
 
     /**

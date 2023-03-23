@@ -50,7 +50,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pengumuman</a>
+                    <a class="nav-link" href="{{ route('home.pengumuman') }}">Pengumuman</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
