@@ -9,14 +9,11 @@ class AllergyReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'food_type',
-        'approved'
-    ];
+    protected $fillable = ['user_id', 'allergies', 'file', 'approved'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 }

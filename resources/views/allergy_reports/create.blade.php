@@ -9,7 +9,60 @@
                         <center>Formulir Laporan Alergi</center>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="#">
+                        <form action="{{ route('home.allergy-reports.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                              <div class="form-group">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Nama Mahasiswa</label>
+                                    <input type="text" class="form-control" id="username" value="{{ Auth::user()->name }}"
+                                        readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">NIM</label>
+                                    <input type="text" class="form-control" id="username" value="{{ Auth::user()->nim }}"
+                                        readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Program Studi</label>
+                                    <input type="text" class="form-control" id="username" value="{{ Auth::user()->prodi }}"
+                                        readonly>
+                                </div>
+                                        <label for="allergies">Jenis Alergi</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="allergies[]" id="seafood" value="Seafood">
+                                            <label class="form-check-label" for="seafood">Makanan Laut/Seafood</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="allergies[]" id="telur" value="Telur">
+                                            <label class="form-check-label" for="telur">Telur</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="allergies[]" id="kacang" value="Kacang-Kacangan">
+                                            <label class="form-check-label" for="kacang">Kacang-Kacangan</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="allergies[]" id="lele" value="Ikan Laut">
+                                            <label class="form-check-label" for="lele">Ikan Laut</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="allergies[]" id="pedas" value="Makanan Pedas">
+                                            <label class="form-check-label" for="pedas">Makanan Pedas</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="allergies[]" id="lemak" value="Makanan Berlemak">
+                                            <label class="form-check-label" for="lemak">Makanan Berlemak</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="file" class="form-label">Surat Keterangan Dokter/Bukti Lainnya <span class="text-danger"> *</span></label>
+                                        <input type="file" class="form-control" name="file[]" id="file" placeholder=""
+                                            required>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </form>
+
+                        {{-- <form method="POST" action="#">
                             @csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">Nama Mahasiswa</label>
@@ -85,7 +138,7 @@
                                 <button type="submit" class="btn btn-primary btn-sm">Laporkan</button>
                             </div>
 
-                        </form>
+                        </form> --}}
                     </div>
                     @if (session('message'))
                         <div class="alert alert-success">

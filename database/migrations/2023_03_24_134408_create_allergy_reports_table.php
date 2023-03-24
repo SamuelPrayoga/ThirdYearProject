@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateAllergyReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,17 +16,15 @@ return new class extends Migration
         Schema::create('allergy_reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('food_type');
-            $table->boolean('approved')->default(false);
+            $table->text('allergies');
             $table->string('file');
+            $table->boolean('approved')->default(false);
             $table->timestamps();
 
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -37,4 +35,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('allergy_reports');
     }
+
 };

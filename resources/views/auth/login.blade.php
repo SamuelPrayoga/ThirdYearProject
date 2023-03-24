@@ -2,7 +2,7 @@
 
 @push('style')
     <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
-    <script type="text/javascript" src="{{asset('js/auth/jquery.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/auth/jquery.js') }}"></script>
 @endpush
 
 @section('content')
@@ -12,8 +12,8 @@
             <form method="POST" action="{{ route('auth.login') }}" id="login-form">
                 <center><img src="{{ asset('img/logo.png') }}" class="logo" alt="" width="100px"></center>
                 <center>
-                        <h3 class="h3 mb-3 fw-normal" id="judul">Kantin Institut Teknologi Del</h3>
-                    </center>
+                    <h3 class="h3 mb-3 fw-normal" id="judul">Kantin Institut Teknologi Del</h3>
+                </center>
 
                 <div class="mb-3">
                     <label for="floatingInputEmail" id="labels">Email Zimbra</label>
@@ -24,24 +24,23 @@
                 </div>
                 <div class="mb-3">
                     <label for="floatingPassword" id="labels">Password</label>
-                    <input type="password" class="form-control" id="floatingPassword" name="password"
-                        required>
+                    <input type="password" class="form-control" id="floatingPassword" name="password" required>
                     @if ($errors->has('email'))
                         <span class="text-danger">{{ $errors->first('password') }} </span>
                     @endif
                 </div>
 
                 <div class="mb-3">
-                    <input type="checkbox" class="form-checkbox" id="lupapassword"><small>  Tampilkan Password</small>
+                    <input type="checkbox" class="form-checkbox" id="lupapassword"><small> Tampilkan Password</small>
                 </div>
 
                 <button class="w-100 btn btn-primary" type="submit" id="login-form-button">Masuk</button>
                 <br>
-                @if (Session::has('message'))
+                {{-- @if (Session::has('message'))
                     <div class="alert alert-success" role="alert">
                         {{ Session::get('message') }}
                     </div>
-                @endif
+                @endif --}}
                 {{-- @if (Session::has('message'))
                     <div class="alert alert-success" role="alert">
                         {{ Session::get('message') }}
@@ -49,24 +48,30 @@
                 @endif --}}
                 <a href="/forget-passwords" id="lupapassword">Lupa atau Reset Password ?</a>
                 <center>
-                    <p class="mt-5 mb-3 text-muted" id="lupapassword">Pengembangan Sistem Informasi Dilindungi &copy;Institut Teknologi Del
+                    <p class="mt-5 mb-3 text-muted" id="lupapassword">Pengembangan Sistem Informasi Dilindungi
+                        &copy;Institut Teknologi Del
                         2023</p>
                 </center>
             </form>
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
         </main>
     </div>
     <style>
-        #login-form-button{
+        #login-form-button {
             background: #367fa9;
         }
     </style>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.form-checkbox').click(function(){
-                if($(this).is(':checked')){
-                    $('#floatingPassword').attr('type','text');
-                }else{
-                    $('#floatingPassword').attr('type','password');
+        $(document).ready(function() {
+            $('.form-checkbox').click(function() {
+                if ($(this).is(':checked')) {
+                    $('#floatingPassword').attr('type', 'text');
+                } else {
+                    $('#floatingPassword').attr('type', 'password');
                 }
             });
         });
@@ -194,5 +199,3 @@
 </body>
 
 </html> --}}
-
-
