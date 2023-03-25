@@ -10,26 +10,29 @@
                     </div>
                     <div class="card-body">
                         {{-- <h1>Allergy Reports</h1> --}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Food Type</th>
-                    <th>User</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($reports as $report)
-                    <tr>
-                        <td>{{ $report->food_type }}</td>
-                        <td>{{ $report->user->name }}</td>
-                        <td>{{ $report->approved ? 'Approved' : 'Pending' }}</td>
-                        <td>{{ $report->created_at->format('d/m/Y') }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Jenis Alergi</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($reports as $report)
+                                    <tr>
+                                        <td>{{ $report->allergies }}</td>
+                                        <td>
+                                            <span class="badge {{ $report->approved ? 'bg-success' : 'bg-danger' }}">
+                                                {{ $report->approved ? 'Disetujui' : 'Belum disetujui' }}
+                                            </span>
+                                        </td>
+
+                                        {{-- <td>{{ $report->approved ? 'Disetujui' : 'Belum disetujui' }}</td> --}}
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
                     </div>
                     @if (session('message'))
                         <div class="alert alert-success">

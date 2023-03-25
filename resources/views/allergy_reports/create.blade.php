@@ -57,6 +57,7 @@
                                         <label for="file" class="form-label">Surat Keterangan Dokter/Bukti Lainnya <span class="text-danger"> *</span></label>
                                         <input type="file" class="form-control" name="file[]" id="file" placeholder=""
                                             required>
+                                            <small>Penamaan File: Alergi_NIM_Nama</small>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Simpan</button>

@@ -71,7 +71,7 @@
             @endif
             @if (auth()->user()->isOperator())
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.allergy-reports.index') }}">
                         <i class="bi bi-person"></i>
                         Mahasiswa Alergi
                     </a>

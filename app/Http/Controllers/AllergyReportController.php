@@ -45,7 +45,7 @@ class AllergyReportController extends Controller
                 foreach ($file as $f) {
                     if (in_array($f->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif', 'pdf'])) {
                         $filename = $f->getClientOriginalName();
-                        $f->move('img/allergy_reports', $filename);
+                        $f->move('allergy_reports', $filename);
                         $report->file = $filename;
                     } else {
                         return redirect()->back()->with('error', 'File yang dimasukkan bukan file gambar atau pdf.');
@@ -65,58 +65,4 @@ class AllergyReportController extends Controller
         $report->save();
         return redirect()->back()->with('message', 'Laporan Alergi Anda berhasil dikirimkan!');
     }
-    // public function store(Request $request)
-    // {
-    //     $report = new AllergyReport([
-    //         'user_id' => Auth::id(),
-    //         'allergies' => implode(', ', $request->input('allergies')),
-    //     ]);
-    //     if ($request->hasFile('file')) {
-    //         $file = $request->file('file');
-    //         if (is_array($file)) {
-    //             foreach ($file as $f) {
-    //                 if (in_array($f->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif', 'pdf'])) {
-    //                     $filename = $f->getClientOriginalName();
-    //                     $f->move('img/allergy_reports', $filename);
-    //                     $report->file = $filename;
-    //                 } else {
-    //                     return response()->json(['error' => 'File yang dimasukkan bukan file gambar atau pdf.'], 400);
-    //                 }
-    //             }
-    //         } else {
-    //             if (in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif', 'pdf'])) {
-    //                 $filename = $file->getClientOriginalName();
-    //                 $file->move('img/allergy_reports', $filename);
-    //                 $report->file = $filename;
-    //             } else {
-    //                 return response()->json(['error' => 'File yang dimasukkan bukan file gambar atau pdf.'], 400);
-    //             }
-    //         }
-    //     }
-
-    //     $report->save();
-    //     return redirect()->back()->with('message', 'Laporan Anda berhasil dikirimkan!');
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $report = new AllergyReport([
-    //         'user_id' => Auth::id(),
-    //         'allergies' => implode(', ', $request->input('allergies')),
-    //     ]);
-    //     if ($request->hasFile('file')) {
-    //         $file = $request->file('file');
-    //         if (in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif','pdf'])) {
-    //             $filename = $file->getClientOriginalName();
-    //             $file->move('img/allergy_reports', $filename);
-    //             $report->file = $filename;
-    //         } else {
-    //             return response()->json(['error' => 'File yang dimasukkan bukan file gambar atau pdf.'], 400);
-    //         }
-    //     }
-
-    //     $report->save();
-    //     // return redirect()->route('home.allergy-reports.index')->with('success', 'Laporan alergi berhasil disimpan.');
-    //     return redirect()->back()->with('message', 'Laporan Anda berhasil dikirimkan!');
-    // }
 }

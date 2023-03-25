@@ -59,7 +59,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
                         <li><a class="dropdown-item" type="button" href="#"><i class="bi bi-people"></i> My Profile</a></li>
-                        <li><a class="dropdown-item" type="button" href=""><i class="bi bi-flag"></i> Laporan ALergiku</a></li>
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.allergy-reports.index')}}"><i class="bi bi-flag"></i> Laporan ALergiku</a></li>
                         <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i class="bi bi-chat-dots"></i> Kritik dan Saranku</a></li>
                         <li>
                             <form action="{{ route('auth.logout') }}" method="post">

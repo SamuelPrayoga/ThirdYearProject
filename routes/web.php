@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\AdminAllergyReportController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\AuthController;
@@ -39,6 +40,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::middleware('auth')->group(function () {
     Route::middleware('role:admin,operator')->group(function () {
 
+        //Alergi
+        Route::get('/admin/allergy-reports', [AdminAllergyReportController::class, 'show'])->name('admin.allergy-reports.index');
+        Route::post('/admin/allergy-reports/{report}/approve', [AdminAllergyReportController::class, 'approve'])->name('admin.approve');
+        Route::delete('/admin/allergy-reports/{report}', [AdminAllergyReportController::class, 'reject'])->name('admin.reject');
+
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/menumakan/index', [MenuMakananController::class, 'show'])->name('menumakan.index');
         Route::get('/menumakan/tambah', [MenuMakananController::class, 'create'])->name('menumakan.create');
@@ -59,6 +65,7 @@ Route::middleware('auth')->group(function () {
         // attendances (absensi)
         Route::resource('/attendances', AttendanceController::class)->only(['index', 'create']);
         Route::get('/attendances/edit', [AttendanceController::class, 'edit'])->name('attendances.edit');
+
 
         // presences (kehadiran)
         Route::resource('/presences', PresenceController::class)->only(['index']);
@@ -81,6 +88,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
 
         //Alergi
+        Route::get('/student/allergy-reports', [AllergyReportController::class, 'index'])->name('allergy-reports.index');
         // Route::get('/laporkan-alergi', [AllergyReportController::class, 'index'])->name('alergi.index'); //Aman
         Route::get('/laporkan-alergi-form', [AllergyReportController::class, 'create'])->name('allergy-reports.create');
         Route::post('/laporkan-alergi-form', [AllergyReportController::class, 'store'])->name('allergy-reports.store');

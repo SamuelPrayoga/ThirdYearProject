@@ -106,4 +106,9 @@ class User extends Authenticatable
         return $this->hasMany(barang::class);
     }
 
+    public function allergyReports()
+    {
+        return $this->hasMany(AllergyReport::class);
+    }
+
 }
