@@ -55,10 +55,13 @@ Route::middleware('auth')->group(function () {
         // positions
         Route::resource('/positions', PositionController::class)->only(['index', 'create']);
         Route::get('/positions/edit', [PositionController::class, 'edit'])->name('positions.edit');
-        // employees
+        // Pengguna
         Route::post('/importuser', [EmployeeController::class, 'userImportExcel'])->name('importuser');
         Route::resource('/pengguna', EmployeeController::class)->only(['index', 'create']);
         Route::get('/pengguna/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
+
+        Route::delete('/admin/delete-users', [ResetController::class, 'hapusMahasiswa'])->name('admin.hapusMahasiswa');
+
         // holidays (hari libur)
         Route::resource('/holidays', HolidayController::class)->only(['index', 'create']);
         Route::get('/holidays/edit', [HolidayController::class, 'edit'])->name('holidays.edit');

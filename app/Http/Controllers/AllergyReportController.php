@@ -28,10 +28,10 @@ class AllergyReportController extends Controller
         $lastSubmission = AllergyReport::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
 
         if ($lastSubmission) {
-            $threeMonthsAgo = Carbon::now()->subMonths(3);
+            $threeMonthsAgo = Carbon::now()->subMonths(6);
             if ($lastSubmission->created_at->greaterThanOrEqualTo($threeMonthsAgo)) {
-                $nextSubmissionDate = $lastSubmission->created_at->addMonths(3)->format('d M Y');
-                return redirect()->back()->with('error', 'Anda hanya dapat mengirimkan laporan alergi sekali dalam 3 bulan. Anda dapat mengirimkan laporan berikutnya pada tanggal ' . $nextSubmissionDate . '.');
+                $nextSubmissionDate = $lastSubmission->created_at->addMonths(6)->format('d M Y');
+                return redirect()->back()->with('error', 'Anda hanya dapat mengirimkan laporan alergi sekali dalam 1 semester akademik. Anda dapat mengirimkan laporan berikutnya pada tanggal ' . $nextSubmissionDate . '.');
             }
         }
 
