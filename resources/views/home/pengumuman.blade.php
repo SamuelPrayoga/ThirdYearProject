@@ -9,6 +9,22 @@
                         <center>
                             <p class="font-weight-bold">Pengumuman</p>
                         </center>
+                        {{-- <div class="card">
+                            <div class="card-header">
+                                Pengumuman Kantin, Kehilangan, Keasramaan
+                            </div>
+                            @foreach ($pengumuman as $p)
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $p->kategori }}: {{ $p->item_name }}</h5>
+                                    <p class="card-text">{{ $p->description }}</p>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal{{ $p->id }}">
+                                        <i class="bi bi-eye-fill"></i> <small>Selengkapnya</small>
+                                    </button>
+                                    <p class="card-text">Tanggal Berakhir:{{ $p->expiry_date }}</p>
+                                </div>
+                            @endforeach
+                        </div> --}}
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered" id="exa">
@@ -22,62 +38,66 @@
                                     <th style="width:  8.33%" class="action-column"><small>&nbsp;Action</small></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @php $i=1 @endphp
-                                @foreach ($pengumuman as $p)
-                                    <tr>
-                                        <td>{{ $i++ }}.</td>
-                                        <td>
-                                            <p
-                                                class="{{ $p->kategori == 'Keasramaan' ? 'text-primary' : ($p->kategori == 'Kehilangan Barang' ? 'text-danger' : 'text-success') }}">
+                            @if ($pengumuman->isEmpty())
+                                <td colspan="6" class="text-muted">Tidak ada pengumuman yang ditampilkan</td>
+                            @else
+                                <tbody>
+                                    @php $i=1 @endphp
+                                    @foreach ($pengumuman as $p)
+                                        <tr>
+                                            <td>{{ $i++ }}.</td>
+                                            <td>
                                                 {{ $p->kategori }}: {{ $p->item_name }}
-                                            </p>
-                                        </td>
+                                            </td>
 
-                                        {{-- <td><a>{{ $p->kategori }}: {{ $p->item_name }} </a></td> --}}
-                                        <td>{{ $p->expiry_date }}</td>
-                                        {{-- <td>{{ $p->time }} WIB</td> --}}
-                                        <td>{{ $p->created_at }}</td>
-                                        <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#exampleModal{{ $p->id }}">
-                                                <i class="bi bi-eye-fill"></i> <small>Selengkapnya</small>
-                                            </button>
-                                        </td>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{ $p->id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">
-                                                            <p
-                                                                class="{{ $p->kategori == 'Keasramaan' ? 'text-primary' : ($p->kategori == 'Kehilangan Barang' ? 'text-danger' : 'text-success') }}">
-                                                                {{ $p->kategori }}
-                                                            </p>
-                                                        </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Seorang Mahasiswa telah {{ $p->kategori }} {{ $p->item_name }}
-                                                            dengan ciri ciri {{ $p->description }}.</p>
-                                                        <p>Pada pukul {{ $p->time }} di {{ $p->place }}, pada
-                                                            tanggal {{ $p->date }}</p>
-                                                            <img src="{{url('img/Barang/'.$p->file)}}" width="100%" height="100%" alt="">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary btn-sm"
-                                                            data-dismiss="modal">Close</button>
+                                            {{-- <td><a>{{ $p->kategori }}: {{ $p->item_name }} </a></td> --}}
+                                            <td>{{ $p->expiry_date }}</td>
+                                            {{-- <td>{{ $p->time }} WIB</td> --}}
+                                            <td>{{ $p->created_at }}</td>
+                                            <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                    data-target="#exampleModal{{ $p->id }}">
+                                                    <i class="bi bi-eye-fill"></i> <small>Selengkapnya</small>
+                                                </button>
+                                            </td>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{ $p->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                <p
+                                                                    class="{{ $p->kategori == 'Keasramaan' ? 'text-primary' : ($p->kategori == 'Kehilangan Barang' ? 'text-danger' : 'text-success') }}">
+                                                                    {{ $p->kategori }}
+                                                                </p>
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Seorang Mahasiswa telah {{ $p->kategori }}
+                                                                {{ $p->item_name }}
+                                                                dengan ciri ciri {{ $p->description }}.</p>
+                                                            <p>Pada pukul {{ $p->time }} di {{ $p->place }}, pada
+                                                                tanggal {{ $p->date }}</p>
+                                                            <img src="{{ url('img/Barang/' . $p->file) }}" width="100%"
+                                                                height="100%" alt="">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary btn-sm"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            @endif
                         </table>
+                        <a href="{{ route('home.pengumuman.arsip') }}" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-zip"></i> Pengumuman yang diarsipkan</a>
                     </div>
                     {{ $pengumuman->links() }}
                 </div>

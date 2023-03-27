@@ -16,6 +16,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\ExportHistory;
 use App\Models\MenuMakanan;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -89,6 +90,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:user')->name('home.')->group(function () {
 
         Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+        Route::get('/pengumuman-diarsipkan', [PengumumanController::class, 'pengumumanArsip'])->name('pengumuman.arsip');
 
         //Alergi
         Route::get('/student/allergy-reports', [AllergyReportController::class, 'index'])->name('allergy-reports.index');
@@ -103,6 +105,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
         Route::post('/feedback', [FeedbackController::class, 'create'])->name('feedback-form');
         Route::get('/menumakan', [MenuMakananController::class, 'index'])->name('menumakan');
+
+        //export
+        Route::get('/history/export', [ExportHistory::class, 'export'])->name('history.export');
+        Route::get('/history/pdf', [ExportHistory::class, 'pdf'])->name('pdf.history');
 
         Route::get('/', [HomeController::class, 'index'])->name('index');
         // desctination after scan qrcode

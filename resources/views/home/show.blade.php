@@ -31,6 +31,11 @@
                 <h5 class="mb-3">Data Makan Mahasiswa 30 Hari Terakhir </h5>
                 <h5 class="mb-3">Nama: {{ Auth::user()->name }}</h5>
                 <div class="table-responsive">
+                    {{-- <a href="{{ route('home.history.export', ['pdf' => 1, 'priod_date' => $priodDate]) }}"
+                        class="btn btn-danger btn-sm"><i class="far fa-file-pdf"></i> Export PDF</a>
+                    <a href="{{ route('home.history.export', ['excel' => 1, 'priod_date' => $priodDate]) }}"
+                        class="btn btn-success btn-sm"><i class="far fa-file-excel"></i> Export Excel</a>
+                        <br> --}}
                     <table class="table table-bordered" id="exampl" style="width: 100%">
                         <thead>
                             <tr>
