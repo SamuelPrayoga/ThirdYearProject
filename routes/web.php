@@ -38,7 +38,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.gets');
 // Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 Route::middleware('auth')->group(function () {
-    Route::middleware('role:admin,operator')->group(function () {
+    Route::middleware('role:admin,operator,depkebdis,pengelola,koordinator')->group(function () {
 
         //Alergi
         Route::get('/admin/allergy-reports', [AdminAllergyReportController::class, 'show'])->name('admin.allergy-reports.index');

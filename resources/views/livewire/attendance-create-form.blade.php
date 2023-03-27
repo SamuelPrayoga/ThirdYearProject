@@ -65,9 +65,19 @@
                 <x-form-error key="position_ids" />
                 {{-- tom-select init script ada di create.blade.php attendances --}}
             </div>
-
-
             <div class="mb-3">
+                <x-form-label id="flexCheckCode" label='Ingin Menggunakan QRCode (default menggunakan tombol)' />
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" wire:model="attendance.code" checked
+                        id="flexCheckCode">
+                    <label class="form-check-label" for="flexCheckCode">
+                        Generate QRCode
+                    </label>
+                    <x-form-error key="attendance.code" />
+                </div>
+            </div>
+
+            {{-- <div class="mb-3">
                 <x-form-label id="flexCheckCode" label='Ingin Menggunakan QRCode (default menggunakan tombol)' />
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" wire:model.defer="attendance.code"
@@ -77,16 +87,13 @@
                     </label>
                     <x-form-error key="attendance.code" />
                 </div>
-                {{-- <script>
-                    document.getElementById("flexCheckCode").checked = true
-                </script> --}}
-            </div>
+            </div> --}}
 
 
         </div>
 
         <div class="d-flex justify-content-between align-items-center mb-5">
-            <button class="btn btn-primary">
+            <button class="btn btn-primary btn-sm">
                 Simpan
             </button>
         </div>

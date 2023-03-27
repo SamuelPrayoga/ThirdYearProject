@@ -30,7 +30,8 @@
                                             @if ($ulasan->user_id == auth()->user()->id)
                                                 {{-- Tampilkan data feedback/ulasan yang hanya ditambahkan oleh pengguna yang sedang login --}}
                                                 <td><center>{{ $i++ }}.</center></td>
-                                                <td>{{ $ulasan->date }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($ulasan->date)->format('d M Y') }}</td>
+                                                {{-- <td>{{ $ulasan->date->format('d F Y') }}</td> --}}
                                                 <td>{{ $ulasan->value_rating }}</td>
                                                 <td>{{ $ulasan->subject_review }}</td>
                                                 <td>{{ $ulasan->description }}</td>

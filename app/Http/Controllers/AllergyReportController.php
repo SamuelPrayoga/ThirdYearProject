@@ -43,21 +43,21 @@ class AllergyReportController extends Controller
             $file = $request->file('file');
             if (is_array($file)) {
                 foreach ($file as $f) {
-                    if (in_array($f->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif', 'pdf'])) {
+                    if (in_array($f->getClientOriginalExtension(), ['doc', 'docx', 'pdf'])) {
                         $filename = $f->getClientOriginalName();
                         $f->move('allergy_reports', $filename);
                         $report->file = $filename;
                     } else {
-                        return redirect()->back()->with('error', 'File yang dimasukkan bukan file gambar atau pdf.');
+                        return redirect()->back()->with('error', 'File yang dimasukkan bukan file dokumen atau pdf.');
                     }
                 }
             } else {
-                if (in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif', 'pdf'])) {
+                if (in_array($file->getClientOriginalExtension(), ['doc', 'docx', 'pdf'])) {
                     $filename = $file->getClientOriginalName();
                     $file->move('img/allergy_reports', $filename);
                     $report->file = $filename;
                 } else {
-                    return redirect()->back()->with('error', 'File yang dimasukkan bukan file gambar atau pdf.');
+                    return redirect()->back()->with('error', 'File yang dimasukkan bukan file dokumen atau pdf.');
                 }
             }
         }

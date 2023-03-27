@@ -25,13 +25,13 @@
                     </a>
                 </li>
             @endif
-                {{-- <li class="nav-item">
+            {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-cart-plus"></i>
                         Pemesanan Makanan
                     </a>
                 </li> --}}
-                @if (auth()->user()->isAdmin())
+            @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <strong>INFORMASI KANTIN</strong>
@@ -55,11 +55,11 @@
                     </a>
                 </li>
             @endif
-                <li class="nav-item">
-                    <a class="nav-link">
-                        <strong>LAPORAN MAHASISWA</strong>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <strong>LAPORAN MAHASISWA</strong>
+                </a>
+            </li>
             @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('employees.*') ? 'active' : '' }}"
@@ -74,6 +74,9 @@
                     <a class="nav-link" href="{{ route('admin.allergy-reports.index') }}">
                         <i class="bi bi-person"></i>
                         Mahasiswa Alergi
+                        {{-- @if ($jumlah > 0)
+                            <span class="badge">{{ $jumlah }}</span>
+                        @endif --}}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -84,26 +87,20 @@
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->isAdmin())
+            @if (auth()->user()->isDepkebdis())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-clipboard2-minus"></i>
-                        Laporan Kehilangan Barang
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-clipboard-data"></i>
-                        Laporan Temuan Barang
+                        Laporan Barang
                     </a>
                 </li>
             @endif
+            @if (auth()->user()->isOperator())
                 <li class="nav-item">
                     <a class="nav-link">
                         <strong>ABSENSI MAKAN</strong>
                     </a>
                 </li>
-            @if (auth()->user()->isOperator())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('attendances.*') ? 'active' : '' }}"
                         href="{{ route('attendances.index') }}">
@@ -119,7 +116,7 @@
                     </a>
                 </li>
             @endif
-                @if (auth()->user()->isAdmin())
+            @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link">
                         <strong>USER MANAGEMENT</strong>
@@ -139,7 +136,7 @@
                         Profiling
                     </a>
                 </li>
-                @endif
+            @endif
         </ul>
     </div>
 </nav>

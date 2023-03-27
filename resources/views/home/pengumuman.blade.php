@@ -17,7 +17,7 @@
                                     <th><small>#</small></th>
                                     <th style="width: 50%"><small>Judul Pengumuman</small></th>
                                     <th style="width: 25%"><small>Tanggal Berakhir</small></th>
-                                    <th style="width: 15%"><small>Waktu</small></th>
+                                    {{-- <th style="width: 15%"><small>Waktu</small></th> --}}
                                     <th style="width: 16.66%"><small>Tanggal Pembuatan</small></th>
                                     <th style="width:  8.33%" class="action-column"><small>&nbsp;Action</small></th>
                                 </tr>
@@ -36,7 +36,7 @@
 
                                         {{-- <td><a>{{ $p->kategori }}: {{ $p->item_name }} </a></td> --}}
                                         <td>{{ $p->expiry_date }}</td>
-                                        <td>{{ $p->time }} WIB</td>
+                                        {{-- <td>{{ $p->time }} WIB</td> --}}
                                         <td>{{ $p->created_at }}</td>
                                         <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                                 data-target="#exampleModal{{ $p->id }}">
