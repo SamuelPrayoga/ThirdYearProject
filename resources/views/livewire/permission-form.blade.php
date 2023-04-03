@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="save" method="post" novalidate >
+    <form wire:submit.prevent="save" method="post" novalidate enctype="multipart/form-data">
         @include('partials.alerts')
 
         <div class="w-100">

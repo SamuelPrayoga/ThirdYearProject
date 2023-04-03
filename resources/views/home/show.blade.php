@@ -55,7 +55,7 @@
                                         $histo = $history->where('presence_date', $date)->first();
                                     @endphp
                                     @if (!$histo)
-                                        <td>{{ $date }} </td>
+                                        <td>{{ date('d M Y', strtotime($date)) }} </td>
                                         <td colspan="3">
                                             @if ($date == now()->toDateString())
                                                 <div class="badge text-bg-warning">Belum Makan</div>

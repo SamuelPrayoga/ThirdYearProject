@@ -17,14 +17,14 @@
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->isAdmin())
+            {{-- @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-cart-plus"></i>
                         Pembelian Bahan Makanan
                     </a>
                 </li>
-            @endif
+            @endif --}}
             {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-cart-plus"></i>
@@ -80,6 +80,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.allergy-reports.index') }}">
+                        <i class="bi bi-person"></i>
+                        Mahasiswa IB
+                        {{-- @if ($jumlah > 0)
+                            <span class="badge">{{ $jumlah }}</span>
+                        @endif --}}
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('holidays.*') ? 'active' : '' }}"
                         href="{{ route('holidays.index') }}">
                         <i class="bi bi-calendar-event"></i>
@@ -108,6 +117,9 @@
                         Absensi Makan Kantin
                     </a>
                 </li>
+            @endif
+            @if (auth()->user()->isAdmin() or
+                    auth()->user()->isOperator())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('presences.*') ? 'active' : '' }}"
                         href="{{ route('presences.index') }}">

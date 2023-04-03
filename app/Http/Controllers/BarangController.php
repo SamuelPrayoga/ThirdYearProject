@@ -39,17 +39,31 @@ class BarangController extends Controller
         $barang->time = $req->time;
         $barang->description = $req->description;
         $barang->expiry_date = $expiryDate;
-
         if ($req->hasFile('file')) {
-            $file = $req->file('file');
-            if (in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
-                $filename = $file->getClientOriginalName();
-                $file->move('img/Barang', $filename);
-                $barang->file = $filename;
-            } else {
-                return response()->json(['error' => 'File yang dimasukkan bukan file gambar.'], 400);
+            try {
+                $file = $req->file('file');
+                if (in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
+                    $filename = $file->getClientOriginalName();
+                    $file->move('img/Barang', $filename);
+                    $barang->file = $filename;
+                } else {
+                    return response()->json(['error' => 'File yang dimasukkan bukan file gambar.'], 400);
+                }
+            } catch (\Throwable $th) {
+                return redirect()->back()->withInput();
             }
         }
+
+        // if ($req->hasFile('file')) {
+        //     $file = $req->file('file');
+        //     if (in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
+        //         $filename = $file->getClientOriginalName();
+        //         $file->move('img/Barang', $filename);
+        //         $barang->file = $filename;
+        //     } else {
+        //         return response()->json(['error' => 'File yang dimasukkan bukan file gambar.'], 400);
+        //     }
+        // }
         $barang->save();
         return redirect()->route('home.pengumuman')->with('message', 'Laporan Anda berhasil dikirimkan!');
         // return redirect()->back()->with('message', 'Laporan Anda berhasil dikirimkan!');
