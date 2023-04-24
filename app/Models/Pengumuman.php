@@ -9,18 +9,10 @@ class Pengumuman extends Model
 {
     use HasFactory;
 
-    // protected $table = 'pengumuman';
-    // protected $fillable = [
-    //     'judul_pengumuman',
-    //     'tanggal_berakhir',
-    //     'tanggal_pembuatan',
-    //     'deskripsi',
-    //     'file',
-    //     'barang_id',
-    // ];
-
-    // // public function barang()
-    // // {
-    // //     return $this->belongsTo(Barang::class);
-    // // }
+    protected $table = 'pengumumen';
+    protected $fillable = [
+        'tanggal_berakhir',
+        'tanggal_pembuatan',
+        'deskripsi',
+    ];
 }

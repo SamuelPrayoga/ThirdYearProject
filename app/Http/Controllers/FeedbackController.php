@@ -68,29 +68,7 @@ class FeedbackController extends Controller
         return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
     }
 
-    // public function create(Request $req)
-    // {
-    //     $feedback = new Feedback;
-    //     $feedback->user_id = $req->UserID;
-    //     $feedback->date = $req->date;
-    //     $feedback->value_rating = $req->value_rating;
-    //     $feedback->subject_review = $req->subject_review;
-    //     $feedback->description = $req->description;
-    //     if ($req->hasFile('file') && $req->file('file')->isValid()) {
-    //         $fileExtension = $req->file('file')->extension();
-    //         if (in_array($fileExtension, ['jpeg', 'jpg', 'png', 'gif'])) {
-    //             $user_id = auth()->user()->id; // Ambil id user yang sedang login
-    //             $file = $req->file('file')->getClientOriginalName();
-    //             $unique_file_name = $user_id . '_' . time() . '_' . $file;
-    //             $req->file('file')->move(public_path('img/Feedback/' . $user_id), $unique_file_name);
-    //             $feedback->file = $unique_file_name;
-    //         } else {
-    //             return redirect()->back()->with('error', 'File harus berupa gambar (jpeg, jpg, png, gif)');
-    //         }
-    //     }
-    //     $feedback->save();
-    //     return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
-    // }
+
 
 
     /**
@@ -158,5 +136,14 @@ class FeedbackController extends Controller
     public function destroy(Feedback $feedback)
     {
         //
+    }
+
+    public function showAll()
+    {
+        $feedbacks = DB::table('feedback')->get();
+        return view('feedback.index', [
+            "title" => "Kritik dan Saran",
+            "feedbacks" => $feedbacks // Mengganti key "feedback" menjadi "feedbacks"
+        ]);
     }
 }

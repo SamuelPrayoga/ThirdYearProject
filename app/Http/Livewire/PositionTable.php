@@ -29,12 +29,12 @@ final class PositionTable extends PowerGridComponent
     {
         return [
             Button::add('bulk-checked')
-                ->caption(__('Hapus'))
-                ->class('btn btn-danger border-0')
+                ->caption('<span data-feather="trash-2" class="align-text-bottom me-1"></span>' . __('Hapus'))
+                ->class('btn btn-danger btn-sm text-white')
                 ->emit('bulkCheckedDelete', []),
             Button::add('bulk-edit-checked')
-                ->caption(__('Edit'))
-                ->class('btn btn-success border-0')
+                ->caption('<span data-feather="edit" class="align-text-bottom me-1"></span>' . __('Edit'))
+                ->class('btn btn-success btn-sm text-white')
                 ->emit('bulkCheckedEdit', []),
         ];
     }

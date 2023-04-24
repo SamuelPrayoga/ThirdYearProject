@@ -6,7 +6,7 @@
         data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <ul class="navbar-nav align-items-md-center gap-md-4 py-2 py-md-0">
+    {{-- <ul class="navbar-nav align-items-md-center gap-md-4 py-2 py-md-0">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="bg" role="button" data-toggle="dropdown"
                 aria-haspopup="false" aria-expanded="true">
@@ -22,7 +22,7 @@
                 </a>
             </div>
         </li>
-    </ul>
+    </ul> --}}
     <style>
         #bg {
             background-color: #367FA9;

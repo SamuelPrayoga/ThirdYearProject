@@ -7,24 +7,8 @@
                 <div class="card shadow-sm mb-2">
                     <div class="card-header">
                         <center>
-                            <p class="font-weight-bold">Pengumuman</p>
+                            <p class="font-weight-bold">Pengumuman Kehilangan dan Menemukan Barang</p>
                         </center>
-                        {{-- <div class="card">
-                            <div class="card-header">
-                                Pengumuman Kantin, Kehilangan, Keasramaan
-                            </div>
-                            @foreach ($pengumuman as $p)
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $p->kategori }}: {{ $p->item_name }}</h5>
-                                    <p class="card-text">{{ $p->description }}</p>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal{{ $p->id }}">
-                                        <i class="bi bi-eye-fill"></i> <small>Selengkapnya</small>
-                                    </button>
-                                    <p class="card-text">Tanggal Berakhir:{{ $p->expiry_date }}</p>
-                                </div>
-                            @endforeach
-                        </div> --}}
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered" id="exa">
@@ -99,6 +83,7 @@
                         </table>
                         <a href="{{ route('home.pengumuman.arsip') }}" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-zip"></i> Pengumuman yang diarsipkan</a>
                     </div>
+
                     {{ $pengumuman->links() }}
                 </div>
             </div>

@@ -6,22 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BarangController;
+use App\Models\Pengumuman;
 
 class PengumumanController extends Controller
 {
-    // public function index()
-    // {
-    //     $perPage = 10;
-    //     $pengumuman = DB::table('barangs')
-    //         ->orderBy('kategori')
-    //         ->orderBy('expiry_date', 'desc')
-    //         ->paginate($perPage);
 
-    //     return view('home.pengumuman', [
-    //         "title" => "Pengumuman",
-    //         "pengumuman" => $pengumuman
-    //     ]);
-    // }
     public function index()
     {
         $perPage = 10;
@@ -52,5 +41,78 @@ class PengumumanController extends Controller
             "title" => "Pengumuman diarsipkan",
             "pengumumanArsip" => $pengumumanArsip
         ]);
+    }
+
+    public function show()
+    {
+        $pengumuman = DB::table('pengumumen')->get();
+
+        return view('pengumuman.index', [
+            "title" => "Pengumuman",
+            "pengumuman" => $pengumuman
+        ]);
+    }
+    public function create()
+    {
+        $title = "Tambah Pengumuman";
+        return view('pengumuman.create', compact('title'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'deskripsi' => 'required',
+        ]);
+
+        $pengumuman = new Pengumuman;
+        $pengumuman->tanggal_pembuatan = now();
+        $pengumuman->tanggal_berakhir = now()->addDays(1);
+        $pengumuman->deskripsi = $request->deskripsi;
+
+        $pengumuman->save();
+
+        return redirect()->route('pengumuman.index')
+            ->with('success', 'Pengumuman berhasil ditambahkan.');
+    }
+
+
+    public function edit($id)
+    {
+        $pengumuman = Pengumuman::find($id);
+        $title = "Edit Pengumuman";
+        return view('pengumuman.edit', compact('pengumuman', 'title'));
+    }
+    public function update(Request $request, $id)
+    {
+        $title = "Edit Pengumuman";
+        $pengumuman = Pengumuman::find($id);
+        $pengumuman->deskripsi = $request->input('deskripsi');
+        $pengumuman->save();
+
+        return redirect()->route('pengumuman.index');
+    }
+    public function publish($id)
+    {
+        $pengumuman = Pengumuman::find($id);
+        $pengumuman->published = true;
+        $pengumuman->save();
+        return redirect()->route('pengumuman.index')->with('success', 'Pengumuman berhasil dipublikasikan');
+
+    }
+
+    public function showAnnounce()
+    {
+        $announce = DB::table('pengumumen')->where('published', 1)->get();
+        return view('home.index', [
+            "announce" => $announce
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $pengumuman = Pengumuman::find($id);
+        $pengumuman->delete();
+
+        return redirect()->route('pengumuman.index')->with('success', 'Pengumuman berhasil dihapus');
     }
 }

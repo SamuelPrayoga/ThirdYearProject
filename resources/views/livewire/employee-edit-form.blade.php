@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <x-form-label id="prodi{{ $employee['id'] }}"
-                        label="Nama {{ $loop->iteration }} (ID: {{ $employee['id'] }})" />
+                        label="Program Studi {{ $loop->iteration }} (ID: {{ $employee['id'] }})" />
                     <x-form-input id="prodi{{ $employee['id'] }}" name="prodi{{ $employee['id'] }}"
                         wire:model.defer="employees.{{ $loop->index }}.prodi" />
                     <x-form-error key="employees.{{ $loop->index }}.prodi" />
@@ -53,7 +53,7 @@
                     <x-form-error key="employees.{{ $loop->index }}.phone" />
                 </div>
                 <div class="mb-3">
-                    <x-form-label id="password{{ $employee['id'] }}" label='Password hanya bisa diubah oleh karyawaan'
+                    <x-form-label id="password{{ $employee['id'] }}" label='Password hanya bisa diubah oleh Mahasiswa'
                         required="false" />
                     <x-form-input id="password{{ $employee['id'] }}" name="password{{ $employee['id'] }}" disabled
                         required="false" />

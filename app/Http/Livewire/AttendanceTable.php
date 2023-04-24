@@ -33,11 +33,13 @@ final class AttendanceTable extends PowerGridComponent
     {
         return [
             Button::add('bulk-checked')
-                ->caption(__('Hapus'))
-                ->class('btn btn-danger border-0')
+                ->caption('<span data-feather="trash-2" class="align-text-bottom me-1"></span>' . __('Hapus'))
+                ->class('btn btn-danger btn-sm border-0 text-white')
                 ->emit('bulkCheckedDelete', []),
         ];
     }
+
+
 
     public function bulkCheckedDelete()
     {

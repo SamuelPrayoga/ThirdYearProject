@@ -111,4 +111,5 @@ class User extends Authenticatable
         return $this->hasMany(AllergyReport::class);
     }
 
+
 }

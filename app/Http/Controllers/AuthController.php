@@ -27,27 +27,6 @@ class AuthController extends Controller
         $data = ["success" => false,        "message" => "Password salah, silahkan coba lagi!"];
         return response()->json($data)->setStatusCode(400);
     }
-    // public function authenticate(LoginRequest $request){
-    //     $remember = $request->boolean('remember');
-    //     $credentials = $request->only(['email', 'password']);
-
-    //     if (Auth::attempt($credentials, $remember)) { // login gagal
-    //         request()->session()->regenerate();
-    //         $data = [
-    //             "success" => true,
-    //             "redirect_to" => auth()->user()->isUser() ? route('home.index') : route('dashboard.index'),
-    //             "message" => "Login berhasil, silahkan klik tombol kembali!"
-    //         ];
-    //         return response()->json($data);
-    //     }
-
-    //     $data = [
-    //         "success" => false,
-    //         "message" => "Login gagal, silahkan coba lagi!"
-    //     ];
-    //     //return redirect()->route('auth.login')->with('danger', 'Anda Berhasil Keluar.');
-    //     return response()->json($data)->setStatusCode(400);
-    // }
 
     public function logout()
     {
@@ -57,13 +36,7 @@ class AuthController extends Controller
         request()->session()->regenerateToken();
 
         return redirect()->route('auth.login');
-        // return redirect()->route('auth.login')->with('success', 'Anda Berhasil Keluar.');
     }
 
-    // public function showForgotForm()
-    // {
-    //     return view('auth.forgetPassword', [
-    //         "title" => "Masuk"
-    //     ]);
-    // }
+
 }

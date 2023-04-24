@@ -15,13 +15,10 @@ class CreatePengumumenTable extends Migration
     {
         Schema::create('pengumumen', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_pengumuman');
             $table->date('tanggal_berakhir');
             $table->date('tanggal_pembuatan');
             $table->text('deskripsi');
-            $table->string('file');
-            $table->unsignedBigInteger('barang_id');
-            $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
+            $table->boolean('published')->default(false);
             $table->timestamps();
         });
     }

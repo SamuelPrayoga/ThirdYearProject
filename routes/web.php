@@ -10,13 +10,17 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IzinBermalamController;
 use App\Http\Controllers\MenuMakananController;
 use App\Http\Controllers\AllergyReportController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\RegsiterController;
 use App\Http\Controllers\ExportHistory;
+use App\Http\Livewire\Auth\Register;
 use App\Models\MenuMakanan;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -42,9 +46,20 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin,operator,depkebdis,pengelola,koordinator')->group(function () {
 
         //Alergi
-        Route::get('/admin/allergy-reports', [AdminAllergyReportController::class, 'show'])->name('admin.allergy-reports.index');
-        Route::post('/admin/allergy-reports/{report}/approve', [AdminAllergyReportController::class, 'approve'])->name('admin.approve');
-        Route::delete('/admin/allergy-reports/{report}', [AdminAllergyReportController::class, 'reject'])->name('admin.reject');
+        Route::get('/admin/allergy-reports', [AllergyReportController::class, 'show'])->name('admin.allergy-reports.index');
+        Route::get('/admin/rekap-allergy-reports', [AllergyReportController::class, 'rekapAlergi'])->name('admin.allergy-reports.rekap');
+        Route::post('/admin/allergy-reports/{report}/approve', [AllergyReportController::class, 'approve'])->name('admin.approve');
+        Route::delete('/admin/allergy-reports/{report}', [AllergyReportController::class, 'reject'])->name('admin.reject');
+        Route::get('/report/export', [ReportController::class, 'exportExcel'])->name('report.export');
+
+        //Pengumuman
+        Route::get('/pengumuman/all', [PengumumanController::class, 'show'])->name('pengumuman.index');
+        Route::get('/pengumuman/create', [PengumumanController::class, 'create'])->name('pengumuman.create');
+        Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
+        Route::get('/pengumuman/{id}/edit', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
+        Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
+        Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
+        Route::post('/pengumuman/{id}/publish', [PengumumanController::class, 'publish'])->name('pengumuman.publish');
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/menumakan/index', [MenuMakananController::class, 'show'])->name('menumakan.index');
@@ -70,6 +85,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('/attendances', AttendanceController::class)->only(['index', 'create']);
         Route::get('/attendances/edit', [AttendanceController::class, 'edit'])->name('attendances.edit');
 
+        //Feedback
+        Route::get('/admin/kritik-saran', [FeedbackController::class, 'showAll'])->name('admin.showFeedback');
+
 
         // presences (kehadiran)
         Route::resource('/presences', PresenceController::class)->only(['index']);
@@ -88,6 +106,11 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:user')->name('home.')->group(function () {
+
+        // Route::get('/IzinBermalam', [IzinBermalamController::class, 'showFormIB'])->name('createIB');
+        // Route::post('/IzinBermalam', [IzinBermalamController::class, 'create'])->name('izin-bermalam.create');
+        // Route::get('/IzinBermalamku', [IzinBermalamController::class, 'showIndex'])->name('indexIB');
+
 
         Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
         Route::get('/pengumuman-diarsipkan', [PengumumanController::class, 'pengumumanArsip'])->name('pengumuman.arsip');
@@ -128,7 +151,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
-    // auth
+
     Route::get('/login', [AuthController::class, 'index'])->name('auth.login');
     Route::post('/login', [AuthController::class, 'authenticate']);
 

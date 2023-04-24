@@ -4,78 +4,104 @@
     @powerGridStyles
 @endpush
 
-@section('buttons')
-    {{-- <div class="btn-toolbar mb-2 mb-md-0">
-    <div>
-        <a href="{{ route('holidays.create') }}" class="btn btn-sm btn-primary">
-            <span data-feather="plus-circle" class="align-text-bottom me-1"></span>
-            Tambah Data Hari Libur
-        </a>
-    </div>
-</div> --}}
-@endsection
 
 @section('content')
-    @include('partials.alerts')
-    {{-- Konten --}}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nama</th>
-                <th>NIM</th>
-                <th>Asrama</th>
-                <th>Jenis Alergi</th>
-                <th>Dokumen</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        @if ($reports->isEmpty())
-        <td colspan="8"><small class="text-muted">Tidak ada Laporan Alergi oleh Mahasiswa.</small></td>
-        @else
-            <tbody>
-                @php $i=1 @endphp
-                @foreach ($reports as $report)
-                    <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $report->user->name }}</td>
-                        <td>{{ $report->user->nim }}</td>
-                        <td>{{ $report->user->asrama }}</td>
-                        <td>{{ $report->allergies }}</td>
-                        <td><a href="{{ asset('allergy_reports/' . $report->file) }}">{{ $report->file }}</a></td>
-                        <td>
-                            <span class="badge rounded-pill {{ $report->approved ? 'bg-success' : 'bg-warning' }}">
-                                {{ $report->approved ? 'Disetujui' : 'Menunggu' }}
-                            </span>
-                        </td>
+    <div class="card mb-3">
+        @include('partials.alerts')
+        {{-- Konten --}}
 
-                        {{-- <td>{{ $report->approved ? 'Disetujui' : 'Belum disetujui' }}</td> --}}
+        <table class="table table-bordered table-striped table-hover" id="examples">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Asrama</th>
+                    <th>Jenis Alergi</th>
+                    @if (auth()->user()->isOperator())
+                        <th>Dokumen</th>
+                    @endif
+                    <th>Status</th>
+                    @if (auth()->user()->isOperator())
+                        <th>Aksi</th>
+                    @endif
+                </tr>
+            </thead>
+            @if ($reports->isEmpty())
+                <td colspan="5"><small class="text-muted">Tidak ada Laporan Alergi oleh Mahasiswa.</small></td>
+            @else
+                <tbody>
+                    @php $i=1 @endphp
+                    @foreach ($reports as $report)
+                        <tr>
+                            <td>{{ $i++ }}</td>
+                            <td>{{ $report->user->name }}</td>
+                            <td>{{ $report->user->nim }}</td>
+                            <td>{{ $report->user->asrama }}</td>
+                            <td>
+                                @foreach (json_decode($report->allergies) as $allergy)
+                                    {{ $allergy }},
+                                @endforeach
+                            </td>
 
-                        <td>
-                            @if (!$report->approved)
-                                <form action="{{ route('admin.approve', $report->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="badge bg-success"><i class="bi bi-check-square-fill"></i>
-                                        Setujui</button>
-                                </form>
-                                <form action="{{ route('admin.reject', $report->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="badge bg-danger"><i class="bi bi-x-square-fill"></i>
-                                        Tolak</button>
-                                </form>
+                            {{-- <td>{{ $report->allergies }}</td> --}}
+                            @if (auth()->user()->isOperator())
+                                <td><a href="{{ asset('allergy_reports/' . $report->file) }}">{{ $report->file }}</a></td>
                             @endif
-                        </td>
+                            <td>
+                                <span class="badge rounded-pill {{ $report->approved ? 'bg-success' : 'bg-warning' }}">
+                                    {{ $report->approved ? 'Disetujui' : 'Menunggu' }}
+                                </span>
+                            </td>
 
-                    </tr>
-                @endforeach
-            </tbody>
-        @endif
-    </table>
+                            {{-- <td>{{ $report->approved ? 'Disetujui' : 'Belum disetujui' }}</td> --}}
+                            @if (auth()->user()->isOperator())
+                                <td>
+                                    @if (!$report->approved)
+                                        <form action="{{ route('admin.approve', $report->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="badge bg-success"><i
+                                                    class="bi bi-check-square-fill"></i>
+                                                Setujui</button>
+                                        </form>
+                                        <form action="{{ route('admin.reject', $report->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="badge bg-danger"><i
+                                                    class="bi bi-x-square-fill"></i>
+                                                Tolak</button>
+                                        </form>
+                                    @endif
+                                </td>
+                            @endif
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            @endif
+        </table>
+    </div>
 @endsection
 
-@push('script')
-    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-    @powerGridScripts
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#examples').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'pdf', 'excel', 'csv', 'print'
+                ]
+            });
+        });
+    </script>
 @endpush

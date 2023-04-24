@@ -44,7 +44,9 @@
                         Pelaporan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
-                        <a class="dropdown-item" href="{{ route('home.allergy-reports.create')}}"><i class="bi bi-clipboard-x"></i> Alergi Makanan</a>
+                        <a class="dropdown-item" href="{{ route('home.allergy-reports.create') }}"><i
+                                class="bi bi-clipboard-x"></i> Alergi Makanan</a>
+                        {{-- <a class="dropdown-item" href="{{ route('home.createIB')}}"><i class="bi bi-house-down"></i> Izin Bermalam</a> --}}
                         <a class="dropdown-item" href="{{ route('home.laporan-barang') }}"><i
                                 class="bi bi-question-circle"></i></i> Barang Hilang dan Temuan</a>
                     </div>
@@ -58,9 +60,37 @@
                         {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
-                        <li><a class="dropdown-item" type="button" href="#"><i class="bi bi-people"></i> My Profile</a></li>
-                        <li><a class="dropdown-item" type="button" href="{{ route('home.allergy-reports.index')}}"><i class="bi bi-flag"></i> Laporan Alergiku</a></li>
-                        <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i class="bi bi-chat-dots"></i> Kritik dan Saranku</a></li>
+                        <li><a class="dropdown-item" type="button" href="#"><i class="bi bi-people"></i> Profil Saya</a></li>
+                        {{-- <li><a class="dropdown-item" type="button" href="{{ route('home.indexIB')}}"><i class="bi bi-house-down"></i> Izin Bermalamku</a></li> --}}
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.allergy-reports.index') }}"><i
+                                    class="bi bi-flag"></i> Laporan Alergiku</a></li>
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i
+                                    class="bi bi-chat-dots"></i> Kritik dan Saranku</a></li>
+                        <li>
+                            <form action="{{ route('auth.logout') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="dropdown-item">
+                                    <i class="bi bi-power"></i> Keluar
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
+                        <li><a class="dropdown-item" type="button" href="#"><i class="bi bi-people"></i> My
+                                Profile</a></li>
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.indexIB')}}"><i class="bi bi-house-down"></i> Izin Bermalamku</a></li>
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.allergy-reports.index') }}"><i
+                                    class="bi bi-flag"></i> Laporan Alergiku</a></li>
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i
+                                    class="bi bi-chat-dots"></i> Kritik dan Saranku</a></li>
                         <li>
                             <form action="{{ route('auth.logout') }}" method="post">
                                 @method('DELETE')
@@ -70,8 +100,7 @@
                             </form>
                         </li>
                     </ul>
-                </li>
-
+                </li> --}}
             </ul>
         </div>
     </div>

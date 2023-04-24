@@ -10,11 +10,29 @@ use App\Models\Presence;
 use App\Models\User;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    // public function index()
+    // {
+    //     $announce = DB::table('pengumumen')->where('published', 1)->get();
+    //     $attendances = Attendance::query()
+    //         // ->with('positions')
+    //         ->forCurrentUser(auth()->user()->position_id)
+    //         ->get()
+    //         ->sortByDesc('data.is_end')
+    //         ->sortByDesc('data.is_start');
+
+    //     return view('home.index', [
+    //         "title" => "Beranda",
+    //         "attendances" => $attendances
+    //     ]);
+    // }
     public function index()
     {
+        $announce = DB::table('pengumumen')->where('published', 1)->get();
+        $title = "Beranda";
         $attendances = Attendance::query()
             // ->with('positions')
             ->forCurrentUser(auth()->user()->position_id)
@@ -22,11 +40,9 @@ class HomeController extends Controller
             ->sortByDesc('data.is_end')
             ->sortByDesc('data.is_start');
 
-        return view('home.index', [
-            "title" => "Beranda",
-            "attendances" => $attendances
-        ]);
+        return view('home.index', compact('announce', 'attendances', 'title'));
     }
+
 
     public function show(Attendance $attendance)
     {
@@ -90,7 +106,7 @@ class HomeController extends Controller
         ]);
     }
 
-    // for qrcode
+
     public function sendEnterPresenceUsingQRCode()
     {
         $code = request('code');
@@ -154,10 +170,5 @@ class HomeController extends Controller
             "success" => true,
             "message" => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."
         ]);
-    }
-
-    public function showFeedback(Feedback $feedback){
-        $getFeedback = User::query()->where('id',$feedback->user_id)->get();
-
     }
 }

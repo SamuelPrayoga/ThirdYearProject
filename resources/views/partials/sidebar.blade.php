@@ -6,31 +6,17 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('dashboard.*') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('dashboard.index') }}">
-                        <i class="bi bi-house-door"></i>
+                        <i class="fas fa-home"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-megaphone"></i>
+                    <a class="nav-link" href="{{route('pengumuman.index')}}">
+                        <i class="fas fa-bullhorn"></i>
                         Pengumuman
                     </a>
                 </li>
             @endif
-            {{-- @if (auth()->user()->isAdmin())
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-cart-plus"></i>
-                        Pembelian Bahan Makanan
-                    </a>
-                </li>
-            @endif --}}
-            {{-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-cart-plus"></i>
-                        Pemesanan Makanan
-                    </a>
-                </li> --}}
             @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
@@ -41,7 +27,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('menumakan.*') ? 'active' : '' }}"
                         href="{{ route('menumakan.index') }}">
-                        <i class="bi bi-menu-down"></i> Menu Makanan
+                        <i class="fas fa-utensils"></i>  Menu Makanan
                     </a>
                 </li>
                 {{-- <li class="nav-item">
@@ -50,8 +36,8 @@
                     </a>
                 </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link" href=#>
-                        <i class="bi bi-info-circle"></i> Kritik dan Saran
+                    <a class="nav-link" href={{route('admin.showFeedback')}}>
+                        <i class="fas fa-comments"></i> Kritik dan Saran
                     </a>
                 </li>
             @endif
@@ -62,23 +48,29 @@
             </li>
             @if (auth()->user()->isAdmin())
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('employees.*') ? 'active' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('pengguna.*') ? 'active' : '' }}"
                         href="{{ route('pengguna.index') }}">
-                        <i class="bi bi-people"></i>
+                        <i class="fas fa-user-graduate"></i>
                         Mahasiswa
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->isOperator())
+            @if (auth()->user()->isAdmin() or
+                    auth()->user()->isOperator())
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.allergy-reports.index') }}">
-                        <i class="bi bi-person"></i>
+                    <a class="nav-link {{ request()->routeIs('admin/allergy-reports.*') ? 'active' : ''}}" href="{{ route('admin.allergy-reports.index') }}">
+                        <i class="fas fa-user-graduate"></i>
                         Mahasiswa Alergi
-                        {{-- @if ($jumlah > 0)
-                            <span class="badge">{{ $jumlah }}</span>
-                        @endif --}}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin/allergy-reports.*') ? 'active' : '' }}" href="{{ route('admin.allergy-reports.rekap') }}">
+                        <i class="bi bi-table"></i>
+                        Total dan Prakiraan Masakan
+                    </a>
+                </li>
+            @endif
+            @if (auth()->user()->isOperator())
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.allergy-reports.index') }}">
                         <i class="bi bi-person"></i>
@@ -137,7 +129,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('positions.*') ? 'active' : '' }}"
                         href="{{ route('positions.index') }}">
-                        <i class="bi bi-person-gear"></i>
+                        <i class="fas fa-user-shield"></i>
                         Role
                     </a>
                 </li>
@@ -149,6 +141,31 @@
                     </a>
                 </li>
             @endif
+            <li class="nav-item">
+                <form action="{{ route('auth.logout') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="nav-link btn btn-link" type="submit">
+                        <i class="bi bi-power"></i> {{ Auth::user()->name }} | Logout
+                    </button>
+                </form>
+            </li>
+
+            {{-- <li class="nav-item">
+                <a class="nav-link dropdown-toggle" href="#" id="bg" role="button" data-toggle="dropdown"
+                    aria-haspopup="false" aria-expanded="true">
+                    {{ Auth::user()->name }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <form action="{{ route('auth.logout') }}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn fw-bold btn-danger btn-sm w-100">
+                            Keluar</button>
+                    </form>
+                    </a>
+                </div>
+            </li> --}}
         </ul>
     </div>
 </nav>

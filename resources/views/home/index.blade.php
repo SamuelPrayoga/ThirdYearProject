@@ -6,7 +6,34 @@
             <div class="col-md-8">
                 <div class="card shadow-sm mb-2">
                     <div class="card-header" id="fonts">
-                        Daftar Jadwal Makan Kantin
+                        <i class="bi bi-pin-fill"></i> Pengumuman Penting
+                    </div>
+
+                    <div class="card-body">
+                        <ul class="list-group">
+                            @if ($announce->isEmpty())
+                                <td colspan="5" class="table-inactive"><small class="text-muted">Belum ada Pengumuman ditambahkan</small>
+                                </td>
+                            @else
+                                @foreach ($announce as $peng)
+                                <div class="list-group-item d-flex justify-content-between align-items-start py-3">
+                                    <div class="ms-2 me-auto">
+                                        {{-- <i class="bi bi-pin-fill"></i> --}}
+                                        <p class="mb-0">{!! $peng->deskripsi !!}</p>
+                                        <small style="color: gray;">Sitoluama, {{ $peng->tanggal_pembuatan }}</small> &nbsp
+                                        <div>
+                                        <small style="color: gray;">Pengumuman Berakhir: {{ $peng->tanggal_berakhir }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+                <div class="card shadow-sm mb-2">
+                    <div class="card-header" id="fonts">
+                        <i class="bi bi-stopwatch-fill"></i> Daftar Jadwal Makan Kantin
                     </div>
 
                     <div class="card-body">
@@ -95,7 +122,7 @@
                         {{-- <a class="btn btn-primary btn-sm" href="#" role="button" style="font-weight: bolder">
                                 <i class="bi bi-person-lines-fill"></i> Ganti Password</a> --}}
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"
                             style="font-weight: bolder">
                             <i class="bi bi-chat-left-text-fill"></i> Sampaikan Kritik dan Saran
                         </button>
@@ -206,10 +233,10 @@
                                                     id="input-three" placeholder="">
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
+                                                <button type="button" class="btn btn-secondary btn-sm"
                                                     data-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-primary"
-                                                    id="submitButton">Kirim</button>
+                                                <button type="submit" class="btn btn-primary btn-sm"
+                                                    id="submitButton">Sampaikan</button>
                                             </div>
                                         </form>
                                     </div>

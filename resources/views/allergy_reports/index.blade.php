@@ -16,7 +16,7 @@
                                 <p class="card-title">{{ $report->user->angkatan }}</p>
                                 <p class="card-title">{{ $report->user->asrama }}</p>
 
-                                <h5 class="card-text">Jenis Makanan Alergi: <strong>{{ $report->allergies }}</strong></h5>
+                                <h5 class="card-text">Jenis Makanan Alergi: <strong>{{ implode(', ', json_decode($report->allergies)) }}</strong></h5>
                                 <p class="card-text">Status: <span
                                         class="badge {{ $report->approved ? 'bg-success' : 'bg-warning' }}">
                                         {{ $report->approved ? 'Disetujui' : 'Menunggu' }}
