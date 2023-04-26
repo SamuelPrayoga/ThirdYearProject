@@ -30,8 +30,8 @@
                                     @foreach ($pengumuman as $p)
                                         <tr>
                                             <td>{{ $i++ }}.</td>
-                                            <td>{{ $p->kategori }} </td>
-                                            <td>{{ $p->name}}</td>
+                                            <td>{{ strtoupper($p->kategori) }} </td>
+                                            <td>{{ strtoupper($p->name) }}</td>
                                             <td>{{ $p->expiry_date }}</td>
                                             <td>{{ $p->created_at }}</td>
                                             <td><a href="#" class="" data-toggle="modal"

@@ -43,11 +43,6 @@
                         2023</p>
                 </center>
             </form>
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
         </main>
     </div>
     <style>
@@ -67,7 +62,6 @@
         });
     </script>
 @endsection
-@include('partials.alerts')
 @push('script')
     <script type="module" src="{{ asset('js/auth/login.js') }}"></script>
 @endpush

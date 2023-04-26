@@ -85,6 +85,9 @@
                                 @endif
                         </table>
                         <small class="text-muted">Pengumuman yang diarsipkan adalah pengumuman yang sudah melewati expired date</small>
+                        <br>
+                        <a href="{{ route('home.pengumuman') }}" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left"></i>
+                            Kembali</a>
                     </div>
                     {{ $pengumumanArsip->links() }}
                 </div>
