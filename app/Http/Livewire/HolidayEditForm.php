@@ -61,7 +61,7 @@ class HolidayEditForm extends Component
             "Tidak ada data hari libur yang diubah." :
             "Ada $affected data hari libur yang berhasil diedit.";
 
-        return redirect()->route('holidays.index')->with('success', $message);
+        return redirect()->route('holidays.index')->with('toast_success', $message);
     }
 
     public function render()

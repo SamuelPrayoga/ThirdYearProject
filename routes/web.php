@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/admin/allergy-reports/{report}/approve', [AllergyReportController::class, 'approve'])->name('admin.approve');
         Route::delete('/admin/allergy-reports/{report}', [AllergyReportController::class, 'reject'])->name('admin.reject');
         Route::get('/report/export', [ReportController::class, 'exportExcel'])->name('report.export');
+        Route::delete('/admin/allergy-reports/{id}', [AllergyReportController::class, 'destroy'])->name('admin.destroy');
+
 
         //Pengumuman
         Route::get('/pengumuman/all', [PengumumanController::class, 'show'])->name('pengumuman.index');

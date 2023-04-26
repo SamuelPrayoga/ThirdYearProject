@@ -65,7 +65,7 @@ class FeedbackController extends Controller
         // Simpan feedback ke database
         $feedback->save();
 
-        return redirect()->back()->with('message', 'Feedback berhasil dikirimkan!');
+        return redirect()->back()->with('toast_success', 'Kritik dan Saran berhasil Dikirimkan');
     }
 
 

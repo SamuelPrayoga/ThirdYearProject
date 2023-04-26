@@ -72,7 +72,8 @@ class PengumumanController extends Controller
         $pengumuman->save();
 
         return redirect()->route('pengumuman.index')
-            ->with('success', 'Pengumuman berhasil ditambahkan.');
+        // ->with('success', 'Pengumuman Berhasil Ditambahkan');
+        ->with('toast_success', 'Pengumuman Berhasil Ditambahkan!');
     }
 
 
@@ -89,14 +90,14 @@ class PengumumanController extends Controller
         $pengumuman->deskripsi = $request->input('deskripsi');
         $pengumuman->save();
 
-        return redirect()->route('pengumuman.index');
+        return redirect()->route('pengumuman.index')->with('toast_success', 'Pengumuman berhasil diubah');
     }
     public function publish($id)
     {
         $pengumuman = Pengumuman::find($id);
         $pengumuman->published = true;
         $pengumuman->save();
-        return redirect()->route('pengumuman.index')->with('success', 'Pengumuman berhasil dipublikasikan');
+        return redirect()->route('pengumuman.index')->with('toast_success', 'Pengumuman berhasil dipublikasikan');
 
     }
 
@@ -113,6 +114,6 @@ class PengumumanController extends Controller
         $pengumuman = Pengumuman::find($id);
         $pengumuman->delete();
 
-        return redirect()->route('pengumuman.index')->with('success', 'Pengumuman berhasil dihapus');
+        return redirect()->route('pengumuman.index')->with('toast_success', 'Pengumuman berhasil dihapus');
     }
 }

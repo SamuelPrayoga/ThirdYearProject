@@ -32,11 +32,8 @@ class BarangController extends Controller
         // If the user has not submitted a form today, create a new report
         $barang = new Barang;
         $barang->user_id = $req->UserID;
+        $barang->name = $req->name;
         $barang->kategori = $req->kategori;
-        $barang->item_name = $req->item_name;
-        $barang->place = $req->place;
-        $barang->date = $req->date;
-        $barang->time = $req->time;
         $barang->description = $req->description;
         $barang->expiry_date = $expiryDate;
         if ($req->hasFile('file')) {
@@ -65,7 +62,7 @@ class BarangController extends Controller
         //     }
         // }
         $barang->save();
-        return redirect()->route('home.pengumuman')->with('message', 'Laporan Anda berhasil dikirimkan!');
+        return redirect()->route('home.pengumuman')->with('toast_success', 'Laporan berhasil dikirimkan');
         // return redirect()->back()->with('message', 'Laporan Anda berhasil dikirimkan!');
     }
 

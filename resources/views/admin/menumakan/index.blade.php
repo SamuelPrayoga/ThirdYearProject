@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    @include('partials.alerts')
+    {{-- @include('partials.alerts') --}}
     {{-- disin --}}
     <table id="example" class="table table-bordered" style="width:100%">
         <thead class="dark">

@@ -13,7 +13,7 @@
                 <p class="text-muted">{{ $attendance->description }}</p>
 
                 <div class="mb-4">
-                    <span class="badge text-bg-light border shadow-sm">Waktu Mulai :
+                    <span class="badge text-bg-light border shadow-sm">Waktu Masuk :
                         {{ substr($attendance->data->start_time, 0, -3) }} -
                         {{ substr($attendance->data->batas_start_time, 0, -3) }}</span>
                     <span class="badge text-bg-light border shadow-sm">Waktu Selesai :
@@ -64,7 +64,9 @@
                                             @endif
                                         </td>
                                     @else
-                                        <td>{{ $histo->presence_date }} </td>
+                                        <td>{{ date('d M Y', strtotime($histo->presence_date)) }}</td>
+
+                                        {{-- <td>{{ $histo->presence_date }} </td> --}}
                                         <td>{{ $histo->presence_enter_time }} WIB</td>
                                         <td>
                                             @if ($histo->presence_out_time)

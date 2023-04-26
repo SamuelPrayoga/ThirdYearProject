@@ -51,7 +51,7 @@ class MenuMakananController extends Controller
         $menus->menu_siang = $request->menu_siang;
         $menus->menu_malam = $request->menu_malam;
         $menus->save();
-        return redirect('menumakan/index');
+        return redirect('menumakan/index')->with('toast_success', 'Menu Makanan berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -78,14 +78,14 @@ class MenuMakananController extends Controller
         $update->menu_malam= $request->menu_malam;
 
         $update->save();
-        return redirect('menumakan/index');
+        return redirect('menumakan/index')->with('toast_success', 'Menu Makanan berhasil diubah');
     }
 
     public function delete($id)
     {
         $menumakan = MenuMakanan::find($id);
         if ($menumakan->delete()) {
-            return redirect()->back();
+            return redirect()->back()->with('toast_success', 'Menu Makanan berhasil dihapus');
         }
     }
 

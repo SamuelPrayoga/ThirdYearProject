@@ -46,7 +46,7 @@ class PositionCreateForm extends Component
             Position::create($position);
         }
 
-        redirect()->route('positions.index')->with('success', 'Data jabatan berhasil ditambahkan.');
+        redirect()->route('positions.index')->with('toast_success', 'Data jabatan berhasil ditambahkan.');
     }
 
     public function render()

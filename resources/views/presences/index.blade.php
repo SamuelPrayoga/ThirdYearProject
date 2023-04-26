@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@include('partials.alerts')
 
 <div class="row">
     <div class="col-md-7">

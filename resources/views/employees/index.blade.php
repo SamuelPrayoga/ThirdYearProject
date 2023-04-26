@@ -24,12 +24,7 @@
                 <i class="bi bi-file-earmark"></i> Download Template Data
             </a>
         </div>
-        {{-- &nbsp;
-        <div>
-            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalReset">
-                <i class="bi bi-arrow-clockwise"></i> Reset Data Mahasiswa
-            </button>
-        </div> --}}
+
     </div>
 
 
@@ -91,7 +86,6 @@
 @endsection
 
 @section('content')
-    @include('partials.alerts')
     <livewire:employee-table />
 @endsection
 

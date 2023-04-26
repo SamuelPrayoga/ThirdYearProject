@@ -12,8 +12,6 @@
 @endsection
 
 @section('content')
-    @include('partials.alerts')
-
     <div class="card mb-3">
         <div class="card-body">
             <div class="row">

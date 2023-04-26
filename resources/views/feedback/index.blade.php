@@ -5,9 +5,6 @@
 @endpush
 @section('content')
     <div class="card mb-3">
-        @include('partials.alerts')
-        {{-- Konten --}}
-
         <table class="table table-bordered table-striped table-hover" id="examples">
             <thead class="thead-dark">
                 <tr>

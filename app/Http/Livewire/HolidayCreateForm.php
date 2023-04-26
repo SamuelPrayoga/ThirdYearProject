@@ -39,7 +39,7 @@ class HolidayCreateForm extends Component
             Holiday::create($holiday);
         }
 
-        redirect()->route('holidays.index')->with('success', 'Data hari libur berhasil ditambahkan.');
+        redirect()->route('holidays.index')->with('toast_success', 'Data hari libur berhasil ditambahkan.');
     }
 
     public function render()

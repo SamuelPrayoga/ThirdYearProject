@@ -6,10 +6,7 @@
 
 
 @section('content')
-    <div class="card mb-3">
-        @include('partials.alerts')
-        {{-- Konten --}}
-
+    <div class="card mb-3 table-responsive">
         <table class="table table-bordered table-striped table-hover" id="examples">
             <thead class="thead-dark">
                 <tr>
@@ -28,7 +25,7 @@
                 </tr>
             </thead>
             @if ($reports->isEmpty())
-                <td colspan="5"><small class="text-muted">Tidak ada Laporan Alergi oleh Mahasiswa.</small></td>
+                <td colspan="8"><small class="text-muted">Tidak ada Laporan Alergi oleh Mahasiswa.</small></td>
             @else
                 <tbody>
                     @php $i=1 @endphp
@@ -62,18 +59,25 @@
                                             class="d-inline">
                                             @csrf
                                             <button type="submit" class="badge bg-success"><i
-                                                    class="bi bi-check-square-fill"></i>
+                                                    class="fas fa-check-square"></i>
                                                 Setujui</button>
                                         </form>
                                         <form action="{{ route('admin.reject', $report->id) }}" method="POST"
                                             class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="badge bg-danger"><i
+                                            <button type="submit" class="badge bg-warning"><i
                                                     class="bi bi-x-square-fill"></i>
                                                 Tolak</button>
                                         </form>
                                     @endif
+                                    <form action="{{ route('admin.destroy', $report->id) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="badge bg-danger"><i class="fas fa-trash"></i>
+                                            Hapus Data</button>
+                                    </form>
                                 </td>
                             @endif
 

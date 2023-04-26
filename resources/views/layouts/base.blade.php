@@ -41,6 +41,7 @@
     @yield('base')
 
     @include('partials.scripts')
+    @include('sweetalert::alert')
     @stack('script')
 
 </body>

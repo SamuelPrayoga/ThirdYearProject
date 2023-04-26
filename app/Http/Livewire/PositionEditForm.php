@@ -35,7 +35,7 @@ class PositionEditForm extends Component
             "Tidak ada data jabatan yang diubah." :
             "Ada $affected data jabatan yang berhasil diedit.";
 
-        return redirect()->route('positions.index')->with('success', $message);
+        return redirect()->route('positions.index')->with('toast_success', $message);
     }
 
     public function render()

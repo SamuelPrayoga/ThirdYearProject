@@ -145,6 +145,13 @@
                     <td>{{ $jumlahGori }}</td>
                     <td>Porsi</td>
                 </tr>
+                <tr>
+                    <td>Alergi Jamur</td>
+                    <td>:</td>
+                    <td>{{ $countAllergiesJamur }}</td>
+                    <td>{{ $jumlahJamur }}</td>
+                    <td>Porsi</td>
+                </tr>
             </tbody>
         </table>
     </div>

@@ -51,7 +51,7 @@ class AttendanceEditForm extends AttendanceAbstract
         $this->attendance->update($attendance);
         $this->attendance->positions()->sync($position_ids);
 
-        redirect()->route('attendances.index')->with('success', "Data absensi berhasil diubah.");
+        redirect()->route('attendances.index')->with('toast_success', "Data absensi berhasil diubah.");
     }
 
     public function render()

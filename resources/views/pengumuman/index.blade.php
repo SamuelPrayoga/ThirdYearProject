@@ -14,7 +14,7 @@
     </div>
     <br>
     <div class="card mb-3">
-        @include('partials.alerts')
+        {{-- @include('partials.alerts') --}}
         {{-- Konten --}}
 
 
@@ -131,5 +131,7 @@
             });
         });
     </script>
+    @include('sweetalert::alert')
+
     @powerGridScripts
 @endpush

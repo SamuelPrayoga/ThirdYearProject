@@ -15,6 +15,7 @@
         "livewire/livewire": "^2.10",
         "maatwebsite/excel": "^3.0",
         "power-components/livewire-powergrid": "^3.1",
+        "realrashid/sweet-alert": "^7.0",
         "simplesoftwareio/simple-qrcode": "~4"
     },
     "require-dev": {

@@ -80,8 +80,8 @@
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="allergies[]" id="jamur"
-                                        value="Terung Hijau">
-                                    <label class="form-check-label" for="jamur">Terung Hijau</label>
+                                        value="Jamur">
+                                    <label class="form-check-label" for="jamur">Jamur</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="allergies[]" id="kikil"

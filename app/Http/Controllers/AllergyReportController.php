@@ -24,6 +24,17 @@ class AllergyReportController extends Controller
         $title = "Laporan Alergi";
         return view('allergy_reports.create', compact('title'));
     }
+    public function destroy($id)
+    {
+        $report = AllergyReport::find($id); // Mengambil data laporan alergi berdasarkan ID
+        if ($report) {
+            $report->delete(); // Menghapus data laporan alergi dari database
+            return redirect()->back()->with('toast_success', 'Laporan Alergi berhasil dihapus.'); // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        } else {
+            return redirect()->back()->with('toast_error', 'Laporan Alergi tidak ditemukan.'); // Redirect kembali ke halaman sebelumnya dengan pesan error
+        }
+    }
+
 
     public function store(Request $request)
     {
@@ -59,7 +70,8 @@ class AllergyReportController extends Controller
 
 
         $report->save();
-        return redirect()->back()->with('message', 'Laporan Alergi Anda berhasil dikirimkan!');
+        return redirect()->route('home.allergy-reports.index')->with('toast_success', 'Laporan Alergi Anda berhasil dikirimkan, Menunggu Konfirmasi!');
+        // return redirect()->back()->with('message', 'Laporan Alergi Anda berhasil dikirimkan!');
     }
 
     public function show()
@@ -91,13 +103,13 @@ class AllergyReportController extends Controller
 
         $report->save();
 
-        return redirect()->back()->with('success', 'Laporan alergi berhasil disetujui.');
+        return redirect()->back()->with('toast_success', 'Laporan alergi berhasil disetujui.');
     }
     public function reject(AllergyReport $report)
     {
         $report->delete();
 
-        return redirect()->back()->with('success', 'Laporan alergi berhasil ditolak.');
+        return redirect()->back()->with('toast_success', 'Laporan alergi berhasil Ditolak / Dihapus.');
     }
 
     public function rekapAlergi()
@@ -176,6 +188,10 @@ class AllergyReportController extends Controller
             ->whereJsonContains('allergies', ['Gori'])
             ->where('Approved', 1)
             ->count();
+        $countAllergiesJamur = DB::table('allergy_reports')
+            ->whereJsonContains('allergies', ['Jamur'])
+            ->where('Approved', 1)
+            ->count();
         $jumlahSeafood = $userCount - $countAllergiesSeafood;
         $jumlahTelur = $userCount - $countAllergiesTelur;
         $jumlahIkanLaut = $userCount - $countAllergiesLaut;
@@ -193,6 +209,7 @@ class AllergyReportController extends Controller
         $jumlahNenas = $userCount - $countAllergiesNenas;
         $jumlahPepaya = $userCount - $countAllergiesPepaya;
         $jumlahGori = $userCount - $countAllergiesGori;
+        $jumlahJamur = $userCount - $countAllergiesJamur;
         return view('allergy_reports.rekap', compact(
             'reports',
             'title',
@@ -213,6 +230,7 @@ class AllergyReportController extends Controller
             'countAllergiesNenas',
             'countAllergiesPepaya',
             'countAllergiesGori',
+            'countAllergiesJamur',
             'jumlahSeafood',
             'jumlahTelur',
             'jumlahIkanLaut',
@@ -229,7 +247,8 @@ class AllergyReportController extends Controller
             'jumlahMujahir',
             'jumlahNenas',
             'jumlahPepaya',
-            'jumlahGori'
+            'jumlahGori',
+            'jumlahJamur'
         ));
     }
 }

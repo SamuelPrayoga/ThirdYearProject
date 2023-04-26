@@ -6,20 +6,18 @@
             <div class="col-md-12">
                 <div class="card shadow-sm mb-2">
                     <div class="card-header">
-                        <center><p class="font-weight-bold">Form Laporan Mahasiswa Alergi</p></center>
+                        <center>
+                            <p class="font-weight-bold">Form Laporan Mahasiswa Alergi</p>
+                        </center>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('home.lapor.reports') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">{{ __('Nama Mahasiswa') }}</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ auth()->user()->name }}" required readonly autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="name" type="text"
+                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ auth()->user()->name }}" required readonly autofocus>
                             </div>
 
                             <div class="form-group">
@@ -42,23 +40,11 @@
             </div>
         </div>
         <style>
-            tbody{
+            tbody {
                 font-size: 14px;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             }
         </style>
-        {{-- <div id="w1" class="grid-view">Pengumuman
-        </div> --}}
-        @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
     </div>
     @include('partials.footer')
 @endsection

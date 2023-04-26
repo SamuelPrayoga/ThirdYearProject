@@ -16,15 +16,14 @@
                                 <select class="form-control" id="laporan" required="required" name="kategori"
                                     aria-label="Default select example">
                                     <option disabled selected value>-- Pilih Laporan --</option>
-                                    <option value="Kehilangan">Kehilangan Barang</option>
-                                    <option value="Menemukan">Temuan Barang</option>
+                                    <option value="Kehilangan Barang">Kehilangan Barang</option>
+                                    <option value="Menemukan Barang">Temuan Barang</option>
                                     </option>
                                 </select>
                             </div>
-                            <input type=hidden name=UserID value={{ auth()->user()->id }}>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Nama Mahasiswa</label>
-                                <input type="text" class="form-control" id="username" value="{{ Auth::user()->name }}"
+                                <input type="text" class="form-control" id="username" name="name" value="{{ Auth::user()->name }}"
                                     readonly>
                             </div>
                             <div class="mb-3">
@@ -42,55 +41,44 @@
                                 <input type="text" class="form-control" id="prodi" value="{{ Auth::user()->prodi }}"
                                     readonly>
                             </div>
+                            <input type=hidden name=UserID value={{ auth()->user()->id }}>
                             <div class="mb-3">
-                                <label for="barang" class="form-label">Nama Barang</label>
-                                <input type="text" class="form-control" id="barang" name="item_name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tempat" class="form-label">Tempat Terakhir Dilihat/Ditemukan</label>
-                                <input type="text" class="form-control" id="tempat" name="place" required>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label for="tanggal" class="form-label">Tanggal Hilang/Ditemukan</label>
-                                    <input type="date" class="form-control" id="tanggal" name="date" required>
-                                </div>
-                                <div class="col">
-                                    <label for="waktu" class="form-label">Waktu Hilang/Ditemukan</label>
-                                    <input type="time" class="form-control" id="waktu" name="time" required>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Ciri-Ciri / Deskripsi
-                                    Tambahan</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="description" required></textarea>
+                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                                <textarea class="ckeditor" name="description" id="editor">{{ old('description') }}</textarea>
+                                @error('description')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="file" class="form-label">Gambar/Contoh Gambar</label>
                                 <input type="file" class="form-control" name="file" id="input-three" placeholder=""
                                     required>
                             </div>
-                            <div class="text-end">
-                                <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                <button type="submit" class="btn btn-primary btn-sm">Laporkan</button>
-                            </div>
+
+                            <!-- Letakkan library CKEditor di sini, sebelum script CKEditor -->
+                            <script src="path/to/ckeditor.js"></script>
+
+                            <!-- Script CKEditor -->
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                         </form>
                     </div>
-                    @if (session('message'))
-                        <div class="alert alert-success">
-                            {{ session('message') }}
-                        </div>
-                    @endif
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-
+                    <script src="path/to/ckeditor.js"></script>
+                    <!-- Script CKEditor -->
+                    <script>
+                        ClassicEditor
+                            .create(document.querySelector('#editor'))
+                            .then(editor => {
+                                console.log(editor);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    </script>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <style>
         .table-inactive {
@@ -100,3 +88,9 @@
     </style>
     @include('partials.footer')
 @endsection
+@push('script')
+    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+    @powerGridScripts
+@endpush
