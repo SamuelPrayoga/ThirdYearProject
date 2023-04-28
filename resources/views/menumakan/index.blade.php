@@ -1,6 +1,4 @@
 @extends('layouts.home')
-
-
 @section('content')
     <div class="container py-5">
         <div class="row">
@@ -9,9 +7,7 @@
                     <div class="card-header">
                         <center><img src="{{ asset('img/logo.png') }}" width="65px" alt="" srcset=""></center>
                         <center>DAFTAR MENU MAKANAN CIVITAS INSTITUT TEKNOLOGI DEL</center>
-                        <center>NO: ITD/FBK/-/PR/ITDEL/-/2023</center>
                     </div>
-
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead class="bg-light">
@@ -30,7 +26,8 @@
                             </thead>
                             <tbody>
                                 @if ($menumakan->isEmpty())
-                                    <td colspan="5" class="table-inactive"><small>Belum ada Menu Makanan ditambahkan</small></td>
+                                    <td colspan="5" class="table-inactive"><small>Belum ada Menu Makanan
+                                            ditambahkan</small></td>
                                 @else
                                     @foreach ($menumakan as $menu)
                                         <tr>
@@ -55,16 +52,10 @@
         </div>
     </div>
     <style>
-        .table-inactive{
+        .table-inactive {
             background: #878787;
             color: #858585;
         }
     </style>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
-    </script>
-
     @include('partials.footer')
 @endsection
