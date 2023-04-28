@@ -48,11 +48,6 @@
                 <div class="alert alert-success">
                     <small class="fw-bold">Permintaan izin sudah diterima.</small>
                 </div>
-            @elseif ($data['is_permission_accepted'] == 2)
-                <div class="alert alert-danger">
-                    <small class="fw-bold">Permintaan izin ditolak.</small>
-                </div>
-            @else
                 <div class="alert alert-info">
                     <small class="fw-bold">Permintaan izin sedang diproses (atau masih belum diterima).</small>
                 </div>
