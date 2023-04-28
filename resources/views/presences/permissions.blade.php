@@ -96,6 +96,33 @@
                                             <button class="badge text-bg-success border-0" type="submit"><i
                                                     class="bi bi-check-circle-fill"></i> Terima</button>
                                         </form>
+                                        {{-- Declining --}}
+                                        <form
+                                            action="{{ route('presences.declinePermission', [$attendance->id, $permission->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="user_id" value="{{ $permission->user->id }}">
+                                            <input type="hidden" name="permission_date"
+                                                value="{{ $permission->permission_date }}">
+                                            <button class="badge text-bg-danger border-0" type="submit"><i
+                                                    class="bi bi-x-circle-fill"></i> Tolak</button>
+                                        </form>
+                                        {{-- <form action="{{ route('presences.declinePermission', $attendance->id) }}"
+                                            method="post">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ $permission->user->id }}">
+                                            <input type="hidden" name="permission_date"
+                                                value="{{ $permission->permission_date }}">
+                                            <button class="badge text-bg-danger border-0" type="submit"><i
+                                                    class="bi bi-x-circle-fill"></i> Tolak</button>
+                                        </form> --}}
+                                        @if ($permission->is_decline)
+                                            <div class="mt-2 text-danger">
+                                                Alasan ditolak: {{ $permission->decline_reason }}
+                                            </div>
+                                        @endif
+
                                         <button class="badge text-bg-primary border-0 permission-detail-modal-triggers"
                                             data-permission-id="{{ $permission->id }}" data-bs-toggle="modal"
                                             data-bs-target="#permission-detail-modal"><i class="bi bi-info-circle-fill"></i>
@@ -103,6 +130,42 @@
                                             Alasan</button>
                                     </td>
                                 @endif
+
+                                {{-- <td>{{ $permission->user->position->name }}</td>
+                                @if ($permission->is_accepted)
+                                    <td>
+                                        <span class="badge text-bg-success border-0">Sudah Diterima</span>
+                                        <button class="badge text-bg-info border-0 permission-detail-modal-triggers"
+                                            data-permission-id="{{ $permission->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#permission-detail-modal"><i class="bi bi-info-circle-fill"></i>
+                                            Lihat
+                                            Alasan</button>
+                                    </td>
+                                @else
+                                    <td>
+                                        <form action="{{ route('presences.acceptPermission', $attendance->id) }}"
+                                            method="post">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ $permission->user->id }}">
+                                            <input type="hidden" name="permission_date"
+                                                value="{{ $permission->permission_date }}">
+                                            <button class="badge text-bg-success border-0" type="submit"><i
+                                                    class="bi bi-check-circle-fill"></i> Terima</button>
+                                        </form>
+                                        <form action="{{ route('presences.declinePermission', $attendance->id) }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ $permission->user->id }}">
+                                            <input type="hidden" name="permission_date" value="{{ $permission->permission_date }}">
+                                            <button class="badge text-bg-danger border-0" type="submit"><i class="bi bi-x-circle-fill"></i> Tolak</button>
+                                        </form>
+
+                                        <button class="badge text-bg-primary border-0 permission-detail-modal-triggers"
+                                            data-permission-id="{{ $permission->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#permission-detail-modal"><i class="bi bi-info-circle-fill"></i>
+                                            Lihat
+                                            Alasan</button>
+                                    </td>
+                                @endif --}}
                             </tr>
                         @endforeach
                     </tbody>

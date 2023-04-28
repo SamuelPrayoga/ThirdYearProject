@@ -191,6 +191,37 @@ class PresenceController extends Controller
             ->with('success', "Berhasil menerima data izin mahasiswa atas nama \"$user->name\".");
     }
 
+    public function declinePermission(Request $request, Attendance $attendance)
+    {
+        $validated = $request->validate([
+            'user_id' => 'required|string|numeric',
+            "permission_date" => "required|date"
+        ]);
+
+        $user = User::findOrFail($validated['user_id']);
+
+        $permission = Permission::query()
+            ->where('attendance_id', $attendance->id)
+            ->where('user_id', $user->id)
+            ->where('permission_date', $validated['permission_date'])
+            ->first();
+
+        if (!$permission || $permission->is_accepted == 2) {
+            return back()->with('failed', 'Data izin tidak ditemukan atau sudah ditolak sebelumnya.');
+        }
+
+        $permission->update([
+            'is_accepted' => 2 // 2 artinya permission ditolak
+        ]);
+
+        $permission->delete();
+
+        return back()
+            ->with('toast_success', "Berhasil menolak data izin mahasiswa atas nama \"$user->name\".");
+    }
+
+
+
     private function getNotPresentEmployees($presences)
     {
         $uniquePresenceDates = $presences->unique("presence_date")->pluck('presence_date');

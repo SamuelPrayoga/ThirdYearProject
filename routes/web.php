@@ -102,6 +102,7 @@ Route::middleware('auth')->group(function () {
         // present (url untuk menambahkan/mengubah user yang tidak hadir menjadi hadir)
         Route::post('/presences/{attendance}/present', [PresenceController::class, 'presentUser'])->name('presences.present');
         Route::post('/presences/{attendance}/acceptPermission', [PresenceController::class, 'acceptPermission'])->name('presences.acceptPermission');
+        Route::delete('/presences/{attendance}/declinePermission', [PresenceController::class, 'declinePermission'])->name('presences.declinePermission');
         // employees permissions
 
         Route::get('/presences/{attendance}/permissions', [PresenceController::class, 'permissions'])->name('presences.permissions');
