@@ -5,7 +5,7 @@
 @endpush
 @section('content')
     <div class="card mb-3">
-        <table class="table table-bordered table-striped table-hover" id="examples">
+        <table class="table table-bordered table-striped table-hover" id="">
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>

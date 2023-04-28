@@ -13,11 +13,10 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     const ADMIN_ROLE_ID = 1;
-    const OPERATOR_ROLE_ID = 2;
+    const KEASRAMAAN_ROLE_ID = 2;
     const USER_ROLE_ID = 3;
     const PENGELOLA_ROLE_ID = 4;
-    const KOORDINATOR_ROLE_ID = 5;
-    const DEPKEBDIS_ROLE_ID = 6;
+    const DEPKEBDIS_ROLE_ID = 5;
 
     /**
      * The attributes that are mass assignable.
@@ -77,9 +76,9 @@ class User extends Authenticatable
         return $this->role_id === self::ADMIN_ROLE_ID;
     }
 
-    public function isOperator()
+    public function isKeasramaan()
     {
-        return $this->role_id === self::OPERATOR_ROLE_ID; //keasramaan
+        return $this->role_id === self::KEASRAMAAN_ROLE_ID; //keasramaan
     }
 
     public function isUser()
@@ -90,10 +89,7 @@ class User extends Authenticatable
     {
         return $this->role_id === self::PENGELOLA_ROLE_ID;
     }
-    public function isKoordinator()
-    {
-        return $this->role_id === self::KOORDINATOR_ROLE_ID;
-    }
+
     public function isDepkebdis()
     {
         return $this->role_id === self::DEPKEBDIS_ROLE_ID;

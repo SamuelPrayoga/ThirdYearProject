@@ -21,17 +21,17 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'nim' => '111111',
-            'asrama' => 'Danau Toba',
-            'prodi' => 'D4TRPL',
-            'angkatan' => '2020',
-            'name' => 'ADMINISTRATOR',
-            'email' => 'admin@gmail.com',
+            'asrama' => '-',
+            'prodi' => '-',
+            'angkatan' => '-',
+            'name' => 'Super Admin',
+            'email' => 'SuperAdmin@gmail.com',
             'role_id' => Role::where('name', 'admin')->first('id'),
-            'position_id' => Position::where('name', 'Operator')->first('id'),
+            'position_id' => Position::where('name', 'Keasramaan')->first('id'),
         ]);
         \App\Models\User::factory(1)->create([
-            'role_id' => Role::where('name', 'operator')->first('id'),
-            'position_id' => Position::where('name', 'Operator')->first('id'),
+            'role_id' => Role::where('name', 'keasramaan')->first('id'),
+            'position_id' => Position::where('name', 'Keasramaan')->first('id'),
         ]);
         \App\Models\User::factory(10)->create([
             'role_id' => Role::where('name', 'user')->first('id'), // user === mahasiswa

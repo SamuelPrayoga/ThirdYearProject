@@ -61,11 +61,6 @@ class MenuMakananController extends Controller
         return view('admin.menumakan.edit', compact('editmenus'),[
             "title" => " Edit Menu Makanan",
         ]);
-        // $menumakan = MenuMakanan::query()->get();
-        // return view('admin.menumakan.edit', [
-        //     "title" => " Edit Menu Makanan",
-        // ]);
-
     }
 
     public function updatemenus(Request $request, $id)

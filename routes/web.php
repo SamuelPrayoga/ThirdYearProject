@@ -43,7 +43,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.gets');
 // Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 Route::middleware('auth')->group(function () {
-    Route::middleware('role:admin,operator,depkebdis,pengelola,koordinator')->group(function () {
+    Route::middleware('role:admin,keasramaan,depkebdis,pengelola,')->group(function () {
 
         //Alergi
         Route::get('/admin/allergy-reports', [AllergyReportController::class, 'show'])->name('admin.allergy-reports.index');
@@ -112,6 +112,9 @@ Route::middleware('auth')->group(function () {
         // Route::get('/IzinBermalam', [IzinBermalamController::class, 'showFormIB'])->name('createIB');
         // Route::post('/IzinBermalam', [IzinBermalamController::class, 'create'])->name('izin-bermalam.create');
         // Route::get('/IzinBermalamku', [IzinBermalamController::class, 'showIndex'])->name('indexIB');
+
+        Route::get('/edit-profile', [UpdateProfileController::class, 'edit'])->name('edit.profile');
+        Route::put('/update-profile', [UpdateProfileController::class, 'update'])->name('update.profile');
 
 
         Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');

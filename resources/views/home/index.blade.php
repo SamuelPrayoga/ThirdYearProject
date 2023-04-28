@@ -68,7 +68,7 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><img src="{{ asset('img/logo.png') }}" alt="" width="70px"></td>
+                                <td><img src="{{ asset('storage/avatars/'.auth()->user()->avatar) }}" alt="Foto Profil" style="border-radius: 10%;" width="125px" height="120px"></td>
                             </tr>
                             <tr>
                                 <td>NIM</td>

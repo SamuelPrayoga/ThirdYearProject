@@ -15,11 +15,12 @@
                     <th>NIM</th>
                     <th>Asrama</th>
                     <th>Jenis Alergi</th>
-                    @if (auth()->user()->isOperator())
+                    <th>Laporan</th>
+                    @if (auth()->user()->isKeasramaan())
                         <th>Dokumen</th>
                     @endif
                     <th>Status</th>
-                    @if (auth()->user()->isOperator())
+                    @if (auth()->user()->isKeasramaan())
                         <th>Aksi</th>
                     @endif
                 </tr>
@@ -40,9 +41,10 @@
                                     {{ $allergy }},
                                 @endforeach
                             </td>
+                            <td>{{ $report->created_at->diffForHumans() }}</td>
 
                             {{-- <td>{{ $report->allergies }}</td> --}}
-                            @if (auth()->user()->isOperator())
+                            @if (auth()->user()->isKeasramaan())
                                 <td><a href="{{ asset('allergy_reports/' . $report->file) }}">{{ $report->file }}</a></td>
                             @endif
                             <td>
@@ -52,7 +54,7 @@
                             </td>
 
                             {{-- <td>{{ $report->approved ? 'Disetujui' : 'Belum disetujui' }}</td> --}}
-                            @if (auth()->user()->isOperator())
+                            @if (auth()->user()->isKeasramaan())
                                 <td>
                                     @if (!$report->approved)
                                         <form action="{{ route('admin.approve', $report->id) }}" method="POST"

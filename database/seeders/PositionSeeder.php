@@ -17,9 +17,9 @@ class PositionSeeder extends Seeder
     {
         Position::factory(1)->createMany([
             ["name" => "Mahasiswa"],
-            ["name" => "Koordinator Kantin"],
             ["name" => "Pengelola Kantin"],
-            ["name" => "Operator"]
+            ["name" => "Keasramaan"],
+            ["name" => "Depkebdis"]
         ]);
     }
 }

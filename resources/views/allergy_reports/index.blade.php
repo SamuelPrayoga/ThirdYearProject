@@ -11,23 +11,57 @@
                         </div>
                         @foreach ($reports as $report)
                             <div class="card-body">
-                                <p class="card-title">Laporan Alergi atas nama: {{ $report->user->name }}</p>
-                                <p class="card-title">NIM: {{ $report->user->nim }}</p>
-                                <p class="card-title">Angkatan: {{ $report->user->angkatan }}</p>
-                                <p class="card-title">Asrama: {{ $report->user->asrama }}</p>
-
-                                <h5 class="card-text">Jenis Makanan Alergi:</h5>
-                                <p>{{ implode(', ', json_decode($report->allergies)) }}</p>
-                                <p class="card-text">Status: <span
-                                        class="badge {{ $report->approved ? 'bg-success' : 'bg-warning' }}">
-                                        {{ $report->approved ? 'Disetujui' : 'Menunggu' }}
-                                    </span></p>
+                                <table class="table ps-3">
+                                    <tr>
+                                        <td>NIM</td>
+                                        <td>:</td>
+                                        <td>{{ $report->user->nim }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td>:</td>
+                                        <td>{{ $report->user->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Asrama</td>
+                                        <td>:</td>
+                                        <td>{{ $report->user->asrama }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angkatan</td>
+                                        <td>:</td>
+                                        <td>{{ auth()->user()->angkatan }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jenis Alergi</td>
+                                        <td>:</td>
+                                        <td>{{ implode(', ', json_decode($report->allergies)) }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>:</td>
+                                        <td><span
+                                            class="badge {{ $report->approved ? 'bg-success' : 'bg-warning' }}">
+                                            {{ $report->approved ? 'Disetujui' : 'Menunggu' }}
+                                        </span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Laporan</td>
+                                        <td>:</td>
+                                        <td><a>{{ $report->created_at->format('d M Y') }}</a></td>
+                                    </tr>
+                                    {{-- <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{ $report->created_at->diffForHumans() }}</a></td>
+                                    </tr> --}}
+                                </table>
                                 @if ($report->approved)
                                     <p class="card-text text-muted">Silahkan meminta makanan pengganti kepada pihak Kantin.
                                     </p>
                                 @endif
-                                <a href="" class="btn btn-primary btn-sm" disabled>Tanggal Laporan:
-                                    {{ $report->created_at->format('d M Y') }}</a>
+                                {{-- <a href="" class="btn btn-primary btn-sm" disabled>Tanggal Laporan:
+                                    {{ $report->created_at->format('d M Y') }}</a> --}}
                             </div>
                             <div class="card-footer text-muted">
                                 {{ $report->created_at->diffForHumans() }}

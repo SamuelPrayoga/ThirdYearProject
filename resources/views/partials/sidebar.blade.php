@@ -2,7 +2,7 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             @if (auth()->user()->isAdmin() or
-                    auth()->user()->isOperator())
+                    auth()->user()->isKeasramaan())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('dashboard.*') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('dashboard.index') }}">
@@ -11,13 +11,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('pengumuman.index')}}">
+                    <a class="nav-link" href="{{ route('pengumuman.index') }}">
                         <i class="fas fa-bullhorn"></i>
                         Pengumuman
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->isAdmin())
+            @if (auth()->user()->isAdmin() or
+                    auth()->user()->isPengelola())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <strong>INFORMASI KANTIN</strong>
@@ -27,16 +28,11 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('menumakan.*') ? 'active' : '' }}"
                         href="{{ route('menumakan.index') }}">
-                        <i class="fas fa-utensils"></i>  Menu Makanan
+                        <i class="fas fa-utensils"></i> Menu Makanan
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href=#>
-                        <i class="bi bi-person-exclamation"></i> Piket Kantin
-                    </a>
-                </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link" href={{route('admin.showFeedback')}}>
+                    <a class="nav-link" href={{ route('admin.showFeedback') }}>
                         <i class="fas fa-comments"></i> Kritik dan Saran
                     </a>
                 </li>
@@ -56,28 +52,30 @@
                 </li>
             @endif
             @if (auth()->user()->isAdmin() or
-                    auth()->user()->isOperator())
+                    auth()->user()->isKeasramaan() or
+                    auth()->user()->isPengelola())
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin/allergy-reports.*') ? 'active' : ''}}" href="{{ route('admin.allergy-reports.index') }}">
+                    <a class="nav-link {{ request()->routeIs('admin/allergy-reports.*') ? 'active' : '' }}"
+                        href="{{ route('admin.allergy-reports.index') }}">
                         <i class="fas fa-user-graduate"></i>
                         Mahasiswa Alergi
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin/allergy-reports.*') ? 'active' : '' }}" href="{{ route('admin.allergy-reports.rekap') }}">
+                    <a class="nav-link {{ request()->routeIs('admin/allergy-reports.*') ? 'active' : '' }}"
+                        href="{{ route('admin.allergy-reports.rekap') }}">
                         <i class="bi bi-table"></i>
                         Total dan Prakiraan Masakan
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->isOperator())
+            @if (auth()->user()->isKeasramaan() or
+                    auth()->user()->isPengelola() or
+                    auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.allergy-reports.index') }}">
                         <i class="bi bi-person"></i>
                         Mahasiswa IB
-                        {{-- @if ($jumlah > 0)
-                            <span class="badge">{{ $jumlah }}</span>
-                        @endif --}}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -88,7 +86,8 @@
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->isDepkebdis())
+            @if (auth()->user()->isDepkebdis() or
+                    auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-clipboard2-minus"></i>
@@ -96,7 +95,8 @@
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->isOperator())
+            @if (auth()->user()->isKeasramaan() or
+                    auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link">
                         <strong>ABSENSI MAKAN</strong>
@@ -111,7 +111,8 @@
                 </li>
             @endif
             @if (auth()->user()->isAdmin() or
-                    auth()->user()->isOperator())
+                    auth()->user()->isKeasramaan() or
+                    auth()->user()->isPengelola())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('presences.*') ? 'active' : '' }}"
                         href="{{ route('presences.index') }}">
@@ -133,13 +134,6 @@
                         Role
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('positions.*') ? 'active' : '' }}"
-                        href="{{ route('positions.index') }}">
-                        <i class="bi bi-activity"></i>
-                        Profiling
-                    </a>
-                </li>
             @endif
             <li class="nav-item">
                 <form action="{{ route('auth.logout') }}" method="POST">
@@ -150,22 +144,6 @@
                     </button>
                 </form>
             </li>
-
-            {{-- <li class="nav-item">
-                <a class="nav-link dropdown-toggle" href="#" id="bg" role="button" data-toggle="dropdown"
-                    aria-haspopup="false" aria-expanded="true">
-                    {{ Auth::user()->name }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <form action="{{ route('auth.logout') }}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <button class="btn fw-bold btn-danger btn-sm w-100">
-                            Keluar</button>
-                    </form>
-                    </a>
-                </div>
-            </li> --}}
         </ul>
     </div>
 </nav>

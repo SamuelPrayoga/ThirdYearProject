@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->after('password', function (Blueprint $table) {
                 $table->string('phone')->unique()->nullable();
+                $table->string('avatar')->nullable();
                 $table->foreignId('position_id')->constrained();
             });
         });
