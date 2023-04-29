@@ -110,9 +110,9 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:user')->name('home.')->group(function () {
 
-        // Route::get('/IzinBermalam', [IzinBermalamController::class, 'showFormIB'])->name('createIB');
-        // Route::post('/IzinBermalam', [IzinBermalamController::class, 'create'])->name('izin-bermalam.create');
-        // Route::get('/IzinBermalamku', [IzinBermalamController::class, 'showIndex'])->name('indexIB');
+        // Lapor Makan
+        Route::get('/check-lapor-makan', [HomeController::class, 'checkLaporMakan'])->name('check.lapor.makan');
+        Route::post('/lapor-saya-makan', [LaporMakanController::class, 'store'])->name('lapor.makan');
 
         Route::get('/edit-profile', [UpdateProfileController::class, 'edit'])->name('edit.profile');
         Route::put('/update-profile', [UpdateProfileController::class, 'update'])->name('update.profile');

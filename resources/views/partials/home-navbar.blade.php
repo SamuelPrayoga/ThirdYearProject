@@ -46,7 +46,6 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
                         <a class="dropdown-item" href="{{ route('home.allergy-reports.create') }}"><i
                                 class="bi bi-clipboard-x"></i> Alergi Makanan</a>
-                        {{-- <a class="dropdown-item" href="{{ route('home.createIB')}}"><i class="bi bi-house-down"></i> Izin Bermalam</a> --}}
                         <a class="dropdown-item" href="{{ route('home.laporan-barang') }}"><i
                                 class="bi bi-question-circle"></i></i> Barang Hilang dan Temuan</a>
                     </div>

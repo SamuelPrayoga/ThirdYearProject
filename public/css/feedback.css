@@ -7,15 +7,19 @@
     margin-bottom: 10px;
   }
 
-  .rating-input-wrapper input[type="radio"] {
+  .rating-input-wrapper input[type="checkbox"] {
     display: none;
   }
 
-  .rating-input-wrapper input[type="radio"] + span {
+  .rating-input-wrapper input[type="checkbox"] + span {
     cursor: pointer;
   }
 
-  .rating-input-wrapper input[type="radio"]:checked + span {
+  .rating-input-wrapper input[type="checkbox"]:checked + span {
     background-color: #367fa9;
     color: #fff;
+  }
+
+  .rating-input-wrapper input[type="checkbox"] + span:hover {
+    background-color: #367fa9;
   }

@@ -107,5 +107,10 @@ class User extends Authenticatable
         return $this->hasMany(AllergyReport::class);
     }
 
+    public function lapormakan()
+    {
+        return $this->hasMany(LaporMakan::class);
+    }
+
 
 }

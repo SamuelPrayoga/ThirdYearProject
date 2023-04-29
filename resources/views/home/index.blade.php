@@ -5,6 +5,12 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card shadow-sm mb-2">
+                    @if ($show_laporkan_makan)
+                        <a type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal1" href="#" role="button"
+                            style="font-weight: bolder">
+                            <i class="fas fa-exclamation-triangle"></i> Laporkan Saya Makan untuk Besok Hari</a>
+                    @endif
+                    <br>
                     <div class="card-header" id="fonts">
                         <i class="bi bi-pin-fill"></i> Pengumuman Penting
                     </div>
@@ -12,20 +18,23 @@
                     <div class="card-body">
                         <ul class="list-group">
                             @if ($announce->isEmpty())
-                                <td colspan="5" class="table-inactive"><small class="text-muted">Belum ada Pengumuman ditambahkan</small>
+                                <td colspan="5" class="table-inactive"><small class="text-muted">Belum ada Pengumuman
+                                        ditambahkan</small>
                                 </td>
                             @else
                                 @foreach ($announce as $peng)
-                                <div class="list-group-item d-flex justify-content-between align-items-start py-3">
-                                    <div class="ms-2 me-auto">
-                                        {{-- <i class="bi bi-pin-fill"></i> --}}
-                                        <p class="mb-0">{!! $peng->deskripsi !!}</p>
-                                        <small style="color: gray;">Sitoluama, {{ $peng->tanggal_pembuatan }}</small> &nbsp
-                                        <div>
-                                        <small style="color: gray;">Pengumuman Berakhir: {{ $peng->tanggal_berakhir }}</small>
+                                    <div class="list-group-item d-flex justify-content-between align-items-start py-3">
+                                        <div class="ms-2 me-auto">
+                                            {{-- <i class="bi bi-pin-fill"></i> --}}
+                                            <p class="mb-0">{!! $peng->deskripsi !!}</p>
+                                            <small style="color: gray;">Sitoluama, {{ $peng->tanggal_pembuatan }}</small>
+                                            &nbsp
+                                            <div>
+                                                <small style="color: gray;">Pengumuman Berakhir:
+                                                    {{ $peng->tanggal_berakhir }}</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             @endif
                         </ul>
@@ -39,7 +48,8 @@
                     <div class="card-body">
                         <ul class="list-group">
                             @if ($attendances->isEmpty())
-                                <td colspan="5" class="table-inactive"><small class="text-muted">Belum ada Jadwal Makan Kantin diatur oleh Keasramaan</small>
+                                <td colspan="5" class="table-inactive"><small class="text-muted">Belum ada Jadwal Makan
+                                        Kantin diatur oleh Keasramaan</small>
                                 </td>
                             @else
                                 @foreach ($attendances as $attendance)
@@ -68,7 +78,8 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><img src="{{ asset('storage/avatars/'.auth()->user()->avatar) }}" alt="Foto Profil" style="border-radius: 10%;" width="125px" height="120px"></td>
+                                <td><img src="{{ asset('storage/avatars/' . auth()->user()->avatar) }}" alt="Foto Profil"
+                                        style="border-radius: 10%;" width="125px" height="120px"></td>
                             </tr>
                             <tr>
                                 <td>NIM</td>
@@ -101,7 +112,7 @@
                                 <td><a href="tel:{{ auth()->user()->phone }}">{{ auth()->user()->phone }}</a></td>
                             </tr>
                             <tr>
-                                <td>Joined At</td>
+                                <td>Bergabung</td>
                                 <td>:</td>
                                 <td>{{ auth()->user()->created_at->diffForHumans() }}
                                     ({{ auth()->user()->created_at->format('d M Y') }})</td>
@@ -109,14 +120,10 @@
                         </table>
                         <br>
 
-                        {{-- <a class="btn btn-primary btn-sm" href="#" role="button" style="font-weight: bolder">
-                                <i class="bi bi-person-lines-fill"></i> Ganti Password</a> --}}
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"
-                            style="font-weight: bolder">
-                            <i class="bi bi-chat-left-text-fill"></i> Sampaikan Kritik dan Saran
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                            data-target="#exampleModal" style="font-weight: bolder">
+                            <i class="bi bi-chat-left-text-fill"></i> Kritik dan Saran Kantin
                         </button>
-
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -164,7 +171,8 @@
                                                 <div class="form-group">
                                                     <label for="input-one">Tanggal Ulasan</label>
                                                     <input type="date" class="form-control" name="date"
-                                                        id="tanggal_ulasan" placeholder="" value="" required readonly>
+                                                        id="tanggal_ulasan" placeholder="" value="" required
+                                                        readonly>
                                                 </div>
                                                 <script>
                                                     // Get the current date
@@ -233,24 +241,92 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- LaporanMakan --}}
+
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <h5 class="modal-title" id="exampleModalLabel">Laporkan Saya Makan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="theForm" action="{{ route('home.lapor.makan') }}" method="post"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="input-one">Catatan: </label>
+                                                    <ul>
+                                                        <li><small>Form ini Hanya dapat diisi satu kali oleh mahasiswa
+                                                                setiap harinya, Pastikan Anda memastikan data dengan
+                                                                benar.</small></li>
+                                                        <li><small>Disarankan untuk memilih Semua waktu makan untuk
+                                                                Senin-Kamis, Opsional untuk Jumat sesuai waktu Anda</small>
+                                                        </li>
+                                                        <li><small>Untuk Mahasiswa Izin Sakit, silahkan tetap memilih waktu
+                                                                makan</small></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input-one">Nama Mahasiswa</label>
+                                                    {{-- <input type="hidden" name="form_token" value="{{ session('form_token') }}"> --}}
+                                                    <input type=hidden name=last id=last>
+                                                    <input type="text" class="form-control" id="input-zero"
+                                                        value="{{ auth()->user()->name }}" name="nama" readonly
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input-one">NIM</label>
+
+                                                    <input type="text" class="form-control" id="input-zero-one"
+                                                        value="{{ auth()->user()->nim }}" name="nim" readonly
+                                                        required>
+                                                </div>
+                                                <input type=hidden name=UserID value={{ auth()->user()->id }}>
+                                                <div class="form-group">
+                                                    <label for="tanggal">Tanggal Makan Besok</label>
+                                                    <input type="date" class="form-control" name="tanggal"
+                                                        id="tanggal" placeholder=""
+                                                        value="{{ \Carbon\Carbon::now()->addDay()->format('Y-m-d') }}"
+                                                        required readonly>
+                                                </div>
+                                                <label for="exampleFormControlTextarea1">Pilih Waktu Makan</label>
+                                                <div
+                                                    class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
+                                                    <label for="Makan Pagi"><input type="checkbox" name="waktu_makan[]"
+                                                            value="Makan Pagi" id="Makan Pagi" /><span
+                                                            class="border rounded px-3 py-2">Makan Pagi</span></label>
+                                                    <label for="Makan Siang"><input type="checkbox" name="waktu_makan[]"
+                                                            value="Makan Siang" id="Makan Siang" /><span
+                                                            class="border rounded px-3 py-2">Makan Siang</span></label>
+                                                    <label for="Makan Malam"><input type="checkbox" name="waktu_makan[]"
+                                                            value="Makan Malam" id="Makan Malam" /><span
+                                                            class="border rounded px-3 py-2">Makan Malam</span></label>
+                                                </div>
+                                                <input type="hidden" name="is_makan" value="1">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                    data-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-primary btn-sm"
+                                                    id="submitButton">Lapor</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <br>
-        {{-- @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif --}}
     </div>
-
-
     <!-- Footer -->
     @include('partials.footer')
 @endsection

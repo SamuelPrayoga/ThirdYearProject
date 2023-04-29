@@ -6,33 +6,33 @@ use App\Models\Attendance;
 use App\Models\Feedback;
 use App\Models\Holiday;
 use App\Models\Permission;
+use App\Models\LaporMakan;
 use App\Models\Presence;
 use App\Models\User;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class HomeController extends Controller
 {
-    // public function index()
-    // {
-    //     $announce = DB::table('pengumumen')->where('published', 1)->get();
-    //     $attendances = Attendance::query()
-    //         // ->with('positions')
-    //         ->forCurrentUser(auth()->user()->position_id)
-    //         ->get()
-    //         ->sortByDesc('data.is_end')
-    //         ->sortByDesc('data.is_start');
 
-    //     return view('home.index', [
-    //         "title" => "Beranda",
-    //         "attendances" => $attendances
-    //     ]);
-    // }
     public function index()
     {
         $announce = DB::table('pengumumen')->where('published', 1)->get();
         $title = "Beranda";
+
+        $today = now()->toDateString();
+        $laporan_makanan = LaporMakan::where('created_at', 'like', "$today%")
+            ->where('user_id', auth()->id())
+            ->first();
+
+        $show_laporkan_makan = true;
+        if ($laporan_makanan && $laporan_makanan->is_makan) {
+            $show_laporkan_makan = false;
+        }
+
         $attendances = Attendance::query()
             // ->with('positions')
             ->forCurrentUser(auth()->user()->position_id)
@@ -40,8 +40,23 @@ class HomeController extends Controller
             ->sortByDesc('data.is_end')
             ->sortByDesc('data.is_start');
 
-        return view('home.index', compact('announce', 'attendances', 'title'));
+        return view('home.index', compact('announce', 'attendances', 'title', 'show_laporkan_makan'));
     }
+
+
+    // public function index()
+    // {
+    //     $announce = DB::table('pengumumen')->where('published', 1)->get();
+    //     $title = "Beranda";
+    //     $attendances = Attendance::query()
+    //         // ->with('positions')
+    //         ->forCurrentUser(auth()->user()->position_id)
+    //         ->get()
+    //         ->sortByDesc('data.is_end')
+    //         ->sortByDesc('data.is_start');
+
+    //     return view('home.index', compact('announce', 'attendances', 'title'));
+    // }
 
 
     public function show(Attendance $attendance)
