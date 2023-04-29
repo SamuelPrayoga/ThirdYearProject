@@ -6,18 +6,17 @@
     @else
         {{-- jika tidak menggunakan qrcode (button) dan mahasiswa saat ini tidak menekan tombol izin --}}
         @if ($attendance->data->is_using_qrcode && !$data['is_there_permission'])
-
             {{-- jika belum absen dan absen masuk sudah dimulai --}}
             @if ($attendance->data->is_start && !$data['is_has_enter_today'])
                 <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" data-bs-toggle="modal"
                     data-bs-target="#qrcode-scanner-modal" data-is-enter="1">Scan QRCode Masuk</button>
                 <a href="{{ route('home.permission', $attendance->id) }}"
-                    class="btn btn-info px-3 py-2 btn-sm fw-bold d-block w-100">Izin</a>
+                    class="btn btn-secondary  px-3 py-2 btn-sm fw-bold d-block w-100">Izin</a>
             @endif
 
             @if ($data['is_has_enter_today'])
                 <div class="alert alert-success">
-                    <small class="d-block fw-bold text-success">Anda sudah berhasil mengirim absensi masuk.</small>
+                    <small class="d-block fw-bold text-success">Anda sudah berhasil mengirim Scan Masuk.</small>
                 </div>
             @endif
 
@@ -30,48 +29,37 @@
             {{-- sudah absen masuk dan absen pulang --}}
             @if ($data['is_has_enter_today'] && !$data['is_not_out_yet'])
                 <div class="alert alert-success">
-                    <small class="d-block fw-bold text-success">Anda sudah melakukan absen masuk dan absen
-                        pulang.</small>
+                    <small class="d-block fw-bold text-success">Terimakasih! Anda sudah melakukan Scan masuk dan Scan
+                        pulang, Semoga hari Anda menyenangkan.</small>
                 </div>
             @endif
 
-            {{-- jika sudah absen masuk dan belum saatnya absen pulang --}}
+            {{-- jika sudah Scan masuk dan belum saatnya Scan pulang --}}
             @if ($data['is_has_enter_today'] && !$attendance->data->is_end)
                 <div class="alert alert-warning">
-                    <small class="fw-bold">Belum saatnya melakukan absensi pulang.</small>
+                    <small class="fw-bold">Jika Belum Selesai Makan, Belum saatnya melakukan Scan pulang.</small>
                 </div>
             @endif
-        @endif
+        @elseif($data['is_there_permission'])
+            {{-- menampilkan pesan jika ada permintaan izin yang sedang diproses --}}
+            @if ($data['is_permission_accepted'] == null)
+                <div class="alert alert-info">
+                    <small class="fw-bold">Permintaan izin sedang diproses.</small>
+                </div>
 
-        @if ($data['is_there_permission'])
-            @if ($data['is_permission_accepted'] == 1)
+                {{-- menampilkan pesan jika permintaan izin ditolak --}}
+            @elseif ($data['is_permission_accepted'] == 0)
+                <div class="alert alert-danger">
+                    <small class="fw-bold">Permintaan izin Anda ditolak.</small>
+                </div>
+
+                {{-- menampilkan pesan jika permintaan izin diterima --}}
+            @else
                 <div class="alert alert-success">
                     <small class="fw-bold">Permintaan izin sudah diterima.</small>
                 </div>
-                <div class="alert alert-info">
-                    <small class="fw-bold">Permintaan izin sedang diproses (atau masih belum diterima).</small>
-                </div>
             @endif
         @endif
-
-        {{-- @if ($data['is_there_permission'] && !$data['is_permission_accepted'])
-    <div class="alert alert-info">
-        <small class="fw-bold">Permintaan izin sedang diproses (atau masih belum di terima).</small>
-    </div>
-    @endif
-
-    @if ($data['is_there_permission'] && $data['is_permission_accepted'])
-    <div class="alert alert-success">
-        <small class="fw-bold">Permintaan izin sudah diterima.</small>
-    </div>
-    @endif
-
-    @if ($data['is_there_permission'] && $data['is_permission_accepted'])
-    <div class="alert alert-danger">
-        <small class="fw-bold">Permintaan izin Ditolak.</small>
-    </div>
-    @endif --}}
-
     @endif
 
     <div class="modal fade" id="qrcode-scanner-modal" tabindex="-1">
@@ -100,3 +88,23 @@
     </script>
     <script type="module" src="{{ asset('js/home/qrcode.js') }}"></script>
 @endpush
+
+
+
+{{-- @if ($data['is_there_permission'] && !$data['is_permission_accepted'])
+    <div class="alert alert-info">
+        <small class="fw-bold">Permintaan izin sedang diproses (atau masih belum di terima).</small>
+    </div>
+    @endif
+
+    @if ($data['is_there_permission'] && $data['is_permission_accepted'])
+    <div class="alert alert-success">
+        <small class="fw-bold">Permintaan izin sudah diterima.</small>
+    </div>
+    @endif
+
+    @if ($data['is_there_permission'] && $data['is_permission_accepted'])
+    <div class="alert alert-danger">
+        <small class="fw-bold">Permintaan izin Ditolak.</small>
+    </div>
+    @endif --}}
