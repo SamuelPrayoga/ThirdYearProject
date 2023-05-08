@@ -6,11 +6,11 @@
             <div class="col-md-8">
                 <div class="card shadow-sm mb-2">
                     @if ($show_laporkan_makan)
-                        <a type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal1" href="#" role="button"
-                            style="font-weight: bolder">
-                            <i class="fas fa-exclamation-triangle"></i> Laporkan Saya Makan untuk Besok Hari</a>
+                        <button type="button" class="btn btn-warning" id="btn-day" data-toggle="modal"
+                            data-target="#exampleModal1" href="#" role="button" style="font-weight: bolder">
+                            <i class="fas fa-exclamation-triangle"></i> Laporkan Saya Makan untuk Besok Hari</button>
                     @endif
-                    <br>
+
                     <div class="card-header" id="fonts">
                         <i class="bi bi-pin-fill"></i> Pengumuman Penting
                     </div>
@@ -165,7 +165,8 @@
                                                     <label for="input-one">NIM</label>
 
                                                     <input type="text" class="form-control" id="input-zero-one"
-                                                        value="{{ auth()->user()->nim }}" name="nim" readonly required>
+                                                        value="{{ auth()->user()->nim }}" name="nim" readonly
+                                                        required>
                                                 </div>
                                                 <input type=hidden name=UserID value={{ auth()->user()->id }}>
                                                 <div class="form-group">
@@ -265,8 +266,8 @@
                                                         <li><small>Form ini Hanya dapat diisi satu kali oleh mahasiswa
                                                                 setiap harinya, Pastikan Anda memastikan data dengan
                                                                 benar.</small></li>
-                                                        <li><small>Disarankan untuk memilih Semua waktu makan untuk
-                                                                Senin-Kamis, Opsional untuk Jumat sesuai waktu Anda</small>
+                                                        <li><small>Form ini bertujuan untuk melaporkan jumlah makan
+                                                                mahasiswa pada hari Jumat dan Sabtu</small>
                                                         </li>
                                                         <li><small>Untuk Mahasiswa Izin Sakit, silahkan tetap memilih waktu
                                                                 makan</small></li>
@@ -329,4 +330,22 @@
     </div>
     <!-- Footer -->
     @include('partials.footer')
+    <script>
+        function showButton() {
+            var today = new Date();
+            var dayOfWeek = today.getDay(); // mengambil hari dalam bentuk angka, dimulai dari 0 (Minggu) hingga 6 (Sabtu)
+
+            // tampilkan tombol hanya pada hari Kamis (4) dan Jumat (5)
+            if (dayOfWeek === 4 || dayOfWeek === 5) {
+                document.getElementById("btn-day").style.display = "inline-block";
+            } else {
+                document.getElementById("btn-day").style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        showButton();
+    </script>
+
+
 @endsection

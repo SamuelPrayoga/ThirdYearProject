@@ -68,7 +68,7 @@
                                             class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="badge bg-warning"><i
+                                            <button type="submit" class="badge bg-danger"><i
                                                     class="bi bi-x-square-fill"></i>
                                                 Tolak</button>
                                         </form>

@@ -11,15 +11,55 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $userCount = DB::table('users')->where('position_id','=','1')->count();
+        $userCount = DB::table('users')->where('position_id', '=', '1')->count();
+        $tanggal = date('Y-m-d');
+        $tanggal_jumat = date('Y-m-d', strtotime("next Friday", strtotime($tanggal)));
+        // mendapatkan tanggal hari Sabtu
+        $tanggal_sabtu = date('Y-m-d', strtotime("next Saturday", strtotime($tanggal)));
+
+        $makan_pagi = DB::table('laporan_makanan')
+            ->whereJsonContains('waktu_makan', ['Makan Pagi'])
+            ->where('is_makan', 1)
+            ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
+            ->count();
+        $makan_siang = DB::table('laporan_makanan')
+            ->whereJsonContains('waktu_makan', ['Makan Siang'])
+            ->where('is_makan', 1)
+            ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
+            ->count();
+        $makan_malam = DB::table('laporan_makanan')
+            ->whereJsonContains('waktu_makan', ['Makan Malam'])
+            ->where('is_makan', 1)
+            ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
+            ->count();
+
+        $pagi_sabtu = DB::table('laporan_makanan')
+            ->whereJsonContains('waktu_makan', ['Makan Pagi'])
+            ->where('is_makan', 1)
+            ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
+            ->count();
+        $siang_sabtu = DB::table('laporan_makanan')
+            ->whereJsonContains('waktu_makan', ['Makan Siang'])
+            ->where('is_makan', 1)
+            ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
+            ->count();
+        $malam_sabtu = DB::table('laporan_makanan')
+            ->whereJsonContains('waktu_makan', ['Makan Malam'])
+            ->where('is_makan', 1)
+            ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
+            ->count();
+
 
         return view('dashboard.index', [
             "title" => "Dashboard",
-            // $products = Product::where('product_id', '!=', $userproducts->id)->get();
             "positionCount" => Position::count(),
-            // "userCount" => User::count(),
-            // "userCount" => User::where('position_id','=','1')->get()
-            "userCount"=> $userCount
+            "userCount" => $userCount,
+            "makan_pagi" => $makan_pagi,
+            "makan_siang" => $makan_siang,
+            "makan_malam" => $makan_malam,
+            "pagi_sabtu" => $pagi_sabtu,
+            "siang_sabtu" => $siang_sabtu,
+            "malam_sabtu" => $malam_sabtu
         ]);
     }
 }
