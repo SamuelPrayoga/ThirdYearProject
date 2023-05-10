@@ -16,8 +16,7 @@
 @endsection
 
 @section('content')
-    {{-- @include('partials.alerts') --}}
-    {{-- disin --}}
+<div class="card mb-3 table-responsive">
     <table id="example" class="table table-bordered" style="width:100%">
         <thead class="dark">
             <tr>
@@ -47,6 +46,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
 
     @foreach ($menumakan as $menumakans)
         <div class="modal fade" id="myModal{{ $menumakans->id }}" role="dialog">

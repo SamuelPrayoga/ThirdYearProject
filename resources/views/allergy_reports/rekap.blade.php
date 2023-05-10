@@ -8,6 +8,7 @@
     <div class="card mb-3">
         @include('partials.alerts')
         {{-- Konten --}}
+        <div class="card mb-3 table-responsive">
         <table id="examples" class="table table-bordered table-striped">
             <colgroup>
                 <col style="width: 65%;">
@@ -154,6 +155,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
 @endsection
 

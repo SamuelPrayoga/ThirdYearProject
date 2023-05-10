@@ -26,7 +26,7 @@
                 </tr>
             </thead>
             @if ($reports->isEmpty())
-                <td colspan="8"><small class="text-muted">Tidak ada Laporan Alergi oleh Mahasiswa.</small></td>
+                <td colspan="9"><small class="text-muted">Tidak ada Laporan Alergi oleh Mahasiswa.</small></td>
             @else
                 <tbody>
                     @php $i=1 @endphp

@@ -73,12 +73,6 @@
                     auth()->user()->isPengelola() or
                     auth()->user()->isAdmin())
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.allergy-reports.index') }}">
-                        <i class="bi bi-person"></i>
-                        Mahasiswa IB
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('holidays.*') ? 'active' : '' }}"
                         href="{{ route('holidays.index') }}">
                         <i class="bi bi-calendar-event"></i>
