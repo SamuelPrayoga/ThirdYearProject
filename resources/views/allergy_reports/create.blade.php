@@ -126,8 +126,9 @@
                                     required>
                                 <small>Penamaan File: Alergi_NIM_Nama</small>
                             </div>
-
-                            <button type="submit" class="btn btn-primary btn-sm">Laporkan</button>
+                            <div class="float-end mt-2">
+                                <button type="submit" class="btn btn-primary btn-sm">Laporkan</button>
+                            </div>
                         </form>
 
                     </div>
