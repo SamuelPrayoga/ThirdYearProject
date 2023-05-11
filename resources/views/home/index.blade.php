@@ -74,7 +74,7 @@
                         <strong>Informasi Mahasiswa</strong>
                     </div>
                     <div class="card-body">
-                        <div class="card mb-3 table-responsive">
+                        <div class="table-responsive">
                             <table class="table ps-3">
                                 <tr>
                                     <td></td>
