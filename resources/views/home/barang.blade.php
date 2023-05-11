@@ -23,8 +23,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Nama Mahasiswa</label>
-                                <input type="text" class="form-control" id="username" name="name" value="{{ Auth::user()->name }}"
-                                    readonly>
+                                <input type="text" class="form-control" id="username" name="name"
+                                    value="{{ Auth::user()->name }}" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="nim" class="form-label">NIM</label>
@@ -59,8 +59,10 @@
                             <script src="path/to/ckeditor.js"></script>
 
                             <!-- Script CKEditor -->
-                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                            <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                            <div class="float-end mt-2">
+                                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                <button type="reset" class="btn btn-danger btn-sm">Reset</button>
+                            </div>
                         </form>
                     </div>
                     <script src="path/to/ckeditor.js"></script>
