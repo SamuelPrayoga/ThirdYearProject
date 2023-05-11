@@ -74,50 +74,53 @@
                         <strong>Informasi Mahasiswa</strong>
                     </div>
                     <div class="card-body">
-                        <table class="table ps-3">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td><img src="{{ asset('storage/avatars/' . auth()->user()->avatar) }}" alt="Foto Profil"
-                                        style="border-radius: 10%;" width="125px" height="120px"></td>
-                            </tr>
-                            <tr>
-                                <td>NIM</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->nim }}</td>
-                            </tr>
-                            <tr>
-                                <td>Nama</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Asrama</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->asrama }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>Angkatan</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->angkatan }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>:</td>
-                                <td><a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>Telepon</td>
-                                <td>:</td>
-                                <td><a href="tel:{{ auth()->user()->phone }}">{{ auth()->user()->phone }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>Bergabung</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->created_at->diffForHumans() }}
-                                    ({{ auth()->user()->created_at->format('d M Y') }})</td>
-                            </tr>
-                        </table>
+                        <div class="card mb-3 table-responsive">
+                            <table class="table ps-3">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><img src="{{ asset('storage/avatars/' . auth()->user()->avatar) }}"
+                                            alt="Foto Profil" style="border-radius: 10%;" width="125px" height="120px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>NIM</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->nim }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nama</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Asrama</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->asrama }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Angkatan</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->angkatan }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>:</td>
+                                    <td><a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Telepon</td>
+                                    <td>:</td>
+                                    <td><a href="tel:{{ auth()->user()->phone }}">{{ auth()->user()->phone }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Bergabung</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->created_at->diffForHumans() }}
+                                        ({{ auth()->user()->created_at->format('d M Y') }})</td>
+                                </tr>
+                            </table>
+                        </div>
                         <br>
 
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
