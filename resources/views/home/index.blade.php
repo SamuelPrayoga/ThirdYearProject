@@ -300,13 +300,13 @@
                                                 <div
                                                     class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
                                                     <label for="Makan Pagi"><input type="checkbox" name="waktu_makan[]"
-                                                            value="Makan Pagi" id="Makan Pagi" /><span
+                                                            value="Makan Pagi" id="Pagi" /><span
                                                             class="border rounded px-3 py-2">Makan Pagi</span></label>
                                                     <label for="Makan Siang"><input type="checkbox" name="waktu_makan[]"
-                                                            value="Makan Siang" id="Makan Siang" /><span
+                                                            value="Makan Siang" id="Siang" /><span
                                                             class="border rounded px-3 py-2">Makan Siang</span></label>
                                                     <label for="Makan Malam"><input type="checkbox" name="waktu_makan[]"
-                                                            value="Makan Malam" id="Makan Malam" /><span
+                                                            value="Makan Malam" id="Malam" /><span
                                                             class="border rounded px-3 py-2">Makan Malam</span></label>
                                                 </div>
                                                 <input type="hidden" name="is_makan" value="1">

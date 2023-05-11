@@ -54,11 +54,11 @@
                             {{-- <td>{{$reports->tanggal}}</td> --}}
                             <td>
                                 @foreach (json_decode($reports->waktu_makan) as $waktu)
-                                    @if ($waktu == 'Makan Pagi')
+                                    @if ($waktu == 'Pagi')
                                         <span class="badge badge-success">{{ $waktu }}</span>
-                                    @elseif ($waktu == 'Makan Siang')
+                                    @elseif ($waktu == 'Siang')
                                         <span class="badge badge-warning">{{ $waktu }}</span>
-                                    @elseif ($waktu == 'Makan Malam')
+                                    @elseif ($waktu == 'Malam')
                                         <span class="badge badge-primary">{{ $waktu }}</span>
                                     @else
                                         {{ $waktu }}
