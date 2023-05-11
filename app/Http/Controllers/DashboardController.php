@@ -18,33 +18,33 @@ class DashboardController extends Controller
         $tanggal_sabtu = date('Y-m-d', strtotime("next Saturday", strtotime($tanggal)));
 
         $makan_pagi = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Makan Pagi'])
+            ->whereJsonContains('waktu_makan', ['Pagi'])
             ->where('is_makan', 1)
             ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
             ->count();
         $makan_siang = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Makan Siang'])
+            ->whereJsonContains('waktu_makan', ['Siang'])
             ->where('is_makan', 1)
             ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
             ->count();
         $makan_malam = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Makan Malam'])
+            ->whereJsonContains('waktu_makan', ['Malam'])
             ->where('is_makan', 1)
             ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
             ->count();
 
         $pagi_sabtu = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Makan Pagi'])
+            ->whereJsonContains('waktu_makan', ['Pagi'])
             ->where('is_makan', 1)
             ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
             ->count();
         $siang_sabtu = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Makan Siang'])
+            ->whereJsonContains('waktu_makan', ['Siang'])
             ->where('is_makan', 1)
             ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
             ->count();
         $malam_sabtu = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Makan Malam'])
+            ->whereJsonContains('waktu_makan', ['Malam'])
             ->where('is_makan', 1)
             ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
             ->count();
