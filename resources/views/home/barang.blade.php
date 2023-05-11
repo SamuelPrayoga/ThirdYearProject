@@ -9,7 +9,7 @@
                         <center>Formulir Laporan Kehilangan atau Temuan Barang</center>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('home.laporan-barang-form') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('home.laporan-barang-form') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <div class="mb-3">
@@ -50,14 +50,25 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+
+                                <!-- Letakkan library CKEditor di sini, sebelum script CKEditor -->
+                                <script src="path/to/ckeditor.js"></script>
+                                <!-- Script CKEditor -->
+                                <script>
+                                    ClassicEditor
+                                        .create(document.querySelector('#editor'))
+                                        .then(editor => {
+                                            console.log(editor);
+                                        })
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                                </script>
                                 <div class="mb-3">
                                     <label for="file" class="form-label">Gambar/Contoh Gambar</label>
                                     <input type="file" class="form-control" name="file" id="input-three"
                                         placeholder="" required>
                                 </div>
-
-                                <!-- Letakkan library CKEditor di sini, sebelum script CKEditor -->
-                                <script src="path/to/ckeditor.js"></script>
 
                                 <!-- Script CKEditor -->
                                 <div class="float-end mt-2">
@@ -68,22 +79,9 @@
                         </form>
                     </div>
                 </div>
-                <script src="path/to/ckeditor.js"></script>
-                <!-- Script CKEditor -->
-                <script>
-                    ClassicEditor
-                        .create(document.querySelector('#editor'))
-                        .then(editor => {
-                            console.log(editor);
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
-                </script>
+                {{-- <script src="path/to/ckeditor.js"></script> --}}
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <style>
         .table-inactive {
