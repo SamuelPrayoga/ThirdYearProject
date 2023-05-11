@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             @if ($laporan_makanan->isEmpty())
-                <td colspan="7"><small class="text-muted">Tidak Laporan Makan Jumat-Sabtu Mahasiswa.</small></td>
+                <td colspan="8"><small class="text-muted">Tidak Laporan Makan Jumat-Sabtu Mahasiswa.</small></td>
             @else
                 <tbody>
                     @php $i=1 @endphp
