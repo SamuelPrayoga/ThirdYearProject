@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class LaporMakanController extends Controller
 {
+
     public function index()
     {
         $title = "Laporan Mahasiswa Makan Jumat-Sabtu";

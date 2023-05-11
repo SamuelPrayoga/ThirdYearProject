@@ -12,9 +12,10 @@
             <button type="submit" class="btn btn-sm btn-danger"
                 onclick="return confirm('Anda yakin ingin menghapus semua data laporan?');">
                 <span data-feather="trash-2" class="align-text-bottom me-1"></span>
-                Hapus Semua Laporan
+                Reset Laporan
             </button>
         </form>
+        &nbsp;
 
     </div>
     <br>
@@ -29,6 +30,7 @@
                     <th>Program Studi</th>
                     <th>Angkatan</th>
                     <th>Asrama</th>
+                    <th>Makan Pada</th>
                     <th>Waktu Makan</th>
                     {{-- <th>Aksi</th> --}}
                 </tr>
@@ -47,6 +49,9 @@
                             <td>{{ $reports->user->prodi }}</td>
                             <td>{{ $reports->user->angkatan }}</td>
                             <td>{{ $reports->user->asrama }}</td>
+                            <td>{{ strftime('%A, %e %B %Y', strtotime($reports->tanggal)) }}</td>
+                            {{-- <td>{{ date('l, j F Y', strtotime($reports->tanggal)) }}</td> --}}
+                            {{-- <td>{{$reports->tanggal}}</td> --}}
                             <td>
                                 @foreach (json_decode($reports->waktu_makan) as $waktu)
                                     @if ($waktu == 'Makan Pagi')
