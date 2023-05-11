@@ -45,6 +45,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::middleware('auth')->group(function () {
     Route::middleware('role:admin,keasramaan,depkebdis,pengelola,')->group(function () {
 
+        //LapMakan
+        Route::get('/LaporanMakan/JumatSabtu', [LaporMakanController::class, 'index'])->name('admin.lapmakan.index');
+        Route::delete('/laporan/hapus-semua', [LaporMakanController::class, 'hapusSemuaLaporan'])->name('admin.lap.hapussemua');
+
+
         //Alergi
         Route::get('/admin/allergy-reports', [AllergyReportController::class, 'show'])->name('admin.allergy-reports.index');
         Route::get('/admin/rekap-allergy-reports', [AllergyReportController::class, 'rekapAlergi'])->name('admin.allergy-reports.rekap');

@@ -75,11 +75,18 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('holidays.*') ? 'active' : '' }}"
                         href="{{ route('holidays.index') }}">
-                        <i class="bi bi-calendar-event"></i>
+                        <i class="fas fa-calendar"></i>
                         Data Hari Libur
                     </a>
                 </li>
-            @endif
+                 <li class="nav-item">
+                    <a class="nav-link"
+                        href="{{route('admin.lapmakan.index')}}">
+                        <i class="fas fa-file-alt"></i>
+                        Data Laporan Makan
+                    </a>
+                </li>
+            {{-- @endif
             @if (auth()->user()->isDepkebdis() or
                     auth()->user()->isAdmin())
                 <li class="nav-item">
@@ -87,7 +94,7 @@
                         <i class="bi bi-clipboard2-minus"></i>
                         Laporan Barang
                     </a>
-                </li>
+                </li> --}}
             @endif
             @if (auth()->user()->isKeasramaan() or
                     auth()->user()->isAdmin())

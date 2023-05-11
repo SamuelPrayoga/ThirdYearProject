@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class LaporMakanController extends Controller
 {
+    public function index()
+    {
+        $title = "Laporan Mahasiswa Makan Jumat-Sabtu";
+        $laporan_makanan = LaporMakan::all();
+        return view('LapMakan.index', compact('title', 'laporan_makanan'));
+    }
+
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -41,6 +50,14 @@ class LaporMakanController extends Controller
 
         return redirect()->back()->with('toast_success', 'Terimakasih! Laporan Pemberitahuan Anda Telah Disampaikan');
     }
+
+    public function hapusSemuaLaporan()
+    {
+        LaporMakan::truncate();
+
+        return redirect()->back()->with('success', 'Semua laporan telah dihapus.');
+    }
+
 
     // public function store(Request $request)
     // {

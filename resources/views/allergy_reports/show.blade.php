@@ -38,9 +38,17 @@
                             <td>{{ $report->user->asrama }}</td>
                             <td>
                                 @foreach (json_decode($report->allergies) as $allergy)
-                                    {{ $allergy }},
+                                    {{ $allergy }}
+                                    @if (!$loop->last)
+                                    ,
+                                    @endif
                                 @endforeach
                             </td>
+                            {{-- <td>
+                                @foreach (json_decode($report->allergies) as $allergy)
+                                    {{ $allergy }},
+                                @endforeach
+                            </td> --}}
                             <td>{{ $report->created_at->diffForHumans() }}</td>
 
                             {{-- <td>{{ $report->allergies }}</td> --}}
