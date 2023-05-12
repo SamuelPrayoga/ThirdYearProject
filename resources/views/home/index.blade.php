@@ -78,8 +78,15 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><img src="{{ asset('avatars/' . auth()->user()->avatar) }}" alt="Foto Profil"
-                                        style="border-radius: 10%;" width="125px" height="120px"></td>
+                                <td>
+                                    @if(auth()->user()->avatar)
+                                        <img src="{{ asset('avatars/' . auth()->user()->avatar) }}" alt="Foto Profil" style="border-radius: 10%;" width="125px" height="120px">
+                                    @else
+                                        <img src="{{ asset('avatarDefault/avatarDefault.png') }}" alt="Default Avatar" style="border-radius: 10%;" width="125px" height="120px">
+                                    @endif
+                                </td>
+
+
                             </tr>
                             <tr>
                                 <td>NIM</td>
