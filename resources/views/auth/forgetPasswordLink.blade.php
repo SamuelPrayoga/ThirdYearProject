@@ -47,7 +47,7 @@
                         @endif
                         <br>
                 <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="w-100 btn btn-primary" id="login-form-button">
+                    <button type="submit" class="w-100 btn btn-primary btn-sm" id="login-form-button">
                         Reset Password
                     </button>
                 </div>

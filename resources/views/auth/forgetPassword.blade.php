@@ -31,7 +31,7 @@
                         <span class="text-danger">{{ $errors->first('email') }} </span>
                     @endif
                 </div>
-                <button class="w-100 btn btn-primary" type="submit" id="login-form-button">Kirim Link Reset
+                <button class="w-100 btn btn-primary btn-sm" type="submit" id="login-form-button">Kirim Link Reset
                     Password</button>
                 <br>
                 @if (Session::has('message'))

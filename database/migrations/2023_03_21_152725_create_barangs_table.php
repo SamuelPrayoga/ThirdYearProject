@@ -18,10 +18,6 @@ return new class extends Migration
             $table->string('kategori');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('item_name');
-            $table->string('place');
-            $table->date('date');
-            $table->time('time');
             $table->text('description')->nullable();
             $table->date('expiry_date')->nullable();
             $table->string('file')->nullable();
