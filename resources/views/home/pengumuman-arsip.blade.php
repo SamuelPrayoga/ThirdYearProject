@@ -11,82 +11,86 @@
                         </center>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered" id="exa">
-                            <thead>
-                                <tr>
-                                    <th><small>#</small></th>
-                                    <th style="width: 50%"><small>Judul Pengumuman</small></th>
-                                    <th style="width: 25%"><small>Tanggal Berakhir</small></th>
-                                    {{-- <th style="width: 15%"><small>Waktu</small></th> --}}
-                                    <th style="width: 16.66%"><small>Tanggal Pembuatan</small></th>
-                                    <th style="width:  8.33%" class="action-column"><small>&nbsp;Action</small></th>
-                                </tr>
-                            </thead>
-                            @if ($pengumumanArsip->isEmpty())
-                                <td colspan="6">Tidak ada pengumuman yang Diarsipkan</td>
-                            @else
-                                <tbody>
-                                    @php $i=1 @endphp
-                                    @foreach ($pengumumanArsip as $p)
-                                        <tr>
-                                            <td>{{ $i++ }}.</td>
-                                            <td>
-                                                <p
-                                                    class="text-muted">
-                                                    {{ $p->kategori }}: {{ $p->item_name }}
-                                                </p>
-                                            </td>
+                        <div class="card mb-3 table-responsive">
+                            <table class="table table-bordered" id="exa">
+                                <thead>
+                                    <tr>
+                                        <th><small>#</small></th>
+                                        <th style="width: 50%"><small>Judul Pengumuman</small></th>
+                                        <th style="width: 25%"><small>Tanggal Berakhir</small></th>
+                                        {{-- <th style="width: 15%"><small>Waktu</small></th> --}}
+                                        <th style="width: 16.66%"><small>Tanggal Pembuatan</small></th>
+                                        <th style="width:  8.33%" class="action-column"><small>&nbsp;Action</small></th>
+                                    </tr>
+                                </thead>
+                                @if ($pengumumanArsip->isEmpty())
+                                    <td colspan="6">Tidak ada pengumuman yang Diarsipkan</td>
+                                @else
+                                    <tbody>
+                                        @php $i=1 @endphp
+                                        @foreach ($pengumumanArsip as $p)
+                                            <tr>
+                                                <td>{{ $i++ }}.</td>
+                                                <td>
+                                                    <p class="text-muted">
+                                                        {{ $p->kategori }}: {{ $p->item_name }}
+                                                    </p>
+                                                </td>
 
-                                            {{-- <td><a>{{ $p->kategori }}: {{ $p->item_name }} </a></td> --}}
-                                            <td>{{ $p->expiry_date }}</td>
-                                            {{-- <td>{{ $p->time }} WIB</td> --}}
-                                            <td>{{ $p->created_at }}</td>
-                                            <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                                    data-target="#exampleModal{{ $p->id }}">
-                                                    <i class="bi bi-eye-fill"></i> <small>Selengkapnya</small>
-                                                </button>
-                                            </td>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal{{ $p->id }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                                <p
-                                                                    class="{{ $p->kategori == 'Keasramaan' ? 'text-primary' : ($p->kategori == 'Kehilangan Barang' ? 'text-danger' : 'text-success') }}">
-                                                                    {{ $p->kategori }}
-                                                                </p>
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Seorang Mahasiswa telah {{ $p->kategori }}
-                                                                {{ $p->item_name }}
-                                                                dengan ciri ciri {{ $p->description }}.</p>
-                                                            <p>Pada pukul {{ $p->time }} di {{ $p->place }}, pada
-                                                                tanggal {{ $p->date }}</p>
-                                                            <img src="{{ url('img/Barang/' . $p->file) }}" width="100%"
-                                                                height="100%" alt="">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary btn-sm"
-                                                                data-dismiss="modal">Close</button>
+                                                {{-- <td><a>{{ $p->kategori }}: {{ $p->item_name }} </a></td> --}}
+                                                <td>{{ $p->expiry_date }}</td>
+                                                {{-- <td>{{ $p->time }} WIB</td> --}}
+                                                <td>{{ $p->created_at }}</td>
+                                                <td><button type="button" class="btn btn-primary btn-sm"
+                                                        data-toggle="modal" data-target="#exampleModal{{ $p->id }}">
+                                                        <i class="bi bi-eye-fill"></i> <small>Selengkapnya</small>
+                                                    </button>
+                                                </td>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal{{ $p->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                                    <p
+                                                                        class="{{ $p->kategori == 'Keasramaan' ? 'text-primary' : ($p->kategori == 'Kehilangan Barang' ? 'text-danger' : 'text-success') }}">
+                                                                        {{ $p->kategori }}
+                                                                    </p>
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Seorang Mahasiswa telah {{ $p->kategori }}
+                                                                    {{ $p->item_name }}
+                                                                    dengan ciri ciri {{ $p->description }}.</p>
+                                                                <p>Pada pukul {{ $p->time }} di {{ $p->place }},
+                                                                    pada
+                                                                    tanggal {{ $p->date }}</p>
+                                                                <img src="{{ url('img/Barang/' . $p->file) }}"
+                                                                    width="100%" height="100%" alt="">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 @endif
-                        </table>
-                        <small class="text-muted">Pengumuman yang diarsipkan adalah pengumuman yang sudah melewati expired date</small>
+                            </table>
+                        </div>
+                        <small class="text-muted">Pengumuman yang diarsipkan adalah pengumuman yang sudah melewati expired
+                            date</small>
                         <br>
-                        <a href="{{ route('home.pengumuman') }}" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left"></i>
+                        <a href="{{ route('home.pengumuman') }}" class="btn btn-secondary btn-sm"><i
+                                class="fas fa-arrow-left"></i>
                             Kembali</a>
                     </div>
                     {{ $pengumumanArsip->links() }}
