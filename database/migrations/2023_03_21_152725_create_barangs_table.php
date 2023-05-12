@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kategori');
             $table->unsignedBigInteger('user_id');
+            $table->string('name')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->date('expiry_date')->nullable();
