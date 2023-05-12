@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label for="avatar" class="form-label">Avatar:</label>
                                     <br>
-                                    <img src="{{ asset('storage/avatars/' . auth()->user()->avatar) }}" alt="Foto Profil"
+                                    <img src="{{ asset('avatars/' . auth()->user()->avatar) }}" alt="Foto Profil"
                                         style="border-radius: 10%;" width="125px" height="120px">
                                     <br><br>
                                     <input type="file" class="form-control" id="avatar" name="avatar">
