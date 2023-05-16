@@ -22,7 +22,7 @@
     <div class="container">
         <img src="{{ asset('img/logo.png') }}" width="65px" height="74px" alt="/" srcset="">
         &nbsp;
-        <strong><a class="navbar-brand" href="/" id="navbarfont" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 100);">Kantin Institut Teknologi Del</a></strong>
+        <a class="navbar-brand" href="/" id="navbarfont" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); font-weight: bold;">Kantin Institut Teknologi Del</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,16 +32,16 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav align-items-md-center gap-md-4 py-2 py-md-0" id="navbarfonts">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('home.index') }}" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);">Beranda <span
+                    <a class="nav-link" href="{{ route('home.index') }}" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); font-weight: bold;">Beranda <span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('home.menumakan') }}" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);">Menu Makan <span
+                    <a class="nav-link" href="{{ route('home.menumakan') }}" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); font-weight: bold;">Menu Makan <span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); font-weight: bold;">
                         Pelaporan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
@@ -52,11 +52,11 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('home.pengumuman') }}" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);" >Pengumuman</a>
+                    <a class="nav-link" href="{{ route('home.pengumuman') }}" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); font-weight: bold;" >Pengumuman</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); font-weight: bold;">
                         {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
