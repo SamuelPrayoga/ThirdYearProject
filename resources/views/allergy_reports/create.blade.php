@@ -27,7 +27,7 @@
                                     <input type="text" class="form-control" id="username"
                                         value="{{ Auth::user()->prodi }}" readonly>
                                 </div>
-                                <label for="allergies">Jenis Alergi</label><br>
+                                <label for="allergies">Jenis Alergi <span class="text-danger" style="color: red">*</span></label><br>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="allergies[]" id="ikanLaut"
                                         value="Ikan Laut">
