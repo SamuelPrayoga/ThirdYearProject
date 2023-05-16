@@ -6,9 +6,26 @@
             <div class="col-md-8">
                 <div class="card shadow-sm mb-2">
                     @if ($show_laporkan_makan)
-                        <button type="button" class="btn btn-warning" id="btn-day" data-toggle="modal"
-                            data-target="#exampleModal1" href="#" role="button" style="font-weight: bolder">
+                        <button type="button" class="btn" id="btn-day" data-toggle="modal" data-target="#exampleModal1"
+                            href="#" role="button"
+                            style="font-weight: bolder; background-color: #FFC107; border: 2px solid black; animation: blink 0.5s linear infinite;">
                             <i class="fas fa-exclamation-triangle"></i> Laporkan Saya Makan untuk Besok Hari</button>
+
+                        <style>
+                            @keyframes blink {
+                                0% {
+                                    opacity: 1;
+                                }
+
+                                50% {
+                                    opacity: 0.5;
+                                }
+
+                                100% {
+                                    opacity: 1;
+                                }
+                            }
+                        </style>
                     @endif
 
                     <div class="card-header" id="fonts">
@@ -79,10 +96,12 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    @if(auth()->user()->avatar)
-                                        <img src="{{ asset('avatars/' . auth()->user()->avatar) }}" alt="Foto Profil" style="border-radius: 10%;" width="125px" height="120px">
+                                    @if (auth()->user()->avatar)
+                                        <img src="{{ asset('avatars/' . auth()->user()->avatar) }}" alt="Foto Profil"
+                                            style="border-radius: 10%;" width="125px" height="120px">
                                     @else
-                                        <img src="{{ asset('avatarDefault/avatarDefault.png') }}" alt="Default Avatar" style="border-radius: 10%;" width="125px" height="120px">
+                                        <img src="{{ asset('avatarDefault/avatarDefault.png') }}" alt="Default Avatar"
+                                            style="border-radius: 10%;" width="125px" height="120px">
                                     @endif
                                 </td>
 
@@ -304,18 +323,24 @@
                                                         required readonly>
                                                 </div>
                                                 <label for="exampleFormControlTextarea1">Pilih Waktu Makan</label>
-                                                <div
-                                                    class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
-                                                    <label for="Makan Pagi"><input type="checkbox" name="waktu_makan[]"
-                                                            value="Pagi" id="Makan Pagi" /><span
-                                                            class="border rounded px-3 py-2">Makan Pagi</span></label>
-                                                    <label for="Makan Siang"><input type="checkbox" name="waktu_makan[]"
-                                                            value="Siang" id="Makan Siang" /><span
-                                                            class="border rounded px-3 py-2">Makan Siang</span></label>
-                                                    <label for="Makan Malam"><input type="checkbox" name="waktu_makan[]"
-                                                            value="Malam" id="Makan Malam" /><span
-                                                            class="border rounded px-3 py-2">Makan Malam</span></label>
+                                                <div class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
+                                                    <label for="Makan Pagi">
+                                                        <input type="checkbox" name="waktu_makan[]" value="Pagi" id="Makan Pagi" />
+                                                        <span class="border rounded px-3 py-2">Makan Pagi</span>
+                                                    </label>
+                                                    <label for="Makan Siang">
+                                                        <input type="checkbox" name="waktu_makan[]" value="Siang" id="Makan Siang" />
+                                                        <span class="border rounded px-3 py-2">Makan Siang</span>
+                                                    </label>
+                                                    <!-- Tampilkan opsi makan malam hanya jika saat ini bukan hari Jumat -->
+                                                    <?php if (date('l') !== 'Friday') { ?>
+                                                        <label for="Makan Malam">
+                                                            <input type="checkbox" name="waktu_makan[]" value="Malam" id="Makan Malam" />
+                                                            <span class="border rounded px-3 py-2">Makan Malam</span>
+                                                        </label>
+                                                    <?php } ?>
                                                 </div>
+
                                                 <input type="hidden" name="is_makan" value="1">
                                             </div>
                                             <div class="modal-footer">

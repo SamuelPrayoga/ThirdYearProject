@@ -16,35 +16,29 @@
                                 <thead>
                                     <tr>
                                         <th><small>#</small></th>
-                                        <th style="width: 50%"><small>Judul Pengumuman</small></th>
+                                        <th style="width: 20%"><small>Kategori</small></th>
+                                        <th style="width: 37%"><small>Nama Pelapor</small></th>
                                         <th style="width: 25%"><small>Tanggal Berakhir</small></th>
-                                        {{-- <th style="width: 15%"><small>Waktu</small></th> --}}
                                         <th style="width: 16.66%"><small>Tanggal Pembuatan</small></th>
-                                        <th style="width:  8.33%" class="action-column"><small>&nbsp;Action</small></th>
+                                        <th style="width:  8.33%" class="action-column"><small>&nbsp;</small></th>
                                     </tr>
                                 </thead>
                                 @if ($pengumumanArsip->isEmpty())
-                                    <td colspan="6">Tidak ada pengumuman yang Diarsipkan</td>
+                                    <td colspan="6" class="text-muted">Tidak ada pengumuman yang ditampilkan</td>
                                 @else
                                     <tbody>
                                         @php $i=1 @endphp
                                         @foreach ($pengumumanArsip as $p)
                                             <tr>
                                                 <td>{{ $i++ }}.</td>
-                                                <td>
-                                                    <p class="text-muted">
-                                                        {{ $p->kategori }}: {{ $p->item_name }}
-                                                    </p>
-                                                </td>
-
-                                                {{-- <td><a>{{ $p->kategori }}: {{ $p->item_name }} </a></td> --}}
+                                                <td>{{ strtoupper($p->kategori) }} </td>
+                                                <td>{{ strtoupper($p->name) }}</td>
                                                 <td>{{ $p->expiry_date }}</td>
-                                                {{-- <td>{{ $p->time }} WIB</td> --}}
                                                 <td>{{ $p->created_at }}</td>
-                                                <td><button type="button" class="btn btn-primary btn-sm"
-                                                        data-toggle="modal" data-target="#exampleModal{{ $p->id }}">
-                                                        <i class="bi bi-eye-fill"></i> <small>Selengkapnya</small>
-                                                    </button>
+                                                <td><a href="#" class="" data-toggle="modal"
+                                                        data-target="#exampleModal{{ $p->id }}">Selengkapnya
+                                                    </a>
+
                                                 </td>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleModal{{ $p->id }}" tabindex="-1"
@@ -53,10 +47,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                                    <p
-                                                                        class="{{ $p->kategori == 'Keasramaan' ? 'text-primary' : ($p->kategori == 'Kehilangan Barang' ? 'text-danger' : 'text-success') }}">
-                                                                        {{ $p->kategori }}
-                                                                    </p>
+                                                                    <p>{{ $p->kategori }}</p>
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
@@ -64,12 +55,8 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>Seorang Mahasiswa telah {{ $p->kategori }}
-                                                                    {{ $p->item_name }}
-                                                                    dengan ciri ciri {{ $p->description }}.</p>
-                                                                <p>Pada pukul {{ $p->time }} di {{ $p->place }},
-                                                                    pada
-                                                                    tanggal {{ $p->date }}</p>
+                                                                <p>{!! $p->description !!}</p>
+                                                                <p><strong>Foto atau Ilustrasi: </strong></p>
                                                                 <img src="{{ url('img/Barang/' . $p->file) }}"
                                                                     width="100%" height="100%" alt="">
                                                             </div>
