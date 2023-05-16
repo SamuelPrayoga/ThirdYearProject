@@ -31,7 +31,16 @@
                                         @foreach ($pengumuman as $p)
                                             <tr>
                                                 <td>{{ $i++ }}.</td>
-                                                <td>{{ strtoupper($p->kategori) }} </td>
+                                                <td>
+                                                    @if($p->kategori == "Kehilangan Barang")
+                                                        <span class="badge badge-danger" style="border-radius: 0; font-size: 12px;">{{ $p->kategori }}</span>
+                                                    @elseif($p->kategori == "Menemukan Barang")
+                                                        <span class="badge badge-success" style="border-radius: 0; font-size: 12px;">{{ $p->kategori }}</span>
+                                                    @else
+                                                        {{ $p->kategori }}
+                                                    @endif
+                                                </td>
+
                                                 <td>{{ strtoupper($p->name) }}</td>
                                                 <td>{{ $p->expiry_date }}</td>
                                                 <td>{{ $p->created_at }}</td>
