@@ -22,4 +22,5 @@
 
   .rating-input-wrapper input[type="checkbox"] + span:hover {
     background-color: #367fa9;
+    color: #fff;
   }
