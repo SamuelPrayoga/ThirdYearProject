@@ -38,7 +38,7 @@
                             Swal.fire({
                                 title: "Anda Belum melaporkan waktu makan Anda untuk Besok Hari, Laporkan Sekarang",
                                 icon: "info",
-                                confirmButtonText: "Laporkan",
+                                confirmButtonText: "Laporkan Sekarang",
                                 allowOutsideClick: false
                             }).then(() => {
                                 // Mengarahkan ke modal dengan ID "exampleModal1"
