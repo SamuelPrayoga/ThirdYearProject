@@ -67,13 +67,7 @@
                                         <td>{{ date('d M Y', strtotime($histo->presence_date)) }}</td>
 
                                         {{-- <td>{{ $histo->presence_date }} </td> --}}
-                                        @php
-                                            $enterTime = strtotime($histo->presence_enter_time);
-                                            $outTime = strtotime($histo->presence_out_time);
-                                            $timeDiff = round(abs($outTime - $enterTime) / 60);
-                                        @endphp
-                                        <td @if ($timeDiff > 10) style="background-color: red;" @endif>
-                                            {{ $histo->presence_enter_time }} WIB</td>
+                                        <td>{{ $histo->presence_enter_time }} WIB</td>
                                         <td>
                                             @if ($histo->presence_out_time)
                                                 {{ $histo->presence_out_time }} WIB
