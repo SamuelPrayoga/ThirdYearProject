@@ -29,7 +29,7 @@
             {{-- sudah absen masuk dan absen pulang --}}
             @if ($data['is_has_enter_today'] && !$data['is_not_out_yet'])
                 <div class="alert alert-success">
-                    <small class="d-block fw-bold text-success">Terimakasih! Anda sudah melakukan Scan masuk dan Scan
+                    <small class="d-block fw-bold text-success">Terimakasih! Anda sudah makan dan Scan
                         pulang, Semoga hari Anda menyenangkan.</small>
                 </div>
             @endif
