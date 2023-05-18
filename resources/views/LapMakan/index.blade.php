@@ -21,7 +21,7 @@
     <br>
     <br>
     <div class="card mb-3 table-responsive">
-        <table class="table table-bordered table-striped table-hover" id="examples">
+        <table class="table table-bordered table-striped table-hover" id="exampls">
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>

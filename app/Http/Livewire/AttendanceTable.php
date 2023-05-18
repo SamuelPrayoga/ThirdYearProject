@@ -156,11 +156,14 @@ final class AttendanceTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
+            // Column::callback('No', function ($data) {
+            //     return $this->rowNumber($data);
+            // })
+            // ->label('No')
+            // ->searchable()
+            // ->sortable(),
 
-            Column::make('Nama', 'title')
+            Column::make('Judul', 'title')
                 ->searchable()
                 ->makeInputText('title')
                 ->sortable(),

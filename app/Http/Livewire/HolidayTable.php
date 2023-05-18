@@ -139,7 +139,7 @@ final class HolidayTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('id')
+            // ->addColumn('id')
             ->addColumn('title')
             ->addColumn('description')
             ->addColumn('holiday_date')
@@ -165,9 +165,9 @@ final class HolidayTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
+            // Column::make('ID', 'id')
+            //     ->searchable()
+            //     ->sortable(),
 
             Column::make('Nama Hari Libur', 'title')
                 ->searchable()
