@@ -8,8 +8,8 @@
                     @if ($show_laporkan_makan)
                         <button type="button" class="btn" id="btn-day" data-toggle="modal" data-target="#exampleModal1"
                             href="#" role="button"
-                            style="font-weight: bolder; background-color: #FFC107; border: 2px solid black; animation: blink 0.5s linear infinite;">
-                            <i class="fas fa-exclamation-triangle"></i> Laporkan Saya Makan untuk Besok Hari</button>
+                            style="font-weight: bolder; color: #000000; background-color: #FFC107; border: 2px solid black; animation: blink 0.5s linear infinite;">
+                            <i class="fas fa-exclamation-triangle"></i> Laporkan Waktu Makan Anda untuk besok Hari</button>
 
                         <style>
                             @keyframes blink {
@@ -27,7 +27,49 @@
                             }
                         </style>
                     @endif
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+                        // Mendapatkan tombol berdasarkan ID
+                        var button = document.getElementById('btn-day');
 
+                        // Mengecek apakah tombol ada atau tidak
+                        if (button) {
+                            // Menampilkan SweetAlert dan mengarahkan ke modal
+                            Swal.fire({
+                                title: "Anda Belum melaporkan waktu makan Anda untuk Besok Hari, Laporkan Sekarang",
+                                icon: "info",
+                                confirmButtonText: "Laporkan",
+                                allowOutsideClick: false
+                            }).then(() => {
+                                // Mengarahkan ke modal dengan ID "exampleModal1"
+                                $('#exampleModal1').modal('show');
+                            });
+                        }
+                    </script>
+                    {{-- <script>
+                        // Mendapatkan tombol berdasarkan ID
+                        var button = document.getElementById('btn-day');
+
+                        // Mengecek apakah tombol ada atau tidak
+                        if (button) {
+                            // Menampilkan notifikasi SweetAlert
+                            Swal.fire({
+                                title: "Anda Belum melaporkan waktu makan Anda untuk Besok Hari, Laporkan segera dengan meng-klik tombol kuning berikut.",
+                                icon: "info",
+                                confirmButtonText: "OK"
+                            });
+                        }
+                    </script> --}}
+                    {{-- <script>
+                        // Mendapatkan tombol berdasarkan ID
+                        var button = document.getElementById('btn-day');
+
+                        // Mengecek apakah tombol ada atau tidak
+                        if (button) {
+                            // Menampilkan notifikasi
+                            alert("Anda Belum melaporkan waktu makan Anda untuk Besok Hari, Laporkan segera dengan meng-klik tombol kuning berikut.");
+                        }
+                    </script> --}}
                     <div class="card-header" id="fonts">
                         <i class="bi bi-pin-fill"></i> Pengumuman Penting
                     </div>
@@ -323,21 +365,25 @@
                                                         required readonly>
                                                 </div>
                                                 <label for="exampleFormControlTextarea1">Pilih Waktu Makan</label>
-                                                <div class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
+                                                <div
+                                                    class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
                                                     <label for="Makan Pagi">
-                                                        <input type="checkbox" name="waktu_makan[]" value="Pagi" id="Makan Pagi" />
+                                                        <input type="checkbox" name="waktu_makan[]" value="Pagi"
+                                                            id="Makan Pagi" />
                                                         <span class="border rounded px-3 py-2">Makan Pagi</span>
                                                     </label>
                                                     <label for="Makan Siang">
-                                                        <input type="checkbox" name="waktu_makan[]" value="Siang" id="Makan Siang" />
+                                                        <input type="checkbox" name="waktu_makan[]" value="Siang"
+                                                            id="Makan Siang" />
                                                         <span class="border rounded px-3 py-2">Makan Siang</span>
                                                     </label>
                                                     <!-- Tampilkan opsi makan malam hanya jika saat ini bukan hari Jumat -->
                                                     <?php if (date('l') !== 'Friday') { ?>
-                                                        <label for="Makan Malam">
-                                                            <input type="checkbox" name="waktu_makan[]" value="Malam" id="Makan Malam" />
-                                                            <span class="border rounded px-3 py-2">Makan Malam</span>
-                                                        </label>
+                                                    <label for="Makan Malam">
+                                                        <input type="checkbox" name="waktu_makan[]" value="Malam"
+                                                            id="Makan Malam" />
+                                                        <span class="border rounded px-3 py-2">Makan Malam</span>
+                                                    </label>
                                                     <?php } ?>
                                                 </div>
 
