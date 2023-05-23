@@ -6,6 +6,7 @@ use App\Models\Position;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\AllergyReport;
 
 class DashboardController extends Controller
 {
@@ -48,6 +49,14 @@ class DashboardController extends Controller
             ->where('is_makan', 1)
             ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
             ->count();
+        $approvedData = AllergyReport::where('approved', 1)
+            ->selectRaw('COUNT(*) as count, MONTH(created_at) as month')
+            ->groupBy('month')
+            ->get();
+        $pendingData = AllergyReport::where('approved', 0)
+            ->selectRaw('COUNT(*) as count, MONTH(created_at) as month')
+            ->groupBy('month')
+            ->get();
 
 
         return view('dashboard.index', [
@@ -59,7 +68,9 @@ class DashboardController extends Controller
             "makan_malam" => $makan_malam,
             "pagi_sabtu" => $pagi_sabtu,
             "siang_sabtu" => $siang_sabtu,
-            "malam_sabtu" => $malam_sabtu
+            "malam_sabtu" => $malam_sabtu,
+            "approvedData" => $approvedData,
+            "pendingData" => $pendingData
         ]);
     }
 }

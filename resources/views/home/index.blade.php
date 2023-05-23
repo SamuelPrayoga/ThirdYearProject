@@ -408,7 +408,7 @@
     </div>
     <!-- Footer -->
     @include('partials.footer')
-    <script>
+    {{-- <script>
         function showButton() {
             var today = new Date();
             var dayOfWeek = today.getDay(); // mengambil hari dalam bentuk angka, dimulai dari 0 (Minggu) hingga 6 (Sabtu)
@@ -420,7 +420,23 @@
                 document.getElementById("btn-day").style.display = "none";
             }
         }
+    </script> --}}
+    <script>
+        function showButton() {
+            var today = new Date();
+            var dayOfWeek = today.getDay(); // mengambil hari dalam bentuk angka, dimulai dari 0 (Minggu) hingga 6 (Sabtu)
+
+            var currentHour = today.getHours(); // mengambil jam saat ini
+
+            // tampilkan tombol hanya pada hari Kamis (4) dan Jumat (5) sebelum jam 24:00 (12 AM)
+            if ((dayOfWeek === 4 && currentHour < 24) || dayOfWeek === 5) {
+                document.getElementById("btn-day").style.display = "inline-block";
+            } else {
+                document.getElementById("btn-day").style.display = "none";
+            }
+        }
     </script>
+
     <script>
         showButton();
     </script>
