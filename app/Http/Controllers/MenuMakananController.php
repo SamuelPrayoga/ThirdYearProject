@@ -17,7 +17,6 @@ class MenuMakananController extends Controller
             "title" => "Menu Makanan Civitas",
             "menumakan" => $menumakan
         ]);
-
     }
 
     public function show()
@@ -29,7 +28,6 @@ class MenuMakananController extends Controller
             "title" => "Menu Makanan Civitas Institut Teknologi Del",
             "menumakan" => $menumakan
         ]);
-
     }
 
     public function create()
@@ -40,17 +38,22 @@ class MenuMakananController extends Controller
         return view('admin.menumakan.create', [
             "title" => " Tambah Menu Makanan",
         ]);
-
     }
 
     public function createmenus(Request $request)
     {
-        $menus = new MenuMakanan();
-        $menus->tanggal_makan = $request->tanggal_makan;
-        $menus->menu_pagi = $request->menu_pagi;
-        $menus->menu_siang = $request->menu_siang;
-        $menus->menu_malam = $request->menu_malam;
-        $menus->save();
+        $validatedData = $request->validate([
+            'tanggal_makan' => 'required|date',
+            'menu' => 'required|string'
+        ]);
+        // Access the submitted form values
+        $tanggalMakan = $validatedData['tanggal_makan'];
+        $menu = $validatedData['menu'];
+
+        $newMenu = new MenuMakanan();
+        $newMenu->tanggal_makan = $tanggalMakan;
+        $newMenu->menu = $menu;
+        $newMenu->save();
         return redirect('menumakan/index')->with('toast_success', 'Menu Makanan berhasil ditambahkan');
     }
 
@@ -58,7 +61,7 @@ class MenuMakananController extends Controller
     {
         $editmenus = MenuMakanan::find($id);
 
-        return view('admin.menumakan.edit', compact('editmenus'),[
+        return view('admin.menumakan.edit', compact('editmenus'), [
             "title" => " Edit Menu Makanan",
         ]);
     }
@@ -67,21 +70,20 @@ class MenuMakananController extends Controller
     {
         $update = MenuMakanan::find($id);
 
-        $update->tanggal_makan= $request->tanggal_makan;
-        $update->menu_pagi= $request->menu_pagi;
-        $update->menu_siang= $request->menu_siang;
-        $update->menu_malam= $request->menu_malam;
+        $update->tanggal_makan = $request->tanggal_makan;
+        $update->menu_pagi = $request->menu_pagi;
+        $update->menu_siang = $request->menu_siang;
+        $update->menu_malam = $request->menu_malam;
 
         $update->save();
-        return redirect('menumakan/index')->with('toast_success', 'Menu Makanan berhasil diubah');
+        return redirect('menumakan/index')->with('success', 'Menu Makanan berhasil diubah');
     }
 
     public function delete($id)
     {
         $menumakan = MenuMakanan::find($id);
         if ($menumakan->delete()) {
-            return redirect()->back()->with('toast_success', 'Menu Makanan berhasil dihapus');
+            return redirect()->back()->with('success', 'Menu Makanan berhasil dihapus');
         }
     }
-
 }

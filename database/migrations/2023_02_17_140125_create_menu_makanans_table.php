@@ -16,9 +16,7 @@ return new class extends Migration
         Schema::create('menu_makanans', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal_makan');
-            $table->string('menu_pagi');
-            $table->string('menu_siang');
-            $table->string('menu_malam');
+            $table->string('menu');
             $table->timestamps();
         });
     }

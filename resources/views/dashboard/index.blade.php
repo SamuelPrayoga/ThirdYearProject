@@ -138,7 +138,9 @@
                 </figure>
             </div>
         </div>
-        <div class="container">
+    </div>
+    <div class="container">
+        <div class="row">
             <div class="col">
                 <figure class="highcharts-figure">
                     <div id="containers2"></div>
@@ -147,8 +149,17 @@
                     </p>
                 </figure>
             </div>
+            <div class="col">
+                <figure class="highcharts-figure">
+                    <div id="containers3"></div>
+                    <p class="highcharts-description">
+                        {{-- ini description --}}
+                    </p>
+                </figure>
+            </div>
         </div>
     </div>
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -229,7 +240,7 @@
     <script>
         Highcharts.chart('containers1', {
             chart: {
-                type: 'column'
+                type: 'line'
             },
             title: {
                 text: 'Jumlah Data Mahasiswa Alergi berdasarkan Jenis Alergi'
@@ -239,18 +250,24 @@
             },
             xAxis: {
                 categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
+                    'Ikan Laut',
+                    'Telur',
+                    'Ikan Lele',
+                    'Seafood',
+                    'Makanan Pedas',
+                    'Daging Kerbau/Sapi/Kambing',
+                    'Daging Ayam',
+                    'Ikan Mas',
+                    'Daun Singkong',
+                    'Terung',
+                    'Jamur',
+                    'Kikil',
+                    'Kacang Kedelai',
+                    'Kacangan',
+                    'Ikan Mujahir',
+                    'Nenas',
+                    'Pepaya',
+                    'Gori'
                 ],
                 crosshair: true
             },
@@ -263,7 +280,7 @@
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y} Mahasiswa</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -275,105 +292,104 @@
                 }
             },
             series: [{
-                name: 'Tokyo',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4,
-                    194.1, 95.6, 54.4
-                ]
-
-            }, {
-                name: 'New York',
-                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5,
-                    106.6, 92.3
-                ]
-
-            }, {
-                name: 'London',
-                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3,
-                    51.2
-                ]
-
-            }, {
-                name: 'Berlin',
-                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8,
-                    51.1
+                name: 'Jumlah Alergi',
+                data: [{{ $countAllergiesLaut }}, {{ $countAllergiesTelur }}, {{ $countAllergiesLele }},
+                    {{ $countAllergiesSeafood }}, {{ $countAllergiesPedas }},
+                    {{ $countAllergiesDagingSapi }}, {{ $countAllergiesAyam }},
+                    {{ $countAllergiesIkanMas }}, {{ $countAllergiesDaunSingkong }},
+                    {{ $countAllergiesTerung }}, {{ $countAllergiesJamur }},
+                    {{ $countAllergiesKikil }}
                 ]
 
             }]
         });
     </script>
-        <script>
-            Highcharts.chart('containers2', {
-                chart: {
-                    type: 'column'
-                },
+    <script>
+        var kebersihanData = @json($kebersihanData);
+        var pendingData = @json($pendingData);
+
+        // Membuat array untuk menyimpan nama bulan sesuai dengan index
+        var monthNames = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec'
+        ];
+
+        // Mengubah data bulan pada sumbu x menjadi nama bulan dari data yang diambil
+        var categories = allergyData.map(function(data) {
+            var monthIndex = parseInt(data.month) - 1; // Mengurangi 1 karena indeks dimulai dari 0
+            return monthNames[monthIndex];
+        });
+        var categories = kebersihanData.map(function(data) {
+            var monthIndex = parseInt(data.month) - 1; // Mengurangi 1 karena indeks dimulai dari 0
+            return monthNames[monthIndex];
+        });
+
+        Highcharts.chart('containers2', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Grafik Penilaian Kritik dan Saran Kantin'
+            },
+            subtitle: {
+                text: 'Sumber: Kantin IT Del'
+            },
+            xAxis: {
+                categories: categories, // Menggunakan array categories yang baru
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
                 title: {
-                    text: 'Jumlah Data Mahasiswa Alergi berdasarkan Jenis Alergi'
-                },
-                subtitle: {
-                    text: 'Source: Kantin IT Del'
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Jumlah (Mahasiswa)'
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
-                    }
-                },
-                series: [{
-                    name: 'Tokyo',
-                    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4,
-                        194.1, 95.6, 54.4
-                    ]
+                    text: 'Jumlah (Mahasiswa)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Mahasiswa</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Kebersihan Kantin',
+                data: kebersihanData.map(function(data) {
+                    return data.count;
+                })
+            }, {
+                name: 'Pelayanan Kantin',
+                data: pendingData.map(function(data) {
+                    return data.count;
+                })
+            }, {
+                name: 'Menu Makanan',
+                data: pendingData.map(function(data) {
+                    return data.count;
+                })
+            },{
+                name: 'Sistem Informasi Kantin',
+                data: pendingData.map(function(data) {
+                    return data.count;
+                })
+            }]
+        });
+    </script>
 
-                }, {
-                    name: 'New York',
-                    data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5,
-                        106.6, 92.3
-                    ]
-
-                }, {
-                    name: 'London',
-                    data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3,
-                        51.2
-                    ]
-
-                }, {
-                    name: 'Berlin',
-                    data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8,
-                        51.1
-                    ]
-
-                }]
-            });
-        </script>
 @endsection

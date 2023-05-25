@@ -182,12 +182,14 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        // CKSource\CKEditor\CKEditorServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
          Maatwebsite\Excel\ExcelServiceProvider::class,
+        //  CKSource\CKEditor\CKEditorServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -198,7 +200,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
     ],
 
     /*
@@ -216,7 +218,8 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'CKEditor' => CKSource\CKEditor\Facades\CKEditor::class
+        // 'CKEditor' => CKSource\CKEditor\Facades\CKEditor::class,
     ])->toArray(),
 
 ];
