@@ -47,11 +47,11 @@ class MenuMakananController extends Controller
             'menu' => 'required|string'
         ]);
         // Access the submitted form values
-        $tanggalMakan = $validatedData['tanggal_makan'];
+        $tanggal_makan = $validatedData['tanggal_makan'];
         $menu = $validatedData['menu'];
 
         $newMenu = new MenuMakanan();
-        $newMenu->tanggal_makan = $tanggalMakan;
+        $newMenu->tanggal_makan = $tanggal_makan;
         $newMenu->menu = $menu;
         $newMenu->save();
         return redirect('menumakan/index')->with('toast_success', 'Menu Makanan berhasil ditambahkan');
