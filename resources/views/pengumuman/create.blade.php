@@ -28,9 +28,25 @@
         <!-- Script CKEditor -->
         <script>
             ClassicEditor
-                .create(document.querySelector('#editor'))
-                .then(editor => {
-                    console.log(editor);
+                .create(document.querySelector('#editor'), {
+                    toolbar: {
+                        items: [
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'link',
+                            'bulletedList',
+                            'numberedList',
+                            'blockQuote',
+                            'undo',
+                            'redo',
+                            'fontSize',
+                            'fontFamily',
+                            'highlight'
+                        ]
+                    },
+                    language: 'en'
                 })
                 .catch(error => {
                     console.error(error);

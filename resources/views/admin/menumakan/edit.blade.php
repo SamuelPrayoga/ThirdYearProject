@@ -25,7 +25,7 @@
 <label for="" id="">Menu Makan Malam:</label>
 <textarea class="ckeditor form-control" name="menu_malam" id="task-textarea3" cols="30" rows="10" required  >{{$editmenus->menu_malam}}</textarea>
 <br>
-<button type="submit" class="btn btn-primary"><i class="bi bi-clipboard2-plus-fill"></i> Simpan</button>
+<button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-clipboard2-plus-fill"></i> Simpan</button>
 </form>
 @endsection
 

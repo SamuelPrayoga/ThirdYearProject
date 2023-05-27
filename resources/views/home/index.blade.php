@@ -8,8 +8,11 @@
                     @if ($show_laporkan_makan)
                         <button type="button" class="btn" id="btn-day" data-toggle="modal" data-target="#exampleModal1"
                             href="#" role="button"
-                            style="font-weight: bolder; color: #000000; background-color: #FFC107; border: 2px solid black; animation: blink 0.5s linear infinite;">
-                            <i class="fas fa-exclamation-triangle"></i> Laporkan Waktu Makan Anda untuk besok Hari</button>
+                            style="font-weight: bolder; color: #ffffff; background-color: #ffffff;
+                    border: 2px solid rgb(255, 255, 255); animation: blink 0.5s linear infinite; display: none;">
+                            <i class="fas fa-exclamation-triangle"></i> Laporkan Waktu Makan Anda untuk besok Hari
+                        </button>
+
 
                         <style>
                             @keyframes blink {
@@ -133,59 +136,61 @@
                         <strong>Informasi Mahasiswa</strong>
                     </div>
                     <div class="card-body">
-                        <table class="table ps-3">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    @if (auth()->user()->avatar)
-                                        <img src="{{ asset('avatars/' . auth()->user()->avatar) }}" alt="Foto Profil"
-                                            style="border-radius: 10%;" width="125px" height="120px">
-                                    @else
-                                        <img src="{{ asset('avatarDefault/avatarDefault.png') }}" alt="Default Avatar"
-                                            style="border-radius: 10%;" width="125px" height="120px">
-                                    @endif
-                                </td>
+                        <div class="card mb-3 table-responsive">
+                            <table class="table ps-3">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        @if (auth()->user()->avatar)
+                                            <img src="{{ asset('avatars/' . auth()->user()->avatar) }}" alt="Foto Profil"
+                                                style="border-radius: 10%;" width="125px" height="120px">
+                                        @else
+                                            <img src="{{ asset('avatarDefault/avatarDefault.png') }}" alt="Default Avatar"
+                                                style="border-radius: 10%;" width="125px" height="120px">
+                                        @endif
+                                    </td>
 
 
-                            </tr>
-                            <tr>
-                                <td>NIM</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->nim }}</td>
-                            </tr>
-                            <tr>
-                                <td>Nama</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Asrama</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->asrama }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>Angkatan</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->angkatan }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>:</td>
-                                <td><a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>Telepon</td>
-                                <td>:</td>
-                                <td><a href="tel:{{ auth()->user()->phone }}">{{ auth()->user()->phone }}</a></td>
-                            </tr>
-                            <tr>
-                                <td>Bergabung</td>
-                                <td>:</td>
-                                <td>{{ auth()->user()->created_at->diffForHumans() }}
-                                    ({{ auth()->user()->created_at->format('d M Y') }})</td>
-                            </tr>
-                        </table>
+                                </tr>
+                                <tr>
+                                    <td>NIM</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->nim }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nama</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Asrama</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->asrama }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Angkatan</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->angkatan }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>:</td>
+                                    <td><a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Telepon</td>
+                                    <td>:</td>
+                                    <td><a href="tel:{{ auth()->user()->phone }}">{{ auth()->user()->phone }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Bergabung</td>
+                                    <td>:</td>
+                                    <td>{{ auth()->user()->created_at->diffForHumans() }}
+                                        ({{ auth()->user()->created_at->format('d M Y') }})</td>
+                                </tr>
+                            </table>
+                        </div>
                         <br>
 
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
@@ -255,21 +260,37 @@
                                                 <div
                                                     class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
                                                     <label><input type="radio" name="value_rating"
-                                                            value="Sangat Tidak Menyukai" /><span
-                                                            class="border rounded px-3 py-2">1</span></label>
+                                                            value="Sangat Tidak Menyukai" /><i
+                                                            class="fa fa-star"></i></label>
                                                     <label><input type="radio" name="value_rating"
-                                                            value="Tidak Menyukai" /><span
-                                                            class="border rounded px-3 py-2">2</span></label>
+                                                            value="Tidak Menyukai" /><i class="fa fa-star"></i></label>
                                                     <label><input type="radio" name="value_rating"
-                                                            value="Biasa Saja" /><span
-                                                            class="border rounded px-3 py-2">3</span></label>
+                                                            value="Biasa Saja" /><i class="fa fa-star"></i></label>
                                                     <label><input type="radio" name="value_rating"
-                                                            value="Menyukai" /><span
-                                                            class="border rounded px-3 py-2">4</span></label>
+                                                            value="Menyukai" /><i class="fa fa-star"></i></label>
                                                     <label><input type="radio" name="value_rating"
-                                                            value="Sangat Menyukai" /><span
-                                                            class="border rounded px-3 py-2">5</span></label>
+                                                            value="Sangat Menyukai" /><i class="fa fa-star"></i></label>
                                                 </div>
+                                                <script>
+                                                    // Get all the radio inputs and star icons
+                                                    const radioInputs = document.querySelectorAll('input[type="radio"]');
+                                                    const starIcons = document.querySelectorAll('.fa-star');
+
+                                                    // Attach event listeners to radio inputs
+                                                    radioInputs.forEach((input, index) => {
+                                                        input.addEventListener('change', () => {
+                                                            // Reset the "checked" class on all star icons
+                                                            starIcons.forEach((icon, iconIndex) => {
+                                                                if (iconIndex <= index) {
+                                                                    icon.classList.add('checked');
+                                                                } else {
+                                                                    icon.classList.remove('checked');
+                                                                }
+                                                            });
+                                                        });
+                                                    });
+                                                </script>
+
                                                 <div class="rating-labels d-flex justify-content-between mt-1">
                                                     <label><small>Sangat Tidak Suka</small></label>
                                                     <label><small>Sangat Menyukai</small></label>
@@ -292,7 +313,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="input-two">Deskripsi</label>
-                                                <textarea class="form-control" id="input-two" rows="2" name="description" required></textarea>
+                                                <textarea class="form-control" id="input-two" rows="3" name="description" required></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="input-two">Gambar (opsional)</label>
@@ -408,19 +429,7 @@
     </div>
     <!-- Footer -->
     @include('partials.footer')
-    {{-- <script>
-        function showButton() {
-            var today = new Date();
-            var dayOfWeek = today.getDay(); // mengambil hari dalam bentuk angka, dimulai dari 0 (Minggu) hingga 6 (Sabtu)
 
-            // tampilkan tombol hanya pada hari Kamis (4) dan Jumat (5)
-            if (dayOfWeek === 4 || dayOfWeek === 5) {
-                document.getElementById("btn-day").style.display = "inline-block";
-            } else {
-                document.getElementById("btn-day").style.display = "none";
-            }
-        }
-    </script> --}}
     <script>
         function showButton() {
             var today = new Date();

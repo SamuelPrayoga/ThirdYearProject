@@ -22,30 +22,37 @@
                 <tr>
                     <th>No</th>
                     <th>Tanggal</th>
-                    <th>Menu</th>
+                    <th>Menu Pagi</th>
+                    <th>Menu Siang</th>
+                    <th>Menu Malam</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                @php $i=1 @endphp
-                @foreach ($menumakan as $menumakans)
-                    <tr>
-                        <td width="2%">{{ $i++ }}.</td>
-                        <td width="20%">{{ date('l, d M Y', strtotime($menumakans->tanggal_makan)) }}</td>
-                        <td width="20%">{!! $menumakans->menu !!}</td>
-                        <td>
-                            <a href="/menumakan/edit/{{ $menumakans->id }}" class="badge text-bg-warning"><i
-                                    class="bi bi-pencil-square"></i> Edit</a>
-                            <a href="" data-toggle="modal" data-target="#myModal{{ $menumakans->id }}"
-                                class="badge text-bg-danger"><i class="bi bi-trash-fill"></i> Hapus</a>
-                            {{-- <a href="" class="badge text-bg-success"><i class="bi bi-send-exclamation-fill"></i> Ajukan Perubahan</a> --}}
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
+            @if ($menumakan->isEmpty())
+                <td colspan="6"><small class="text-muted">Belum ada Menu Makanan Ditambahkan.</small></td>
+            @else
+                <tbody>
+                    @php $i=1 @endphp
+                    @foreach ($menumakan as $menumakans)
+                        <tr>
+                            <td width="2%">{{ $i++ }}.</td>
+                            <td width="20%">{{ date('l, d M Y', strtotime($menumakans->tanggal_makan)) }}</td>
+                            <td width="20%">{!! $menumakans->menu_pagi !!}</td>
+                            <td width="20%">{!! $menumakans->menu_siang !!}</td>
+                            <td width="20%">{!! $menumakans->menu_malam !!}</td>
+                            <td>
+                                <a href="/menumakan/edit/{{ $menumakans->id }}" class="badge text-bg-warning"><i
+                                        class="bi bi-pencil-square"></i> Edit</a>
+                                <a href="" data-toggle="modal" data-target="#myModal{{ $menumakans->id }}"
+                                    class="badge text-bg-danger"><i class="bi bi-trash-fill"></i> Hapus</a>
+                                {{-- <a href="" class="badge text-bg-success"><i class="bi bi-send-exclamation-fill"></i> Ajukan Perubahan</a> --}}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            @endif
         </table>
     </div>
-
     @foreach ($menumakan as $menumakans)
         <div class="modal fade" id="myModal{{ $menumakans->id }}" role="dialog">
             <div class="modal-dialog">

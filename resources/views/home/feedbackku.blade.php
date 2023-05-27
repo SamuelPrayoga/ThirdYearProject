@@ -9,6 +9,7 @@
                         <center>Kritik dan Saran Saya</center>
                     </div>
                     <div class="card-body">
+                        <div class="card mb-3 table-responsive">
                         <table class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
@@ -71,8 +72,8 @@
                                     @endforeach
                                 </tbody>
                             @endif
-
                         </table>
+                        </div>
                     </div>
 
                     @if (session('message'))

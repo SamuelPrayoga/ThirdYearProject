@@ -17,7 +17,8 @@
 
         <div class="mb-3">
             <label for="deskripsi" class="form-label">Deskripsi</label>
-            <textarea class="ckeditor form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="editor" rows="5">{{ old('deskripsi', $pengumuman->deskripsi) }}</textarea>
+            <textarea class="ckeditor form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="editor"
+                rows="5">{{ old('deskripsi', $pengumuman->deskripsi) }}</textarea>
             @error('deskripsi')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -29,9 +30,25 @@
         <!-- Script CKEditor -->
         <script>
             ClassicEditor
-                .create(document.querySelector('#editor'))
-                .then(editor => {
-                    console.log(editor);
+                .create(document.querySelector('#editor'), {
+                    toolbar: {
+                        items: [
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'link',
+                            'bulletedList',
+                            'numberedList',
+                            'blockQuote',
+                            'fontSize',
+                            'fontFamily',
+                            'highlight',
+                            'undo',
+                            'redo'
+                        ]
+                    },
+                    language: 'en'
                 })
                 .catch(error => {
                     console.error(error);
@@ -40,7 +57,6 @@
 
         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
     </form>
-
 @endsection
 
 @push('script')

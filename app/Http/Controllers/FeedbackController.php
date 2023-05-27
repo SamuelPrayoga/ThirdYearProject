@@ -33,18 +33,19 @@ class FeedbackController extends Controller
     {
         // Ambil user_id dan tanggal hari ini
         $user_id = $req->UserID;
-        $today = date('Y-m-d');
+        // $today = date('Y-m-d');
 
         // Cek apakah user sudah mengisi feedback pada hari ini
-        $existingFeedback = Feedback::where('user_id', $user_id)->where('date', $today)->first();
-        if ($existingFeedback) {
-            return redirect()->back()->with('error', 'Gagal! Anda sudah mengisi Feedback pada hari ini. Feedback dapat diisi hanya sekali dalam sehari');
-        }
+        // $existingFeedback = Feedback::where('user_id', $user_id)->where('date', $today)->first();
+        // if ($existingFeedback) {
+        //     return redirect()->back()->with('error', 'Gagal! Anda sudah mengisi Feedback pada hari ini. Feedback dapat diisi hanya sekali dalam sehari');
+        // }
 
         // Buat instance baru Feedback
         $feedback = new Feedback;
         $feedback->user_id = $user_id;
-        $feedback->date = $today;
+        $feedback->date = $req->date;
+        // $feedback->date = $today;
         $feedback->value_rating = $req->value_rating;
         $feedback->subject_review = $req->subject_review;
         $feedback->description = $req->description;

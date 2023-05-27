@@ -42,19 +42,13 @@ class MenuMakananController extends Controller
 
     public function createmenus(Request $request)
     {
-        $validatedData = $request->validate([
-            'tanggal_makan' => 'required|date',
-            'menu' => 'required|string'
-        ]);
-        // Access the submitted form values
-        $tanggal_makan = $validatedData['tanggal_makan'];
-        $menu = $validatedData['menu'];
-
-        $newMenu = new MenuMakanan();
-        $newMenu->tanggal_makan = $tanggal_makan;
-        $newMenu->menu = $menu;
-        $newMenu->save();
-        return redirect('menumakan/index')->with('toast_success', 'Menu Makanan berhasil ditambahkan');
+        $menus = new MenuMakanan();
+        $menus->tanggal_makan = $request->tanggal_makan;
+        $menus->menu_pagi = $request->menu_pagi;
+        $menus->menu_siang = $request->menu_siang;
+        $menus->menu_malam = $request->menu_malam;
+        $menus->save();
+        return redirect('menumakan/index')->with('success', 'Menu Makanan berhasil ditambahkan');
     }
 
     public function edit($id)

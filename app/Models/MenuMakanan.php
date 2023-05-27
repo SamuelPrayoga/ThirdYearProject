@@ -10,7 +10,7 @@ class MenuMakanan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tanggal_makan', 'menu'];
+    protected $fillable = ['tanggal_makan', 'menu_pagi','menu_siang','menu_malam'];
 
     // public function getDateAttribute()
     // {

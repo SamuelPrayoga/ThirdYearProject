@@ -47,7 +47,7 @@
                     <a class="nav-link {{ request()->routeIs('pengguna.*') ? 'active' : '' }}"
                         href="{{ route('pengguna.index') }}">
                         <i class="fas fa-user-graduate"></i>
-                        Mahasiswa
+                        Pengguna/Mahasiswa
                     </a>
                 </li>
             @endif

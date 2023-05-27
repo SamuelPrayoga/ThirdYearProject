@@ -1,26 +1,33 @@
-.rating-flex {
-    flex-wrap: wrap;
-  }
-
-  .rating-input-wrapper label {
+.rating-input-wrapper label {
+    display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
-  }
+}
 
-  .rating-input-wrapper input[type="checkbox"] {
+.rating-input-wrapper input[type="radio"] {
     display: none;
-  }
+}
 
-  .rating-input-wrapper input[type="checkbox"] + span {
+/* .rating-input-wrapper .star {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(star.png);
+    background-size: cover;
     cursor: pointer;
+} */
+
+.rating-input-wrapper input[type="radio"]:checked + label .star {
+    /* Change the star color when selected */
+    background-image: url(selected-star.png); /* Replace 'selected-star.png' with your selected star image path */
+}
+
+.rating-input-wrapper .fa-star {
+    font-size: 20px;
+    color: #ccc;
+    transition: color 0.3s;
   }
 
-  .rating-input-wrapper input[type="checkbox"]:checked + span {
-    background-color: #367fa9;
-    color: #fff;
-  }
-
-  .rating-input-wrapper input[type="checkbox"] + span:hover {
-    background-color: #367fa9;
-    color: #fff;
+  .rating-input-wrapper .fa-star.checked {
+    color: #f7ca18;
   }
