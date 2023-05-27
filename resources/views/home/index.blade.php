@@ -6,29 +6,29 @@
             <div class="col-md-8">
                 <div class="card shadow-sm mb-2">
                     @if ($show_laporkan_makan)
-                        <button type="button" class="btn" id="btn-day" data-toggle="modal" data-target="#exampleModal1"
-                            href="#" role="button"
-                            style="font-weight: bolder; color: #ffffff; background-color: #ffffff;
-                    border: 2px solid rgb(255, 255, 255); animation: blink 0.5s linear infinite; display: none;">
-                            <i class="fas fa-exclamation-triangle"></i> Laporkan Waktu Makan Anda untuk besok Hari
-                        </button>
+                    <button type="button" class="btn" id="btn-day" data-toggle="modal" data-target="#exampleModal1"
+                        href="#" role="button"
+                        style="font-weight: bolder; color: #ffffff; background-color: #ffffff;
+                border: 2px solid rgb(255, 255, 255); animation: blink 0.5s linear infinite; display: none;">
+                        <i class="fas fa-exclamation-triangle"></i> Laporkan Waktu Makan Anda untuk besok Hari
+                    </button>
 
 
-                        <style>
-                            @keyframes blink {
-                                0% {
-                                    opacity: 1;
-                                }
-
-                                50% {
-                                    opacity: 0.5;
-                                }
-
-                                100% {
-                                    opacity: 1;
-                                }
+                    <style>
+                        @keyframes blink {
+                            0% {
+                                opacity: 1;
                             }
-                        </style>
+
+                            50% {
+                                opacity: 0.5;
+                            }
+
+                            100% {
+                                opacity: 1;
+                            }
+                        }
+                    </style>
                     @endif
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                     <script>
@@ -431,18 +431,11 @@
     @include('partials.footer')
 
     <script>
-        function showButton() {
-            var today = new Date();
-            var dayOfWeek = today.getDay(); // mengambil hari dalam bentuk angka, dimulai dari 0 (Minggu) hingga 6 (Sabtu)
+        var today = new Date();
+        var dayOfWeek = today.getDay(); // mengambil hari dalam bentuk angka, dimulai dari 0 (Minggu) hingga 6 (Sabtu)
 
-            var currentHour = today.getHours(); // mengambil jam saat ini
-
-            // tampilkan tombol hanya pada hari Kamis (4) dan Jumat (5) sebelum jam 24:00 (12 AM)
-            if ((dayOfWeek === 4 && currentHour < 24) || dayOfWeek === 5) {
-                document.getElementById("btn-day").style.display = "inline-block";
-            } else {
-                document.getElementById("btn-day").style.display = "none";
-            }
+        if (dayOfWeek === 4 || dayOfWeek === 5) {
+            document.getElementById("btn-day").style.display = "inline-block";
         }
     </script>
 

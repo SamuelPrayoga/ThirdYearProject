@@ -23,13 +23,16 @@ class HomeController extends Controller
         $announce = DB::table('pengumumen')->where('published', 1)->get();
         $title = "Beranda";
 
-        $today = now()->toDateString();
+        $today = date('N');
+        $allowedDays = array(4, 5);  // Kamis (4) dan Jumat (5)
         $laporan_makanan = LaporMakan::where('created_at', 'like', "$today%")
             ->where('user_id', auth()->id())
             ->first();
 
         $show_laporkan_makan = true;
-        if ($laporan_makanan && $laporan_makanan->is_makan) {
+        if (in_array($today, $allowedDays)) {
+            // Tampilkan form pada hari Kamis dan Jumat
+        } else {
             $show_laporkan_makan = false;
         }
 
