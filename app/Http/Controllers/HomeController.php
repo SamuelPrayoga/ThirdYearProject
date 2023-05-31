@@ -7,6 +7,7 @@ use App\Models\Feedback;
 use App\Models\Holiday;
 use App\Models\Permission;
 use App\Models\LaporMakan;
+use App\Models\Pengumuman;
 use App\Models\Presence;
 use App\Models\User;
 use Carbon\CarbonPeriod;
@@ -17,24 +18,22 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-
     public function index()
     {
-        $announce = DB::table('pengumumen')->where('published', 1)->get();
+        $endDate = now()->addDays(1)->toDateString();
+
+        $announce = Pengumuman::where('published', 1)
+            ->whereBetween('tanggal_pembuatan', [now()->toDateString(), $endDate])
+            ->get();
+
         $title = "Beranda";
 
-        $today = date('N');
-        $allowedDays = array(4, 5);  // Kamis (4) dan Jumat (5)
+        $today = now()->toDateString();
         $laporan_makanan = LaporMakan::where('created_at', 'like', "$today%")
             ->where('user_id', auth()->id())
             ->first();
 
         $show_laporkan_makan = true;
-        if (in_array($today, $allowedDays)) {
-            // Tampilkan form pada hari Kamis dan Jumat
-        } else {
-            $show_laporkan_makan = false;
-        }
 
         $attendances = Attendance::query()
             // ->with('positions')
@@ -43,24 +42,8 @@ class HomeController extends Controller
             ->sortByDesc('data.is_end')
             ->sortByDesc('data.is_start');
 
-        return view('home.index', compact('announce', 'attendances', 'title', 'show_laporkan_makan'));
+        return view('home.index', compact('announce', 'attendances', 'title', 'show_laporkan_makan', 'laporan_makanan'));
     }
-
-
-    // public function index()
-    // {
-    //     $announce = DB::table('pengumumen')->where('published', 1)->get();
-    //     $title = "Beranda";
-    //     $attendances = Attendance::query()
-    //         // ->with('positions')
-    //         ->forCurrentUser(auth()->user()->position_id)
-    //         ->get()
-    //         ->sortByDesc('data.is_end')
-    //         ->sortByDesc('data.is_start');
-
-    //     return view('home.index', compact('announce', 'attendances', 'title'));
-    // }
-
 
     public function show(Attendance $attendance)
     {

@@ -82,25 +82,6 @@ class PengumumanController extends Controller
             ->with('toast_success', 'Pengumuman Berhasil Ditambahkan!');
     }
 
-    // public function store(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'deskripsi' => 'required',
-    //     ]);
-
-    //     $pengumuman = new Pengumuman;
-    //     $pengumuman->tanggal_pembuatan = now();
-    //     $pengumuman->tanggal_berakhir = now()->addDays(1);
-    //     $pengumuman->deskripsi = $request->deskripsi;
-
-    //     $pengumuman->save();
-
-    //     return redirect()->route('pengumuman.index')
-    //     // ->with('success', 'Pengumuman Berhasil Ditambahkan');
-    //     ->with('toast_success', 'Pengumuman Berhasil Ditambahkan!');
-    // }
-
-
     public function edit($id)
     {
         $pengumuman = Pengumuman::find($id);
@@ -125,15 +106,6 @@ class PengumumanController extends Controller
         return redirect()->route('pengumuman.index')->with('toast_success', 'Pengumuman berhasil diubah');
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $title = "Edit Pengumuman";
-    //     $pengumuman = Pengumuman::find($id);
-    //     $pengumuman->deskripsi = $request->input('deskripsi');
-    //     $pengumuman->save();
-
-    //     return redirect()->route('pengumuman.index')->with('toast_success', 'Pengumuman berhasil diubah');
-    // }
     public function publish($id)
     {
         $pengumuman = Pengumuman::find($id);

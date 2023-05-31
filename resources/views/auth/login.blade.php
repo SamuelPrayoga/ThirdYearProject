@@ -17,16 +17,10 @@
                 <div class="mb-3">
                     <label for="floatingInputEmail" id="labels">Email Zimbra</label>
                     <input type="email" class="form-control" id="floatingInputEmail" name="email" required>
-                    @if ($errors->has('email'))
-                        <span class="text-danger">{{ $errors->first('email') }} </span>
-                    @endif
                 </div>
                 <div class="mb-3">
                     <label for="floatingPassword" id="labels">Password</label>
                     <input type="password" class="form-control" id="floatingPassword" name="password" required>
-                    @if ($errors->has('email'))
-                        <span class="text-danger">{{ $errors->first('password') }} </span>
-                    @endif
                 </div>
 
                 <div class="mb-3">
@@ -43,17 +37,6 @@
                         2023</p>
                 </center>
             </form>
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
         </main>
     </div>
     <style>
