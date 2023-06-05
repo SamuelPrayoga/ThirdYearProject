@@ -37,7 +37,7 @@ async function handlePresence(baseurl, code) {
     const data = res.json();
 
     let dataToast = {
-        title: "QRCode Absensi Pesan",
+        title: "QRCode presensi makan Pesan",
         body: data.message,
         colorClass: toast.TOAST_SUCCESS, // default
     };

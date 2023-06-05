@@ -47,8 +47,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
                         <a class="dropdown-item" href="{{ route('home.allergy-reports.create') }}"><i
                                 class="bi bi-clipboard-x"></i> Alergi Makanan</a>
-                        <a class="dropdown-item" href="{{ route('home.laporan-barang') }}"><i
-                                class="bi bi-question-circle"></i></i> Barang Hilang dan Temuan</a>
+                        <a class="dropdown-item" href="{{ route('home.laporan-barang') }}"><i class="fas fa-briefcase"></i>
+                            Barang Hilang dan Temuan</a>
                     </div>
                 </li>
                 <li class="nav-item active">

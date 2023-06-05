@@ -9,7 +9,7 @@
     <div>
         <a href="{{ route('attendances.create') }}" class="btn btn-sm btn-primary">
             <span data-feather="plus-circle" class="align-text-bottom me-1"></span>
-            Tambah Data Absensi
+            Tambah Data presensi makan
         </a>
     </div>
 </div>

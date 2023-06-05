@@ -12,9 +12,9 @@
                         <th>#</th>
                         <th>Tanggal Ulasan</th>
                         <th>Kategori</th>
-                        <th>Penilaian</th>
+                        <th>Rating</th>
                         <th>Deskripsi</th>
-                        <th>File</th>
+                        <th>Foto</th>
                     </tr>
                 </thead>
                 @if ($feedbacks->isEmpty())
@@ -27,7 +27,30 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ \Carbon\Carbon::parse($ulasan->date)->format('d M Y') }}</td>
                                 <td>{{ $ulasan->subject_review }}</td>
-                                <td>{{ $ulasan->value_rating }}</td>
+                                <td class="rating-cell" width="18%;">
+                                    @if($ulasan->value_rating == 'Sangat Tidak Menyukai')
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i> <!-- bintang kuning -->
+                                    @elseif($ulasan->value_rating == 'Tidak Menyukai')
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i> <!-- dua bintang kuning -->
+                                    @elseif($ulasan->value_rating == 'Biasa Saja')
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i> <!-- tiga bintang kuning -->
+                                    @elseif($ulasan->value_rating == 'Menyukai')
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i> <!-- empat bintang kuning -->
+                                    @elseif($ulasan->value_rating == 'Sangat Menyukai')
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i>
+                                        <i class="fas fa-star" style="color: #f7ca18;"></i> <!-- lima bintang kuning -->
+                                    @endif
+                                </td>
+                                {{-- <td>{{ $ulasan->value_rating }}</td> --}}
                                 <td>{{ $ulasan->description }}</td>
                                 <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                         data-target="#exampleModal{{ $ulasan->id }}">

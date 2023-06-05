@@ -73,6 +73,9 @@ class HomeController extends Controller
         $holiday = $attendance->data->is_holiday_today ? Holiday::query()
             ->where('holiday_date', now()->toDateString())
             ->first() : false;
+        // $is_makan = $attendance->data->is_makan ? LaporMakan::query()
+        //     ->where('is_makan')
+        //     ->first(): false;
 
         $history = Presence::query()
             ->where('user_id', auth()->user()->id)
@@ -90,12 +93,13 @@ class HomeController extends Controller
         $priodDate = array_slice(array_reverse($priodDate), 0, 30);
 
         return view('home.show', [
-            "title" => "Informasi Absensi Kehadiran Makan",
+            "title" => "Informasi Kehadiran Makan",
             "attendance" => $attendance,
             "data" => $data,
             "holiday" => $holiday,
             'history' => $history,
-            'priodDate' => $priodDate
+            'priodDate' => $priodDate,
+            // "is_makan" => $is_makan
         ]);
     }
 
@@ -114,7 +118,7 @@ class HomeController extends Controller
         $attendance = Attendance::query()->where('code', $code)->first();
 
         if ($attendance && $attendance->data->is_start && $attendance->data->is_using_qrcode) { // sama (harus) dengan view
-            // fix: user bisa absensi dengan tanggal yang sama, cek apakah user id attendance id dan presence date sudah ada
+            // fix: user bisa presensi makan dengan tanggal yang sama, cek apakah user id attendance id dan presence date sudah ada
             Presence::create([
                 "user_id" => auth()->user()->id,
                 "attendance_id" => $attendance->id,
@@ -131,7 +135,7 @@ class HomeController extends Controller
 
         return response()->json([
             "success" => false,
-            "message" => "Terjadi masalah pada saat melakukan absensi."
+            "message" => "Terjadi masalah pada saat melakukan presensi Makan."
         ], 400);
     }
 
@@ -143,10 +147,10 @@ class HomeController extends Controller
         if (!$attendance)
             return response()->json([
                 "success" => false,
-                "message" => "Terjadi masalah pada saat melakukan absensi."
+                "message" => "Terjadi masalah pada saat melakukan presensi Makan."
             ], 400);
 
-        // jika absensi sudah jam pulang (is_end) dan tidak menggunakan qrcode (kebalikan)
+        // jika presensi makan sudah jam pulang (is_end) dan tidak menggunakan qrcode (kebalikan)
         if (!$attendance->data->is_end && !$attendance->data->is_using_qrcode) // sama (harus) dengan view
             return false;
 
@@ -160,7 +164,7 @@ class HomeController extends Controller
         if (!$presence) // hanya untuk sekedar keamanan (kemungkinan)
             return response()->json([
                 "success" => false,
-                "message" => "Terjadi masalah pada saat melakukan absensi."
+                "message" => "Terjadi masalah pada saat melakukan presensi."
             ], 400);
 
         // untuk refresh if statement
@@ -169,7 +173,7 @@ class HomeController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."
+            "message" => "Atas nama '" . auth()->user()->name . "' berhasil melakukan presensi pulang makan."
         ]);
     }
 }

@@ -24,7 +24,7 @@ class AttendanceCreateForm extends AttendanceAbstract
         $attendance = Attendance::create($this->attendance);
         $attendance->positions()->attach($position_ids);
 
-        redirect()->route('attendances.index')->with('toast_success', "Data absensi berhasil ditambahkan.");
+        redirect()->route('attendances.index')->with('toast_success', "Data presensi makan berhasil ditambahkan.");
     }
 
     public function render()

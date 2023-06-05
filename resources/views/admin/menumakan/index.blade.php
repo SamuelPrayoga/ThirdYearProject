@@ -40,11 +40,13 @@
                             <td width="20%">{!! $menumakans->menu_pagi !!}</td>
                             <td width="20%">{!! $menumakans->menu_siang !!}</td>
                             <td width="20%">{!! $menumakans->menu_malam !!}</td>
-                            <td>
-                                <a href="/menumakan/edit/{{ $menumakans->id }}" class="badge text-bg-warning"><i
-                                        class="bi bi-pencil-square"></i> Edit</a>
+                            <td><a href="/menumakan/edit/{{ $menumakans->id }}" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                {{-- <a href="/menumakan/edit/{{ $menumakans->id }}" class="badge text-bg-warning"><i
+                                        class="bi bi-pencil-square"></i> Edit</a> --}}
                                 <a href="" data-toggle="modal" data-target="#myModal{{ $menumakans->id }}"
-                                    class="badge text-bg-danger"><i class="bi bi-trash-fill"></i> Hapus</a>
+                                    class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>                                </a>
                                 {{-- <a href="" class="badge text-bg-success"><i class="bi bi-send-exclamation-fill"></i> Ajukan Perubahan</a> --}}
                             </td>
                         </tr>

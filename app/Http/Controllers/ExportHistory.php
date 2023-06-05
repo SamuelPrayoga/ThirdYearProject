@@ -42,7 +42,7 @@ class ExportHistory extends Controller
                         'No' => $no++,
                         'Tanggal' => $histo->presence_date,
                         'Waktu Masuk' => $histo->presence_enter_time . ' WIB',
-                        'Waktu Selesai' => $histo->presence_out_time ? $histo->presence_out_time . ' WIB' : 'Belum Absensi Pulang',
+                        'Waktu Selesai' => $histo->presence_out_time ? $histo->presence_out_time . ' WIB' : 'Belum Pulang',
                         'Status' => $histo->is_permission ? 'Izin' : 'Makan'
                     ];
                 }

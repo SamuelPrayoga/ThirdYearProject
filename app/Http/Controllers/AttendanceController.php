@@ -10,21 +10,21 @@ class AttendanceController extends Controller
     public function index()
     {
         return view('attendances.index', [
-            "title" => "Absensi"
+            "title" => "Presensi Makan"
         ]);
     }
 
     public function create()
     {
         return view('attendances.create', [
-            "title" => "Tambah Data Absensi"
+            "title" => "Tambah Data Presensi Makan"
         ]);
     }
 
     public function edit()
     {
         return view('attendances.edit', [
-            "title" => "Edit Data Absensi",
+            "title" => "Edit Data Presensi Makan",
             "attendance" => Attendance::findOrFail(request('id'))
         ]);
     }

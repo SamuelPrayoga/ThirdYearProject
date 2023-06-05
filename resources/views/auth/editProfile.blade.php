@@ -58,7 +58,9 @@
                                 </div> --}}
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            <div class="float-end mt-2">
+                                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            </div>
                         </form>
 
                     </div>

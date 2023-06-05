@@ -3,7 +3,7 @@
         @include('partials.alerts')
         <div class="w-100">
             <div class="mb-3">
-                <x-form-label id="title" label='Nama/Judul Absensi' />
+                <x-form-label id="title" label='Nama/Judul presensi makan' />
                 <x-form-input id="title" name="title" wire:model.defer="attendance.title" />
                 <x-form-error key="attendance.title" />
             </div>
@@ -62,7 +62,7 @@
                     </div>
                     @endforeach
                 </div>
-                <small class="text-muted d-block mt-1">Pilih posisi karyawaan yang akan menggunakan absensi ini.</small>
+                <small class="text-muted d-block mt-1">Pilih posisi karyawaan yang akan menggunakan presensi makan ini.</small>
                 <x-form-error key="position_ids" />
                 {{-- tom-select init script ada di create.blade.php attendances --}}
             </div>

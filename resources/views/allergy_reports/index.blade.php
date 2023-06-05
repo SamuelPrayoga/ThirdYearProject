@@ -10,9 +10,7 @@
                             Laporan Mahasiswa Alergi
                         </div>
                         @if ($reports->isEmpty())
-                            {{-- class="table-inactive"><small>Belum ada Menu Makanan
-                            ditambahkan</small> --}}
-                            <td colspan="6" class="text-muted">Tidak ada laporan Alergi Anda</td>
+                            <td colspan="6"><small class="text-muted">Tidak ada Laporan Alergi.</small></td>
                         @else
                             @foreach ($reports as $report)
                                 <div class="card-body">

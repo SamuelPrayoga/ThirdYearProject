@@ -72,7 +72,7 @@
                                             @if ($histo->presence_out_time)
                                                 {{ $histo->presence_out_time }} WIB
                                             @else
-                                                <span class="badge text-bg-danger">Belum Absensi Pulang</span>
+                                                <span class="badge text-bg-danger">Belum presensi makan Pulang</span>
                                             @endif
                                         </td>
                                         <td>

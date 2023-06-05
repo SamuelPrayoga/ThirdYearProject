@@ -5,6 +5,11 @@
         <small class="fw-bold">Hari ini adalah hari libur.</small>
     </div>
     @else
+    {{-- @if ($is_makan)
+    <div class="alert alert-success">
+        <small class="fw-bold">Hari ini Anda Mengajukan Izin Laporan Makan.</small>
+    </div>
+    @else --}}
 
     {{-- jika tidak menggunakan qrcode (button) dan mahasiswa saat ini tidak menekan tombol izin --}}
     @if (!$attendance->data->is_using_qrcode && !$data['is_there_permission'])
@@ -19,7 +24,7 @@
 
     @if ($data['is_has_enter_today'])
     <div class="alert alert-success">
-        <small class="d-block fw-bold text-success">Anda sudah berhasil mengirim absensi masuk.</small>
+        <small class="d-block fw-bold text-success">Anda sudah berhasil mengirim presensi makan masuk.</small>
     </div>
     @endif
 
@@ -39,7 +44,7 @@
     {{-- jika sudah absen masuk dan belum saatnya absen pulang --}}
     @if ($data['is_has_enter_today'] && !$attendance->data->is_end)
     <div class="alert alert-danger">
-        <small class="fw-bold">Belum saatnya melakukan absensi pulang.</small>
+        <small class="fw-bold">Belum saatnya melakukan presensi makan pulang.</small>
     </div>
     @endif
     @endif

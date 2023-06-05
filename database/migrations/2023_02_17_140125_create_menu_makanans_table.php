@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('menu_pagi');
             $table->string('menu_siang');
             $table->string('menu_malam');
+            $table->string('foto1');
+            $table->string('foto2');
+            $table->string('foto3');
             $table->timestamps();
         });
     }

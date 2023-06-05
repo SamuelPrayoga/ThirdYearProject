@@ -100,14 +100,14 @@
                     auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link">
-                        <strong>ABSENSI MAKAN</strong>
+                        <strong>PRESENSI MAKAN</strong>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('attendances.*') ? 'active' : '' }}"
                         href="{{ route('attendances.index') }}">
                         <i class="bi bi-qr-code"></i>
-                        Absensi Makan Kantin
+                        Presensi Makan Kantin
                     </a>
                 </li>
             @endif

@@ -4,6 +4,11 @@
             <small class="fw-bold">Hari ini adalah hari libur.</small>
         </div>
     @else
+    {{-- @if ($is_makan)
+        <div class="alert alert-danger">
+            <small class="fw-bold">Anda Tidak Bisa Makan.</small>
+        </div>
+    @else --}}
         {{-- jika tidak menggunakan qrcode (button) dan mahasiswa saat ini tidak menekan tombol izin --}}
         @if ($attendance->data->is_using_qrcode && !$data['is_there_permission'])
             {{-- jika belum absen dan absen masuk sudah dimulai --}}
@@ -66,7 +71,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Scan QRCode Absensi</h5>
+                    <h5 class="modal-title">Scan QRCode presensi makan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

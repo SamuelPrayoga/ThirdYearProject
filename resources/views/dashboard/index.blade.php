@@ -240,7 +240,7 @@
     <script>
         Highcharts.chart('containers1', {
             chart: {
-                type: 'line'
+                type: 'column'
             },
             title: {
                 text: 'Jumlah Data Mahasiswa Alergi berdasarkan Jenis Alergi'

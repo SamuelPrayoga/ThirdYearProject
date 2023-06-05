@@ -40,7 +40,7 @@ class PresenceForm extends Component
 
     public function sendOutPresence()
     {
-        // jika absensi sudah jam pulang (is_end) dan tidak menggunakan qrcode (kebalikan)
+        // jika presensi makan sudah jam pulang (is_end) dan tidak menggunakan qrcode (kebalikan)
         if (!$this->attendance->data->is_end && $this->attendance->data->is_using_qrcode) // sama (harus) dengan view
             return false;
 
@@ -52,12 +52,12 @@ class PresenceForm extends Component
             ->first();
 
         if (!$presence) // hanya untuk sekedar keamanan (kemungkinan)
-            return $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => "Terjadi masalah pada saat melakukan absensi."]);
+            return $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => "Terjadi masalah pada saat melakukan presensi makan."]);
 
         // untuk refresh if statement
         $this->data['is_not_out_yet'] = false;
         $presence->update(['presence_out_time' => now()->toTimeString()]);
-        return $this->dispatchBrowserEvent('showToast', ['toast_success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."]);
+        return $this->dispatchBrowserEvent('showToast', ['toast_success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' berhasil melakukan presensi makan pulang."]);
     }
 
     public function render()

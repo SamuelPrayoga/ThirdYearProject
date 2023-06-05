@@ -17,7 +17,7 @@ class PresenceController extends Controller
         $attendances = Attendance::all()->sortByDesc('data.is_end')->sortByDesc('data.is_start');
 
         return view('presences.index', [
-            "title" => "Daftar Absensi Dengan Kehadiran",
+            "title" => "Daftar Presensi Makan Dengan Kehadiran",
             "attendances" => $attendances
         ]);
     }
@@ -39,7 +39,7 @@ class PresenceController extends Controller
         $qrcode = $this->getQrCode($code);
 
         return view('presences.qrcode', [
-            "title" => "Generate Absensi QRCode",
+            "title" => "Generate presensi makan QRCode",
             "qrcode" => $qrcode,
             "code" => $code
         ]);
@@ -57,7 +57,7 @@ class PresenceController extends Controller
     public function getQrCode(?string $code): string
     {
         if (!Attendance::query()->where('code', $code)->first())
-            throw new NotFoundHttpException(message: "Tidak ditemukan absensi dengan code '$code'.");
+            throw new NotFoundHttpException(message: "Tidak ditemukan presensi Makan dengan code '$code'.");
 
         return parent::getQrCode($code);
     }
