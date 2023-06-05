@@ -45,9 +45,9 @@
                         Pelaporan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
-                        <a class="dropdown-item" href="{{ route('home.allergy-reports.create') }}"><i
-                                class="bi bi-clipboard-x"></i> Alergi Makanan</a>
-                        <a class="dropdown-item" href="{{ route('home.laporan-barang') }}"><i class="fas fa-briefcase"></i>
+                        <a class="dropdown-item" href="{{ route('home.allergy-reports.create') }}">
+                            <i class="fas fa-utensils"></i> Alergi Makanan</a>
+                        <a class="dropdown-item" href="{{ route('home.laporan-barang') }}"><i class="fas fa-file-alt"></i>
                             Barang Hilang dan Temuan</a>
                     </div>
                 </li>
@@ -60,17 +60,17 @@
                         {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarfonts">
-                        <li><a class="dropdown-item" type="button" href="{{ route('home.edit.profile') }}"><i class="bi bi-people"></i> Ubah Profil</a></li>
+                        <li><a class="dropdown-item" type="button" href="{{ route('home.edit.profile') }}"><i class="fas fa-user"></i> Ubah Profil</a></li>
                         <li><a class="dropdown-item" type="button" href="{{ route('home.allergy-reports.index') }}"><i
-                                    class="bi bi-flag"></i> Laporan Alergiku</a></li>
+                                    class="fas fa-flag"></i> Laporan Alergiku</a></li>
                         <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i
-                                    class="bi bi-chat-dots"></i> Kritik dan Saranku</a></li>
+                                    class="fas fa-comment"></i> Kritik dan Saranku</a></li>
                         <li>
                             <form action="{{ route('auth.logout') }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="dropdown-item">
-                                    <i class="bi bi-power"></i> Keluar
+                                    <i class="fas fa-power-off"></i> Keluar
                                 </button>
                             </form>
                         </li>

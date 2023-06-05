@@ -13,7 +13,8 @@
                             @csrf
                             <div class="form-group">
                                 <div class="mb-3">
-                                    <label for="ulasan">Kategori Laporan: <span class="span danger" style="color: red">*</span></label>
+                                    <label for="ulasan">Kategori Laporan: <span class="span danger"
+                                            style="color: red">*</span></label>
                                     <select class="form-control" id="laporan" required="required" name="kategori"
                                         aria-label="Default select example">
                                         <option disabled selected value>-- Pilih Laporan --</option>
@@ -44,7 +45,8 @@
                                 </div>
                                 <input type=hidden name=UserID value={{ auth()->user()->id }}>
                                 <div class="mb-3">
-                                    <label for="deskripsi" class="form-label">Deskripsi <span class="span danger" style="color: red">*</span></label>
+                                    <label for="deskripsi" class="form-label">Deskripsi <span class="span danger"
+                                            style="color: red">*</span></label>
                                     <textarea class="ckeditor" name="description" id="editor">{{ old('description') }}</textarea>
                                     @error('description')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -56,16 +58,33 @@
                                 <!-- Script CKEditor -->
                                 <script>
                                     ClassicEditor
-                                        .create(document.querySelector('#editor'))
-                                        .then(editor => {
-                                            console.log(editor);
+                                        .create(document.querySelector('#editor'), {
+                                            toolbar: {
+                                                items: [
+                                                    'heading',
+                                                    '|',
+                                                    'bold',
+                                                    'italic',
+                                                    'link',
+                                                    'bulletedList',
+                                                    'numberedList',
+                                                    'blockQuote',
+                                                    'fontSize',
+                                                    'fontFamily',
+                                                    'fontColor',
+                                                    'undo',
+                                                    'redo'
+                                                ]
+                                            },
+                                            language: 'en'
                                         })
                                         .catch(error => {
                                             console.error(error);
                                         });
                                 </script>
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar/Contoh Gambar <span class="span danger" style="color: red">*</span></label>
+                                    <label for="file" class="form-label">Gambar/Contoh Gambar <span class="span danger"
+                                            style="color: red">*</span></label>
                                     <input type="file" class="form-control" name="file" id="input-three"
                                         placeholder="" required>
                                 </div>

@@ -65,14 +65,32 @@
                                     </tr> --}}
                                         </table>
                                     </div>
+                                    <style>
+                                        .warning {
+                                            background-color: rgb(255, 255, 168);
+                                        }
+
+                                        .success {
+                                            background-color: rgb(168, 255, 168);
+                                        }
+
+                                        .danger {
+                                            background-color: rgb(255, 183, 183);
+                                        }
+                                    </style>
+
                                     @if ($report->approved == 0)
-                                        <p class="card-text text-muted">Mohon Menunggu konfirmasi permintaan Anda</p>
+                                        <p class="card-text text-muted warning">Mohon Menunggu konfirmasi permintaan Anda
+                                        </p>
                                     @elseif ($report->approved == 1)
-                                        <p class="card-text text-muted">Silahkan meminta makanan pengganti kepada pihak
-                                            Kantin.</p>
+                                        <p class="card-text text-muted success">Silahkan meminta makanan pengganti kepada
+                                            pihak Kantin.</p>
                                     @elseif ($report->approved == 2)
-                                        <p class="card-text text-muted">Laporan Anda ditolak, silahkan periksa dan ajukan kembali</p>
+                                        <p class="card-text text-muted danger">Laporan Anda ditolak, silahkan periksa dan
+                                            ajukan kembali</p>
                                     @endif
+
+
 
                                     {{-- <a href="" class="btn btn-primary btn-sm" disabled>Tanggal Laporan:
                                     {{ $report->created_at->format('d M Y') }}</a> --}}

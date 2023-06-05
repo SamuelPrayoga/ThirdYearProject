@@ -61,8 +61,8 @@
                                             <td>{{ $ulasan->description }}</td>
                                             {{-- <td><a href="{{route('home.forbidden')}}">View</a></td> --}}
                                             <td>
-                                                <a href="#" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal{{ $ulasan->id }}">
-                                                    <i class="fas fa-eye" style="color: #f7ca18"></i>
+                                                <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal{{ $ulasan->id }}">
+                                                    <i class="fas fa-eye" style="color: #ffffff"></i>
                                                 </a>
                                             </td>
 
