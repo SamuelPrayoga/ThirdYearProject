@@ -16,19 +16,24 @@
         <div class="form-group">
             <label for="" id="">Tanggal:</label>
             <input type="date" name="tanggal_makan" class="form-control" required>
-            {{-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
         </div>
         <div class="form-group">
             <label for="menu_pagi">Menu Pagi</label>
             <textarea name="menu_pagi" id="task-textarea" cols="30" rows="10"></textarea>
+            <input type="file" name="foto1" class="form">
+            <small id="emailHelp" class="form-text text-muted">Tambahkan Foto Menu Makanan</small>
         </div>
         <div class="form-group">
             <label for="menu_siang">Menu Siang</label>
             <textarea name="menu_siang" id="task-textarea2" cols="30" rows="10"></textarea>
+            <input type="file" name="foto2" class="form">
+            <small id="emailHelp" class="form-text text-muted">Tambahkan Foto Menu Makanan</small>
         </div>
         <div class="form-group">
             <label for="menu_malam">Menu Malam</label>
             <textarea name="menu_malam" id="task-textarea3" cols="30" rows="10"></textarea>
+            <input type="file" name="foto3" class="form">
+            <small id="emailHelp" class="form-text text-muted">Tambahkan Foto Menu Makanan</small>
         </div>
         {{-- <div class="form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">

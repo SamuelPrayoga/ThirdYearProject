@@ -83,7 +83,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <img src="{{ asset('img/Feedback/' . auth()->user()->id . '/' . $ulasan->file) }}"
-                                                            width="100%" height="100%" alt="">
+                                                            class="img-fluid">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary btn-sm"

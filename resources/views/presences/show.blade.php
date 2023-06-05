@@ -11,7 +11,8 @@
             <div class="col-md-6 mb-3 mb-md-0">
                 <h5 class="card-title">{{ $attendance->title }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Keterangan: {{ $attendance->description }}</h6>
-                @if (auth()->user()->isKeasramaan())
+                @if (auth()->user()->isAdmin() or
+                auth()->user()->isKeasramaan())
                 <div class="d-flex align-items-center gap-2">
                     @include('partials.attendance-badges')
                     <a href="{{ route('presences.permissions', $attendance->id) }}" class="badge text-bg-info">Mahasiswa

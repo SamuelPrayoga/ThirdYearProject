@@ -34,18 +34,97 @@
                                             <tr>
                                                 <td width="20%">{{ date('d M Y', strtotime($menu->tanggal_makan)) }}</td>
                                                 <td width="20%">
-                                                    <center>{!! $menu->menu_pagi !!}</center>
+                                                    <center>{!! $menu->menu_pagi !!}<small><a href=""
+                                                                data-toggle="modal"
+                                                                data-target="#foto1_{{ $menu->id }}">Lihat
+                                                                Gambar</a></small></center>
                                                 </td>
+                                                <div class="modal fade" id="foto1_{{ $menu->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">Foto Menu Makanan
+                                                                    Pagi</h4>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                @if ($menu->foto1)
+                                                                    <img src="{{ asset('storage/menu_makanan/' . $menu->foto1) }}"
+                                                                        alt="Foto 1" class="img-fluid">
+                                                                @else
+                                                                    <p>Tidak ada foto tersedia</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <td width="20%">
-                                                    <center>{!! $menu->menu_siang !!}</center>
+                                                    <center>{!! $menu->menu_siang !!}<small><a href=""
+                                                                data-toggle="modal"
+                                                                data-target="#foto2_{{ $menu->id }}">Lihat
+                                                                Gambar</a></small></center>
                                                 </td>
+                                                <div class="modal fade" id="foto2_{{ $menu->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">Foto Menu Makanan
+                                                                    Siang</h4>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                @if ($menu->foto2)
+                                                                    <img src="{{ asset('storage/menu_makanan/' . $menu->foto2) }}"
+                                                                        alt="Foto 2" class="img-fluid">
+                                                                @else
+                                                                    <p>Tidak ada foto tersedia</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <td width="20%">
-                                                    <center>{!! $menu->menu_malam !!}</center>
+                                                    <center>{!! $menu->menu_malam !!}<small><a href=""
+                                                                data-toggle="modal"
+                                                                data-target="#foto3_{{ $menu->id }}">Lihat
+                                                                Gambar</a></small></center>
                                                 </td>
+                                                <div class="modal fade" id="foto3_{{ $menu->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">Foto Menu Makanan
+                                                                    Malam</h4>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                @if ($menu->foto3)
+                                                                    <img src="{{ asset('storage/menu_makanan/' . $menu->foto3) }}"
+                                                                        alt="Foto 3" class="img-fluid">
+                                                                @else
+                                                                    <p>Tidak ada foto tersedia</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </tr>
                                         @endforeach
                                     @endif
                                 </tbody>
+                                <!-- Modal -->
                             </table>
                         </div>
                     </div>
