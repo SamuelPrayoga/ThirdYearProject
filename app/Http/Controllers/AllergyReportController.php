@@ -38,14 +38,26 @@ class AllergyReportController extends Controller
 
     public function store(Request $request)
     {
+        $user_id = Auth::id();
+        $allergies = $request->input('allergies');
+        $approved = 0;
+
+        // Check if there is an existing report with the same user and status
+        $existingReport = AllergyReport::where('user_id', $user_id)->where('approved', $approved)->first();
+
+        if ($existingReport) {
+            return redirect()->back()->with('error', 'Mohon menunggu persetujuan alergi Anda sebelumnya.');
+        }
 
         $report = new AllergyReport([
-            'user_id' => Auth::id(),
-            'allergies' => json_encode($request->input('allergies')),
-
+            'user_id' => $user_id,
+            'allergies' => json_encode($allergies),
+            'approved' => $approved,
         ]);
+
         if ($request->hasFile('file')) {
             $file = $request->file('file');
+
             if (is_array($file)) {
                 foreach ($file as $f) {
                     if (in_array($f->getClientOriginalExtension(), ['doc', 'docx', 'pdf', 'img', 'png', 'jpeg', 'jpg'])) {
@@ -66,12 +78,10 @@ class AllergyReportController extends Controller
                 }
             }
         }
-        $allergies = $request->input('allergies');
-
 
         $report->save();
-        return redirect()->route('home.allergy-reports.index')->with('toast_success', 'Laporan Alergi Anda berhasil dikirimkan, Menunggu Konfirmasi!');
-        // return redirect()->back()->with('message', 'Laporan Alergi Anda berhasil dikirimkan!');
+
+        return redirect()->route('home.allergy-reports.index')->with('info', 'Laporan Alergi Anda berhasil dikirimkan, Menunggu Konfirmasi!');
     }
 
     public function show()
@@ -105,12 +115,20 @@ class AllergyReportController extends Controller
 
         return redirect()->back()->with('toast_success', 'Laporan alergi berhasil disetujui.');
     }
+    // public function reject(AllergyReport $report)
+    // {
+    //     $report->delete();
+
+    //     return redirect()->back()->with('toast_success', 'Laporan alergi berhasil Ditolak / Dihapus.');
+    // }
     public function reject(AllergyReport $report)
     {
-        $report->delete();
+        $report->approved = 2;
+        $report->save();
 
         return redirect()->back()->with('toast_success', 'Laporan alergi berhasil Ditolak / Dihapus.');
     }
+
 
     public function rekapAlergi()
     {

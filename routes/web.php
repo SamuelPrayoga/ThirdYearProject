@@ -54,7 +54,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/allergy-reports', [AllergyReportController::class, 'show'])->name('admin.allergy-reports.index');
         Route::get('/admin/rekap-allergy-reports', [AllergyReportController::class, 'rekapAlergi'])->name('admin.allergy-reports.rekap');
         Route::post('/admin/allergy-reports/{report}/approve', [AllergyReportController::class, 'approve'])->name('admin.approve');
-        Route::delete('/admin/allergy-reports/{report}', [AllergyReportController::class, 'reject'])->name('admin.reject');
+        // Route::delete('/admin/allergy-reports/{report}', [AllergyReportController::class, 'reject'])->name('admin.reject');
+        Route::post('/admin/allergy-reports/{report}/reject', [AllergyReportController::class, 'reject'])->name('admin.reject');
         Route::get('/report/export', [ReportController::class, 'exportExcel'])->name('report.export');
         Route::delete('/admin/allergy-reports/{id}', [AllergyReportController::class, 'destroy'])->name('admin.destroy');
 

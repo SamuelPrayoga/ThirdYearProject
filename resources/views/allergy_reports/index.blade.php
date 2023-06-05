@@ -45,10 +45,13 @@
                                             <tr>
                                                 <td>Status</td>
                                                 <td>:</td>
-                                                <td><span
-                                                        class="badge {{ $report->approved ? 'bg-success' : 'bg-warning' }}">
-                                                        {{ $report->approved ? 'Disetujui' : 'Menunggu' }}
-                                                    </span></td>
+                                                <td>
+                                                    <span
+                                                        class="badge rounded-pill {{ $report->approved == 1 ? 'bg-success' : ($report->approved == 2 ? 'bg-danger' : 'bg-warning') }}">
+                                                        {{ $report->approved == 1 ? 'Disetujui' : ($report->approved == 2 ? 'Ditolak' : 'Menunggu') }}
+                                                    </span>
+                                                </td>
+
                                             </tr>
                                             <tr>
                                                 <td>Tanggal Laporan</td>
@@ -62,11 +65,15 @@
                                     </tr> --}}
                                         </table>
                                     </div>
-                                    @if ($report->approved)
+                                    @if ($report->approved == 0)
+                                        <p class="card-text text-muted">Mohon Menunggu konfirmasi permintaan Anda</p>
+                                    @elseif ($report->approved == 1)
                                         <p class="card-text text-muted">Silahkan meminta makanan pengganti kepada pihak
-                                            Kantin.
-                                        </p>
+                                            Kantin.</p>
+                                    @elseif ($report->approved == 2)
+                                        <p class="card-text text-muted">Laporan Anda ditolak, silahkan periksa dan ajukan kembali</p>
                                     @endif
+
                                     {{-- <a href="" class="btn btn-primary btn-sm" disabled>Tanggal Laporan:
                                     {{ $report->created_at->format('d M Y') }}</a> --}}
                                 </div>

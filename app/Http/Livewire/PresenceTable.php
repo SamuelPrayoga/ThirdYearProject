@@ -97,7 +97,7 @@ final class PresenceTable extends PowerGridComponent
             ->addColumn("presence_enter_time")
             ->addColumn("presence_out_time", fn (Presence $model) => $model->presence_out_time ?? '<span class="badge text-bg-danger">Belum presensi makan Pulang</span>')
             ->addColumn("is_permission", fn (Presence $model) => $model->is_permission ?
-                '<span class="badge text-bg-warning">Izin</span>' : '<span class="badge text-bg-success">Hadir</span>')
+                '<span class="badge text-bg-warning">Izin</span>' : '<span class="badge text-bg-success">Makan</span>')
             ->addColumn('created_at')
             ->addColumn('created_at_formatted', fn (Presence $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }

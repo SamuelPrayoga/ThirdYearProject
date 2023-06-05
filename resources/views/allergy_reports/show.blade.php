@@ -14,7 +14,7 @@
                     <th>Nama</th>
                     <th>NIM</th>
                     <th>Asrama</th>
-                    <th>Jenis Alergi</th>
+                    <th width="20%">Jenis Alergi</th>
                     <th>Laporan</th>
                     @if (auth()->user()->isKeasramaan())
                         <th>Dokumen</th>
@@ -55,11 +55,17 @@
                             @if (auth()->user()->isKeasramaan())
                                 <td><a href="{{ asset('allergy_reports/' . $report->file) }}">{{ $report->file }}</a></td>
                             @endif
-                            <td>
+                            {{-- <td>
                                 <span class="badge rounded-pill {{ $report->approved ? 'bg-success' : 'bg-warning' }}">
                                     {{ $report->approved ? 'Disetujui' : 'Menunggu' }}
                                 </span>
+                            </td> --}}
+                            <td>
+                                <span class="badge rounded-pill {{ $report->approved == 1 ? 'bg-success' : ($report->approved == 2 ? 'bg-danger' : 'bg-warning') }}">
+                                    {{ $report->approved == 1 ? 'Disetujui' : ($report->approved == 2 ? 'Ditolak' : 'Menunggu') }}
+                                </span>
                             </td>
+
 
                             {{-- <td>{{ $report->approved ? 'Disetujui' : 'Belum disetujui' }}</td> --}}
                             @if (auth()->user()->isKeasramaan())
@@ -68,25 +74,23 @@
                                         <form action="{{ route('admin.approve', $report->id) }}" method="POST"
                                             class="d-inline">
                                             @csrf
-                                            <button type="submit" class="badge bg-success"><i
-                                                    class="fas fa-check-square"></i>
-                                                Setujui</button>
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fas fa-check-circle"></i>
+                                            </button>
                                         </form>
-                                        <form action="{{ route('admin.reject', $report->id) }}" method="POST"
-                                            class="d-inline">
+                                        <form action="{{ route('admin.reject', $report->id) }}" method="POST" class="d-inline">
                                             @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="badge bg-danger"><i
-                                                    class="bi bi-x-square-fill"></i>
-                                                Tolak</button>
+                                            <button type="submit" class="button btn-warning btn-sm">
+                                                <i class="fas fa-times-circle"></i>
+                                            </button>
                                         </form>
                                     @endif
                                     <form action="{{ route('admin.destroy', $report->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="badge bg-danger"><i class="fas fa-trash"></i>
-                                            Hapus Data</button>
+                                        <button type="submit" class="button btn-danger btn-sm"><i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </form>
                                 </td>
                             @endif

@@ -11,7 +11,7 @@
             @method('DELETE')
             <button type="submit" class="btn btn-sm btn-danger"
                 onclick="return confirm('Anda yakin ingin menghapus semua data laporan?');">
-                <span data-feather="trash-2" class="align-text-bottom me-1"></span>
+                <i class="fas fa-sync"></i>
                 Reset Laporan
             </button>
         </form>

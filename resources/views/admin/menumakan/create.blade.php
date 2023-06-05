@@ -21,25 +21,25 @@
             <label for="menu_pagi">Menu Pagi</label>
             <textarea name="menu_pagi" id="task-textarea" cols="30" rows="10"></textarea>
             <input type="file" name="foto1" class="form">
-            <small id="emailHelp" class="form-text text-muted">Tambahkan Foto Menu Makanan</small>
+            <small id="emailHelp" class="form-text text-muted">4 x 6 (rekomendasi)</small>
         </div>
         <div class="form-group">
             <label for="menu_siang">Menu Siang</label>
             <textarea name="menu_siang" id="task-textarea2" cols="30" rows="10"></textarea>
             <input type="file" name="foto2" class="form">
-            <small id="emailHelp" class="form-text text-muted">Tambahkan Foto Menu Makanan</small>
+            <small id="emailHelp" class="form-text text-muted">4 x 6 (rekomendasi)</small>
         </div>
         <div class="form-group">
             <label for="menu_malam">Menu Malam</label>
             <textarea name="menu_malam" id="task-textarea3" cols="30" rows="10"></textarea>
             <input type="file" name="foto3" class="form">
-            <small id="emailHelp" class="form-text text-muted">Tambahkan Foto Menu Makanan</small>
+            <small id="emailHelp" class="form-text text-muted">4 x 6 (rekomendasi)</small>
         </div>
         {{-- <div class="form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div> --}}
-        <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-clipboard2-plus-fill"></i> Tambah</button>
+    <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> Tambah</button>
     </form>
 @endsection
 

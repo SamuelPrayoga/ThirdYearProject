@@ -23,6 +23,7 @@
             <div class="custom-file">
                 <input type="file" name="foto1" class="custom-file-input" onchange="updateFileName(this)">
                 <label class="custom-file-label" id="foto1FileName">{{$editmenus->foto1}}</label>
+                <small id="emailHelp" class="form-text text-muted">4 x 6 <span class="text-danger">(rekomendasi)</span></small>
             </div>
         </div>
 
@@ -32,6 +33,7 @@
             <div class="custom-file">
                 <input type="file" name="foto2" class="custom-file-input" onchange="updateFileName(this)">
                 <label class="custom-file-label" id="foto2FileName">{{$editmenus->foto2}}</label>
+                <small id="emailHelp" class="form-text text-muted">4 x 6 <span class="text-danger">(rekomendasi)</span></small>
             </div>
         </div>
 
@@ -41,10 +43,11 @@
             <div class="custom-file">
                 <input type="file" name="foto3" class="custom-file-input" onchange="updateFileName(this)">
                 <label class="custom-file-label" id="foto3FileName">{{$editmenus->foto3}}</label>
+                <small id="emailHelp" class="form-text text-muted">4 x 6 <span class="text-danger">(rekomendasi)</span></small>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-save"></i> Simpan</button>
     </form>
 
     <script>

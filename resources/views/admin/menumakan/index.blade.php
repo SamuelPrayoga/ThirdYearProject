@@ -37,9 +37,84 @@
                         <tr>
                             <td width="2%">{{ $i++ }}.</td>
                             <td width="20%">{{ date('l, d M Y', strtotime($menumakans->tanggal_makan)) }}</td>
-                            <td width="20%">{!! $menumakans->menu_pagi !!}</td>
-                            <td width="20%">{!! $menumakans->menu_siang !!}</td>
-                            <td width="20%">{!! $menumakans->menu_malam !!}</td>
+                            <td width="20%">{!! $menumakans->menu_pagi !!}
+                                <small><a href="" data-toggle="modal" data-target="#foto1_{{ $menumakans->id }}">Lihat Gambar</a></small>
+                            </td>
+                            <div class="modal fade" id="foto1_{{ $menumakans->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Foto Menu Makanan
+                                                Pagi</h4>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if ($menumakans->foto1)
+                                                <img src="{{ asset('storage/menu_makanan/' . $menumakans->foto1) }}"
+                                                    alt="Foto 1" class="img-fluid">
+                                            @else
+                                                <p>Tidak ada foto tersedia</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <td width="20%">{!! $menumakans->menu_siang !!}
+                                <small><a href="" data-toggle="modal" data-target="#foto2_{{ $menumakans->id }}">Lihat Gambar</a></small>
+                            </td>
+                            <div class="modal fade" id="foto2_{{ $menumakans->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Foto Menu Makanan
+                                                Siang</h4>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if ($menumakans->foto2)
+                                                <img src="{{ asset('storage/menu_makanan/' . $menumakans->foto2) }}"
+                                                    alt="Foto 2" class="img-fluid">
+                                            @else
+                                                <p>Tidak ada foto tersedia</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <td width="20%">{!! $menumakans->menu_malam !!}
+                                <small><a href="" data-toggle="modal" data-target="#foto3_{{ $menumakans->id }}">Lihat Gambar</a></small>
+                            </td>
+                            <div class="modal fade" id="foto3_{{ $menumakans->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Foto Menu Makanan
+                                                Siang</h4>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if ($menumakans->foto3)
+                                                <img src="{{ asset('storage/menu_makanan/' . $menumakans->foto3) }}"
+                                                    alt="Foto 2" class="img-fluid">
+                                            @else
+                                                <p>Tidak ada foto tersedia</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <td><a href="/menumakan/edit/{{ $menumakans->id }}" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
