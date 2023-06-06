@@ -53,7 +53,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 @if ($menu->foto1)
-                                                                    <img src="{{ asset('storage/menu_makanan/' . $menu->foto1) }}"
+                                                                    <img src="{{ asset('public/menu_makanan/' . $menu->foto1) }}"
                                                                         alt="Foto 1" class="img-fluid">
                                                                 @else
                                                                     <p>Tidak ada foto tersedia</p>
@@ -82,7 +82,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 @if ($menu->foto2)
-                                                                    <img src="{{ asset('storage/menu_makanan/' . $menu->foto2) }}"
+                                                                    <img src="{{ asset('public/menu_makanan/' . $menu->foto2) }}"
                                                                         alt="Foto 2" class="img-fluid">
                                                                 @else
                                                                     <p>Tidak ada foto tersedia</p>
@@ -111,7 +111,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 @if ($menu->foto3)
-                                                                    <img src="{{ asset('storage/menu_makanan/' . $menu->foto3) }}"
+                                                                    <img src="{{ asset('public/menu_makanan/' . $menu->foto3) }}"
                                                                         alt="Foto 3" class="img-fluid">
                                                                 @else
                                                                     <p>Tidak ada foto tersedia</p>

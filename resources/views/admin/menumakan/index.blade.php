@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="modal-body">
                                             @if ($menumakans->foto1)
-                                                <img src="{{ asset('storage/menu_makanan/' . $menumakans->foto1) }}"
+                                                <img src="{{ asset('public/menu_makanan/' . $menumakans->foto1) }}"
                                                     alt="Foto 1" class="img-fluid">
                                             @else
                                                 <p>Tidak ada foto tersedia</p>
@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="modal-body">
                                             @if ($menumakans->foto2)
-                                                <img src="{{ asset('storage/menu_makanan/' . $menumakans->foto2) }}"
+                                                <img src="{{ asset('public/menu_makanan/' . $menumakans->foto2) }}"
                                                     alt="Foto 2" class="img-fluid">
                                             @else
                                                 <p>Tidak ada foto tersedia</p>
@@ -106,8 +106,9 @@
                                         </div>
                                         <div class="modal-body">
                                             @if ($menumakans->foto3)
-                                                <img src="{{ asset('storage/menu_makanan/' . $menumakans->foto3) }}"
-                                                    alt="Foto 2" class="img-fluid">
+                                            {{-- <img src="{{ asset('menu_makanan/' . $menumakans->foto3) }}" alt="Foto 3" class="img-fluid"> --}}
+                                                <img src="{{ asset('public/menu_makanan/' . $menumakans->foto3) }}"
+                                                    alt="Foto 3" class="img-fluid">
                                             @else
                                                 <p>Tidak ada foto tersedia</p>
                                             @endif
