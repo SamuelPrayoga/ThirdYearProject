@@ -51,7 +51,7 @@ class BarangController extends Controller
             }
         }
         $barang->save();
-        return redirect()->route('home.pengumuman')->with('toast_success', 'Laporan berhasil dikirimkan');
+        return redirect()->route('home.pengumuman')->with('info', 'Laporan Anda berhasil dikirimkan, Menunggu Konfirmasi untuk ditampilkan !');
     }
 
 
