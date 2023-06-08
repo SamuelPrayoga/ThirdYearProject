@@ -15,7 +15,9 @@
                     <th>
                         <center>Status</center>
                     </th>
-                    <th>Tanggal Berakhir</th>
+                    <th>
+                        <center>Tanggal Berakhir</center>
+                    </th>
                     <th>Selengkapnya</th>
                     <th>Action</th>
                 </tr>
@@ -56,8 +58,7 @@
                             </div>
                         </div>
                         <td width="10%">
-                            <small><a href="" data-toggle="modal" data-target="#foto2_{{ $barang->id }}">Lihat
-                                    Gambar</a></small>
+                            <small><a href="" data-toggle="modal" data-target="#foto2_{{ $barang->id }}">Selengkapnya</a></small>
                         </td>
                         <td>
                             @if ($barang->showed == 1)
