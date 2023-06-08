@@ -134,9 +134,15 @@ class FeedbackController extends Controller
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedback $feedback)
+    public function destroy($id)
     {
-        //
+        $feedback = Feedback::find($id); // Mengambil data laporan alergi berdasarkan ID
+        if ($feedback) {
+            $feedback->delete(); // Menghapus data laporan alergi dari database
+            return redirect()->back()->with('toast_success', 'Feedback berhasil dihapus.'); // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        } else {
+            return redirect()->back()->with('toast_error', 'Feedback tidak ditemukan.'); // Redirect kembali ke halaman sebelumnya dengan pesan error
+        }
     }
 
     public function showAll()

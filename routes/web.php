@@ -102,6 +102,7 @@ Route::middleware('auth')->group(function () {
 
         //Feedback
         Route::get('/admin/kritik-saran', [FeedbackController::class, 'showAll'])->name('admin.showFeedback');
+        Route::delete('/feedback/delete/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
 
 
         // presences (kehadiran)
