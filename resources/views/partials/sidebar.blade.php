@@ -16,12 +16,24 @@
                         Pengumuman
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('barang.show') }}">
+                        <i class="fas fa-file"></i>
+                        Barang Hilang-Temuan
+                    </a>
+                </li>
             @endif
             @if (auth()->user()->isAdmin() or
                     auth()->user()->isPengelola())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <strong>INFORMASI KANTIN</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pengumuman.index') }}">
+                        <i class="fas fa-bullhorn"></i>
+                        Pengumuman
                     </a>
                 </li>
 

@@ -21,6 +21,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RegsiterController;
 use App\Http\Controllers\ExportHistory;
 use App\Http\Livewire\Auth\Register;
+use App\Http\Controllers\BarangController;
 use App\Models\MenuMakanan;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -59,6 +60,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/report/export', [ReportController::class, 'exportExcel'])->name('report.export');
         Route::delete('/admin/allergy-reports/{id}', [AllergyReportController::class, 'destroy'])->name('admin.destroy');
 
+
+        //Barang
+        Route::get('/barang/all', [BarangController::class, 'show'])->name('barang.show');
+        Route::put('/barang/{id}/update-showed', [BarangController::class, 'updateShowed'])->name('barang.update-showed');
+        Route::put('/barang/{id}/not-showed', [BarangController::class, 'notShowed'])->name('barang.not-showed');
+        Route::delete('/laporanbarang/delete/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
 
         //Pengumuman
         Route::get('/pengumuman/all', [PengumumanController::class, 'show'])->name('pengumuman.index');

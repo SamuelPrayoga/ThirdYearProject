@@ -72,10 +72,7 @@ class BarangController extends Controller
      * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function show(barang $barang)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -106,8 +103,50 @@ class BarangController extends Controller
      * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(barang $barang)
+    public function destroy($id)
     {
-        //
+        $report = Barang::find($id); // Mengambil data laporan alergi berdasarkan ID
+        if ($report) {
+            $report->delete(); // Menghapus data laporan alergi dari database
+            return redirect()->back()->with('toast_success', 'Laporan Kehilangan berhasil dihapus.'); // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        } else {
+            return redirect()->back()->with('toast_error', 'Laporan Kehilangan Barang tidak ditemukan.'); // Redirect kembali ke halaman sebelumnya dengan pesan error
+        }
+    }
+
+    public function show()
+    {
+        $title = "Laporan Barang Hilang dan Temuan";
+        $reports = barang::get();
+
+        return view('barang.show', compact('reports', 'title'));
+    }
+
+    public function updateShowed($id)
+    {
+        $barang = Barang::find($id);
+
+        if ($barang) {
+            $barang->showed = 1;
+            $barang->save();
+
+            return redirect()->back()->with('toast_success', 'Laporan Kehilangan berhasil ditampilkan.');
+        }
+
+        return redirect()->back()->with('toast_error', 'Data Barang tidak ditemukan.');
+    }
+
+    public function notShowed($id)
+    {
+        $barang = Barang::find($id);
+
+        if ($barang) {
+            $barang->showed = 0;
+            $barang->save();
+
+            return redirect()->back()->with('toast_success', 'Laporan Kehilangan berhasil disembunyikan.');
+        }
+
+        return redirect()->back()->with('toast_error', 'Data Barang tidak ditemukan.');
     }
 }

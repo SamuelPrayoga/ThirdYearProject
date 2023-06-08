@@ -18,6 +18,7 @@ class PengumumanController extends Controller
         $pengumuman = DB::table('barangs')
             ->orderBy('kategori')
             ->orderBy('expiry_date', 'desc')
+            ->where('showed', 1) // Menampilkan hanya pengumuman dengan nilai showed=1
             ->whereDate('expiry_date', '>=', $today) // hanya menampilkan pengumuman yang belum kadaluarsa
             ->paginate($perPage);
 
@@ -27,6 +28,7 @@ class PengumumanController extends Controller
         ]);
     }
 
+
     public function pengumumanArsip()
     {
         $perPage = 10;
@@ -34,6 +36,7 @@ class PengumumanController extends Controller
         $pengumumanArsip = DB::table('barangs')
             ->orderBy('kategori')
             ->orderBy('expiry_date', 'desc')
+            ->where('showed', 1) // Menampilkan hanya pengumuman dengan nilai showed=1
             ->where('expiry_date', '<', $today) // hanya menampilkan pengumuman yang telah diarsipkan
             ->paginate($perPage);
 

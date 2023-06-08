@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('expiry_date')->nullable();
             $table->string('file')->nullable();
+            $table->tinyInteger('showed')->default(0)->length(1)->nullable();
             $table->timestamps();
         });
     }
