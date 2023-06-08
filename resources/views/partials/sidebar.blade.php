@@ -10,12 +10,14 @@
                         Dashboard
                     </a>
                 </li>
+                @if (auth()->user()->isKeasramaan())
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('pengumuman.index') }}">
                         <i class="fas fa-bullhorn"></i>
                         Pengumuman
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('barang.show') }}">
                         <i class="fas fa-file"></i>
@@ -36,7 +38,6 @@
                         Pengumuman
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('menumakan.*') ? 'active' : '' }}"
                         href="{{ route('menumakan.index') }}">
