@@ -39,7 +39,7 @@
                             </td>
                         </center>
 
-                        <td width="15%">{{ $barang->expiry_date }}</td>
+                        <td width="15%"><center>{{ $barang->expiry_date }}</center></td>
                         <div class="modal fade" id="foto2_{{ $barang->id }}" tabindex="-1" role="dialog"
                             aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
