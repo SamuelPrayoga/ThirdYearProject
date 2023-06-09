@@ -4,11 +4,31 @@
             <small class="fw-bold">Hari ini adalah hari libur.</small>
         </div>
     @else
-    {{-- @if ($is_makan)
-        <div class="alert alert-danger">
-            <small class="fw-bold">Anda Tidak Bisa Makan.</small>
-        </div>
-    @else --}}
+        @if (in_array(now()->format('l'), ['Friday']) && $data['is_makan'] == 0)
+            <div class="alert alert-danger">
+                <small class="fw-bold">Anda Tidak melaporkan Makan untuk Hari Jumat, sehingga Anda tidak boleh melakukan
+                    scan QR Code Masuk.</small>
+            </div>
+        @endif
+
+        @if (in_array(now()->format('l'), ['Saturday']) && $data['is_makan'] == 0)
+            <div class="alert alert-danger">
+                <small class="fw-bold">Anda Tidak melaporkan Makan untuk Hari Sabtu, sehingga Anda tidak boleh melakukan
+                    scan QR Code Masuk.</small>
+            </div>
+        @endif
+
+        {{--
+        @if ($holiday)
+            <div class="alert alert-success">
+                <small class="fw-bold">Hari ini adalah hari libur.</small>
+            </div>
+        @elseif ($is_makan == 0 && in_array(now()->format('l'), ['Friday', 'Saturday']))
+            <div class="alert alert-danger">
+                <small class="fw-bold">Anda Tidak melaporkan Makan untuk Hari Jumat atau Sabtu, sehingga Anda tidak boleh
+                    melakukan scan QR Code Masuk.</small>
+            </div> --}}
+
         {{-- jika tidak menggunakan qrcode (button) dan mahasiswa saat ini tidak menekan tombol izin --}}
         @if ($attendance->data->is_using_qrcode && !$data['is_there_permission'])
             {{-- jika belum absen dan absen masuk sudah dimulai --}}
@@ -93,23 +113,3 @@
     </script>
     <script type="module" src="{{ asset('js/home/qrcode.js') }}"></script>
 @endpush
-
-
-
-{{-- @if ($data['is_there_permission'] && !$data['is_permission_accepted'])
-    <div class="alert alert-info">
-        <small class="fw-bold">Permintaan izin sedang diproses (atau masih belum di terima).</small>
-    </div>
-    @endif
-
-    @if ($data['is_there_permission'] && $data['is_permission_accepted'])
-    <div class="alert alert-success">
-        <small class="fw-bold">Permintaan izin sudah diterima.</small>
-    </div>
-    @endif
-
-    @if ($data['is_there_permission'] && $data['is_permission_accepted'])
-    <div class="alert alert-danger">
-        <small class="fw-bold">Permintaan izin Ditolak.</small>
-    </div>
-    @endif --}}

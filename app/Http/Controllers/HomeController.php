@@ -67,15 +67,17 @@ class HomeController extends Controller
             'is_has_enter_today' => $isHasEnterToday, // sudah absen masuk
             'is_not_out_yet' => $presences->where('presence_out_time', null)->isNotEmpty(), // belum absen pulang
             'is_there_permission' => (bool) $isTherePermission,
-            'is_permission_accepted' => $isTherePermission?->is_accepted ?? false
+            'is_permission_accepted' => $isTherePermission?->is_accepted ?? false,
         ];
+
+        $is_makan = LaporMakan::query()
+        ->where('tanggal', now()->toDateString())
+        ->value('is_makan');
+
 
         $holiday = $attendance->data->is_holiday_today ? Holiday::query()
             ->where('holiday_date', now()->toDateString())
             ->first() : false;
-        // $is_makan = $attendance->data->is_makan ? LaporMakan::query()
-        //     ->where('is_makan')
-        //     ->first(): false;
 
         $history = Presence::query()
             ->where('user_id', auth()->user()->id)
@@ -99,7 +101,7 @@ class HomeController extends Controller
             "holiday" => $holiday,
             'history' => $history,
             'priodDate' => $priodDate,
-            // "is_makan" => $is_makan
+            'is_makan' => $is_makan
         ]);
     }
 
