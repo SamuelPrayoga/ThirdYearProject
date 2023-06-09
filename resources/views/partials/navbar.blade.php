@@ -29,4 +29,10 @@
             font-family:Arial, Helvetica, sans-serif;
         }
     </style>
+    <style>
+        .sidebar {
+            overflow-y: auto;
+        }
+    </style>
+
 </header>

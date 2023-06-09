@@ -161,3 +161,9 @@
         </ul>
     </div>
 </nav>
+<style>
+    #sidebarMenu {
+        overflow-y: auto;
+    }
+</style>
+
