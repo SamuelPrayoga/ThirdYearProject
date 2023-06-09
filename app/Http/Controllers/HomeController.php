@@ -62,18 +62,17 @@ class HomeController extends Controller
             ->where('attendance_id', $attendance->id)
             ->where('user_id', auth()->user()->id)
             ->first();
+        $is_makan = LaporMakan::query()
+            ->where('tanggal', now()->toDateString())
+            ->value('is_makan');
 
         $data = [
             'is_has_enter_today' => $isHasEnterToday, // sudah absen masuk
             'is_not_out_yet' => $presences->where('presence_out_time', null)->isNotEmpty(), // belum absen pulang
             'is_there_permission' => (bool) $isTherePermission,
             'is_permission_accepted' => $isTherePermission?->is_accepted ?? false,
+            'is_makan' => $is_makan,
         ];
-
-        $is_makan = LaporMakan::query()
-        ->where('tanggal', now()->toDateString())
-        ->value('is_makan');
-
 
         $holiday = $attendance->data->is_holiday_today ? Holiday::query()
             ->where('holiday_date', now()->toDateString())
