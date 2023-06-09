@@ -95,10 +95,13 @@ class User extends Authenticatable
         return $this->role_id === self::DEPKEBDIS_ROLE_ID;
     }
 
-    public function feedback() {
-        return $this->hasMany(Feedback::class);
+    public function ulasans()
+    {
+        return $this->hasOne(Feedback::class);
     }
-    public function barang() {
+
+    public function barang()
+    {
         return $this->hasMany(barang::class);
     }
 
@@ -111,6 +114,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(LaporMakan::class);
     }
-
-
 }

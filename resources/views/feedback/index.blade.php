@@ -10,6 +10,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>#</th>
+                        <th>Nama</th>
                         <th>Tanggal Ulasan</th>
                         <th>Kategori</th>
                         <th>Rating</th>
@@ -26,6 +27,7 @@
                         @foreach ($feedbacks as $ulasan)
                             <tr>
                                 <td>{{ $i++ }}</td>
+                                <td>{{ $ulasan->user->name }}</td>
                                 <td>{{ \Carbon\Carbon::parse($ulasan->date)->format('d M Y') }}</td>
                                 <td>{{ $ulasan->subject_review }}</td>
                                 <td class="rating-cell" width="18%;">

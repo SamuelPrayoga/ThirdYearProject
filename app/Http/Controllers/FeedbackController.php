@@ -147,7 +147,7 @@ class FeedbackController extends Controller
 
     public function showAll()
     {
-        $feedbacks = DB::table('feedback')->get();
+        $feedbacks = Feedback::with('user')->get();
         return view('feedback.index', [
             "title" => "Kritik dan Saran",
             "feedbacks" => $feedbacks // Mengganti key "feedback" menjadi "feedbacks"
