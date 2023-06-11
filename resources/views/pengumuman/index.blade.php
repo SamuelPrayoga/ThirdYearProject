@@ -60,7 +60,7 @@
                                         @endif
                                     </td>
                                 </center>
-                                <td width="13%">
+                                <td width="18%">
                                     @if ($announce->published == 1)
                                         <form class="d-inline-block"
                                             action="{{ route('pengumuman.not-published', ['id' => $announce->id]) }}"
