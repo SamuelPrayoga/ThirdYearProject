@@ -84,6 +84,7 @@ class PengumumanController extends Controller
         $title = "Edit Pengumuman";
         $pengumuman = Pengumuman::find($id);
         $pengumuman->deskripsi = $request->input('deskripsi');
+        $pengumuman->tanggal_berakhir = $request->input('tanggal_berakhir');
         $pengumuman->save();
 
         return redirect()->route('pengumuman.index')->with('toast_success', 'Pengumuman berhasil diubah');
