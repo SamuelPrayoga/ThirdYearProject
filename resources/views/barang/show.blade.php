@@ -38,7 +38,6 @@
                                 @endif
                             </td>
                         </center>
-
                         <td width="15%"><center>{{ $barang->expiry_date }}</center></td>
                         <div class="modal fade" id="foto2_{{ $barang->id }}" tabindex="-1" role="dialog"
                             aria-labelledby="myModalLabel">
@@ -80,7 +79,6 @@
                                     </button>
                                 </form>
                             @endif
-
                             <a href="" data-toggle="modal" data-target="#myModal{{ $barang->id }}"
                                 class="btn btn-danger btn-sm">
                                 <i class="fas fa-trash-alt"></i>

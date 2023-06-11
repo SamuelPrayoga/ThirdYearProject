@@ -63,22 +63,10 @@ class PengumumanController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'deskripsi' => 'required',
-        ]);
-
         $pengumuman = new Pengumuman;
         $pengumuman->tanggal_pembuatan = now();
-        $pengumuman->tanggal_berakhir = now()->addDays(1);
+        $pengumuman->tanggal_berakhir = $request->tanggal_berakhir;
         $pengumuman->deskripsi = $request->deskripsi;
-
-        $now = now();
-        if ($now > $pengumuman->tanggal_berakhir) {
-            $pengumuman->published = 0;
-        } else {
-            $pengumuman->published = 1;
-        }
-
         $pengumuman->save();
 
         return redirect()->route('pengumuman.index')
@@ -96,25 +84,37 @@ class PengumumanController extends Controller
         $title = "Edit Pengumuman";
         $pengumuman = Pengumuman::find($id);
         $pengumuman->deskripsi = $request->input('deskripsi');
-
-        $now = now();
-        if ($now > $pengumuman->tanggal_berakhir) {
-            $pengumuman->published = 0;
-        } else {
-            $pengumuman->published = 1;
-        }
-
         $pengumuman->save();
 
         return redirect()->route('pengumuman.index')->with('toast_success', 'Pengumuman berhasil diubah');
     }
-
+    #####
     public function publish($id)
     {
         $pengumuman = Pengumuman::find($id);
-        $pengumuman->published = true;
-        $pengumuman->save();
-        return redirect()->route('pengumuman.index')->with('toast_success', 'Pengumuman berhasil dipublikasikan');
+
+        if ($pengumuman) {
+            $pengumuman->published = 1;
+            $pengumuman->save();
+
+            return redirect()->back()->with('toast_success', 'Pengumuman berhasil dipublikasikan.');
+        }
+
+        return redirect()->back()->with('toast_error', 'Pengumuman tidak ditemukan.');
+    }
+    #####
+    public function notPublished($id)
+    {
+        $pengumuman = Pengumuman::find($id);
+
+        if ($pengumuman) {
+            $pengumuman->published = 0;
+            $pengumuman->save();
+
+            return redirect()->back()->with('toast_success', 'Pengumuman berhasil disembunyikan.');
+        }
+
+        return redirect()->back()->with('toast_error', 'Pengumuman tidak ditemukan.');
     }
 
     public function showAnnounce()

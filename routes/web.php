@@ -74,7 +74,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/pengumuman/{id}/edit', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
         Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
         Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
-        Route::post('/pengumuman/{id}/publish', [PengumumanController::class, 'publish'])->name('pengumuman.publish');
+
+        Route::put('/pengumuman/{id}/publish', [PengumumanController::class, 'publish'])->name('pengumuman.published');
+        Route::put('/pengumuman/{id}/not-published', [PengumumanController::class, 'notPublished'])->name('pengumuman.not-published');
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/menumakan/index', [MenuMakananController::class, 'show'])->name('menumakan.index');

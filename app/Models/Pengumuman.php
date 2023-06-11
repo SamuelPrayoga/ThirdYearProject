@@ -14,5 +14,6 @@ class Pengumuman extends Model
         'tanggal_berakhir',
         'tanggal_pembuatan',
         'deskripsi',
+        'published',
     ];
 }
