@@ -62,6 +62,13 @@
                                                     <td>:</td>
                                                     <td><a>{{ $report->created_at->format('d M Y') }}</a></td>
                                                 </tr>
+                                                @if ($report->where('approved', 2)->count() > 0)
+                                                <tr>
+                                                    <td>Alasan Penolakan</td>
+                                                    <td>:</td>
+                                                    <td><a class="card-text text-muted danger">{{ $report->alasan_penolakan }}</a></td>
+                                                </tr>
+                                                @endif
                                                 {{-- <tr>
                                         <td></td>
                                         <td></td>
@@ -91,10 +98,8 @@
                                             <p class="card-text text-muted success">Silahkan meminta makanan pengganti
                                                 kepada
                                                 pihak Kantin.</p>
-                                        @elseif ($report->approved == 2)
-                                            <p class="card-text text-muted danger">Laporan Anda ditolak, silahkan periksa
-                                                dan
-                                                ajukan kembali</p>
+                                        {{-- @elseif ($report->approved == 2)
+                                            <p class="card-text text-muted danger">{{$report->alasan_penolakan}}</p> --}}
                                         @endif
                                     </div>
                                     <div class="card-footer text-muted">

@@ -9,7 +9,7 @@ class AllergyReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'allergies', 'file', 'approved'];
+    protected $fillable = ['user_id', 'allergies', 'file', 'approved','alasan_penolakan'];
 
     public function user()
     {

@@ -121,12 +121,13 @@ class AllergyReportController extends Controller
 
     //     return redirect()->back()->with('toast_success', 'Laporan alergi berhasil Ditolak / Dihapus.');
     // }
-    public function reject(AllergyReport $report)
+    public function reject(AllergyReport $report, Request $request)
     {
         $report->approved = 2;
+        $report->alasan_penolakan = $request->input('alasan_penolakan'); // Mengambil alasan penolakan dari input 'reason'
         $report->save();
 
-        return redirect()->back()->with('toast_success', 'Laporan alergi berhasil Ditolak / Dihapus.');
+        return redirect()->back()->with('toast_success', 'Laporan alergi berhasil Ditolak.');
     }
 
 

@@ -19,6 +19,7 @@ class CreateAllergyReportsTable extends Migration
             $table->text('allergies');
             $table->string('file');
             $table->boolean('approved')->default(false);
+            $table->string('alasan_penolakan')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

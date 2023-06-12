@@ -15,13 +15,17 @@
                     <th>NIM</th>
                     <th>Asrama</th>
                     <th width="20%">Jenis Alergi</th>
-                    <th>Laporan</th>
+                    @if ($reports->where('approved', 2)->count() > 0)
+                        <th>Alasan Penolakan</th>
+                    @endif
+
+
                     @if (auth()->user()->isKeasramaan())
                         <th>Dokumen</th>
                     @endif
                     <th>Status</th>
                     @if (auth()->user()->isKeasramaan())
-                        <th>Aksi</th>
+                        <th><center>Aksi</center></th>
                     @endif
                 </tr>
             </thead>
@@ -40,7 +44,7 @@
                                 @foreach (json_decode($report->allergies) as $allergy)
                                     {{ $allergy }}
                                     @if (!$loop->last)
-                                    ,
+                                        ,
                                     @endif
                                 @endforeach
                             </td>
@@ -49,7 +53,9 @@
                                     {{ $allergy }},
                                 @endforeach
                             </td> --}}
-                            <td>{{ $report->created_at->diffForHumans() }}</td>
+                            @if ($reports->where('approved', 2)->count() > 0)
+                                <td>{{ $report->alasan_penolakan }}</td>
+                            @endif
 
                             {{-- <td>{{ $report->allergies }}</td> --}}
                             @if (auth()->user()->isKeasramaan())
@@ -61,7 +67,8 @@
                                 </span>
                             </td> --}}
                             <td>
-                                <span class="badge rounded-pill {{ $report->approved == 1 ? 'bg-success' : ($report->approved == 2 ? 'bg-danger' : 'bg-warning') }}">
+                                <span
+                                    class="badge rounded-pill {{ $report->approved == 1 ? 'bg-success' : ($report->approved == 2 ? 'bg-danger' : 'bg-warning') }}">
                                     {{ $report->approved == 1 ? 'Disetujui' : ($report->approved == 2 ? 'Ditolak' : 'Menunggu') }}
                                 </span>
                             </td>
@@ -78,20 +85,49 @@
                                                 <i class="fas fa-check-circle"></i>
                                             </button>
                                         </form>
-                                        <form action="{{ route('admin.reject', $report->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            <button type="submit" class="button btn-warning btn-sm">
-                                                <i class="fas fa-times-circle"></i>
-                                            </button>
-                                        </form>
+                                        <!-- Tambahkan tombol yang akan memicu modal -->
+                                        <button type="button" class="button btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#rejectModal">
+                                            <i class="fas fa-times-circle"></i>
+                                        </button>
+
+                                        <!-- Tambahkan modal -->
+                                        <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="rejectModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="rejectModalLabel">Alasan Penolakan</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <!-- Form untuk memasukkan alasan penolakan -->
+                                                        <form action="{{ route('admin.reject', $report->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="reason">Alasan:</label>
+                                                                <textarea class="form-control" id="alasan_penolakan" name="alasan_penolakan" required></textarea>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endif
-                                    <form action="{{ route('admin.destroy', $report->id) }}" method="POST"
+                                    {{-- <form action="{{ route('admin.destroy', $report->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="button btn-danger btn-sm"><i class="fas fa-trash-alt"></i>
+                                        <button type="submit" class="button btn-danger btn-sm"><i
+                                                class="fas fa-trash-alt"></i>
                                         </button>
-                                    </form>
+                                    </form> --}}
+
                                 </td>
                             @endif
 
