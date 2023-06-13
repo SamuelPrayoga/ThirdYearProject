@@ -134,7 +134,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/check-lapor-makan', [HomeController::class, 'checkLaporMakan'])->name('check.lapor.makan');
         Route::post('/lapor-saya-makan', [LaporMakanController::class, 'store'])->name('lapor.makan');
         Route::post('/izin-bermalam/{id}/edit', [LaporMakanController::class, 'edit'])->name('IB.edit');
-        //Route::post('/LaporIzinBermalam/Request', [LaporMakanController::class, 'show'])->name('lapor.IB');
+        Route::post('/LaporIzinBermalam/Request', [LaporMakanController::class, 'show'])->name('lapor.IB');
         Route::get('/edit-profile', [UpdateProfileController::class, 'edit'])->name('edit.profile');
         Route::put('/update-profile', [UpdateProfileController::class, 'update'])->name('update.profile');
 
