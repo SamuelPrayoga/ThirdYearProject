@@ -5,29 +5,6 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card shadow-sm mb-2">
-                    @if (in_array(now()->dayOfWeek, [4, 5]) && $show_laporkan_makan && (!$laporan_makanan || $laporan_makanan->is_makan != 1))
-                    <button type="button" class="btn" id="btn-day" data-toggle="modal" data-target="#exampleModal1"
-                        href="#" role="button"
-                        style="font-weight: bolder; color: #000000; background-color: #FFC107; border: 2px solid black; animation: blink 0.5s linear infinite;">
-                        <i class="fas fa-exclamation-triangle"></i> Laporkan Waktu Makan Anda untuk besok Hari</button>
-
-                    <style>
-                        @keyframes blink {
-                            0% {
-                                opacity: 1;
-                            }
-
-                            50% {
-                                opacity: 0.5;
-                            }
-
-                            100% {
-                                opacity: 1;
-                            }
-                        }
-                    </style>
-                @endif
-
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                     <script>
                         // Mendapatkan tombol berdasarkan ID
@@ -37,7 +14,7 @@
                         if (button) {
                             // Menampilkan SweetAlert dan mengarahkan ke modal
                             Swal.fire({
-                                title: "Anda Belum melaporkan waktu makan Anda untuk Besok Hari, Laporkan Sekarang",
+                                title: "Anda Belum melaporkan Apakah Anda Izin Bermalam, Laporkan Sekarang",
                                 icon: "info",
                                 confirmButtonText: "Laporkan Sekarang",
                                 allowOutsideClick: false
@@ -307,95 +284,6 @@
                             </div>
                         </div>
                         {{-- LaporanMakan --}}
-
-                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-
-                                        <h5 class="modal-title" id="exampleModalLabel">Laporkan Saya Makan</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="theForm" action="{{ route('home.lapor.makan') }}" method="post"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label for="input-one">Catatan: </label>
-                                                    <ul>
-                                                        <li><small>Form ini Hanya dapat diisi satu kali oleh mahasiswa
-                                                                setiap harinya, Pastikan Anda memastikan data dengan
-                                                                benar.</small></li>
-                                                        <li><small>Form ini bertujuan untuk melaporkan jumlah makan
-                                                                mahasiswa pada hari Jumat dan Sabtu</small>
-                                                        </li>
-                                                        <li><small>Untuk Mahasiswa Izin Sakit, silahkan tetap memilih waktu
-                                                                makan</small></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="input-one">Nama Mahasiswa</label>
-                                                    {{-- <input type="hidden" name="form_token" value="{{ session('form_token') }}"> --}}
-                                                    <input type=hidden name=last id=last>
-                                                    <input type="text" class="form-control" id="input-zero"
-                                                        value="{{ auth()->user()->name }}" name="nama" readonly
-                                                        required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="input-one">NIM</label>
-
-                                                    <input type="text" class="form-control" id="input-zero-one"
-                                                        value="{{ auth()->user()->nim }}" name="nim" readonly
-                                                        required>
-                                                </div>
-                                                <input type=hidden name=UserID value={{ auth()->user()->id }}>
-                                                <div class="form-group">
-                                                    <label for="tanggal">Tanggal Makan Besok</label>
-                                                    <input type="date" class="form-control" name="tanggal"
-                                                        id="tanggal" placeholder=""
-                                                        value="{{ \Carbon\Carbon::now()->addDay()->format('Y-m-d') }}"
-                                                        required readonly>
-                                                </div>
-                                                <label for="exampleFormControlTextarea1">Pilih Waktu Makan</label>
-                                                <div
-                                                    class="rating-input-wrapper rating-flex d-flex flex-wrap justify-content-between mt-2">
-                                                    <label for="Makan Pagi">
-                                                        <input type="checkbox" name="waktu_makan[]" value="Pagi"
-                                                            id="Makan Pagi" />
-                                                        <span class="border rounded px-3 py-2">Makan Pagi</span>
-                                                    </label>
-                                                    <label for="Makan Siang">
-                                                        <input type="checkbox" name="waktu_makan[]" value="Siang"
-                                                            id="Makan Siang" />
-                                                        <span class="border rounded px-3 py-2">Makan Siang</span>
-                                                    </label>
-                                                    <!-- Tampilkan opsi makan malam hanya jika saat ini bukan hari Jumat -->
-                                                    <?php if (date('l') !== 'Friday') { ?>
-                                                    <label for="Makan Malam">
-                                                        <input type="checkbox" name="waktu_makan[]" value="Malam"
-                                                            id="Makan Malam" />
-                                                        <span class="border rounded px-3 py-2">Makan Malam</span>
-                                                    </label>
-                                                    <?php } ?>
-                                                </div>
-
-                                                <input type="hidden" name="is_makan" value="1">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary btn-sm"
-                                                    data-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-primary btn-sm"
-                                                    id="submitButton">Lapor</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

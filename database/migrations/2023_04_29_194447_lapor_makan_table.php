@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('laporan_makanan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->date('tanggal');
-            $table->string('waktu_makan');
+            $table->date('tanggal_berangkat');
+            $table->time('jam_berangkat');
+            $table->date('tanggal_kembali');
+            $table->time('jam_kembali');
             $table->boolean('is_makan')->default(false);
             $table->timestamps();
 

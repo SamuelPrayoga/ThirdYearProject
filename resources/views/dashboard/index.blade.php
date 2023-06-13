@@ -55,7 +55,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h6 class="fs-6 fw-light">Jumlah Mahasiswa Makan</h6>
-                        <h4 class="fw-bold">{{ $userCount }}</h4>
+                        {{-- <h4 class="fw-bold">{{ $userCount }}</h4> --}}
                         <p class="text-muted">Mahasiswa</p>
                         <small class="text-muted">Minggu ini</small>
                     </div>
@@ -65,7 +65,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h6 class="fs-6 fw-light">Makan Pagi, Hari: Jumat </h6>
-                        <h4 class="fw-bold">{{ $makan_pagi }}</h4>
+                        {{-- <h4 class="fw-bold">{{ $makan_pagi }}</h4> --}}
                         <p class="text-muted">Mahasiswa</p>
                         <small class="text-muted">Minggu ini</small>
                     </div>
@@ -75,7 +75,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h6 class="fs-6 fw-light">Makan Siang, Hari: Jumat </h6>
-                        <h4 class="fw-bold">{{ $makan_siang }}</h4>
+                        {{-- <h4 class="fw-bold">{{ $makan_siang }}</h4> --}}
                         <p class="text-muted">Mahasiswa</p>
                         <small class="text-muted">Minggu ini</small>
                     </div>
@@ -85,7 +85,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h6 class="fs-6 fw-light">Makan Malam, Hari: Jumat </h6>
-                        <h4 class="fw-bold">{{ $makan_malam }}</h4>
+                        {{-- <h4 class="fw-bold">{{ $makan_malam }}</h4> --}}
                         <p class="text-muted">Mahasiswa</p>
                         <small class="text-muted">Minggu ini</small>
                     </div>
@@ -100,7 +100,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h6 class="fs-6 fw-light">Makan Pagi, Hari: Sabtu </h6>
-                        <h4 class="fw-bold">{{ $pagi_sabtu }}</h4>
+                        {{-- <h4 class="fw-bold">{{ $pagi_sabtu }}</h4> --}}
                         <p class="text-muted">Mahasiswa</p>
                         <small class="text-muted">Minggu ini</small>
                     </div>
@@ -110,7 +110,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h6 class="fs-6 fw-light">Makan Siang, Hari: Sabtu </h6>
-                        <h4 class="fw-bold">{{ $siang_sabtu }}</h4>
+                        {{-- <h4 class="fw-bold">{{ $siang_sabtu }}</h4> --}}
                         <p class="text-muted">Mahasiswa</p>
                         <small class="text-muted">Minggu ini</small>
                     </div>

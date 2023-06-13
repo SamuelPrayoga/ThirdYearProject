@@ -27,16 +27,17 @@
                     <th>#</th>
                     <th>NIM</th>
                     <th>Nama</th>
-                    <th>Program Studi</th>
-                    <th>Angkatan</th>
+                    <th>Status</th>
                     <th>Asrama</th>
-                    <th>Makan Pada</th>
-                    <th>Waktu Makan</th>
-                    {{-- <th>Aksi</th> --}}
+                    <th>Tanggal Berangkat</th>
+                    <th>Waktu Berangkat</th>
+                    <th>Tanggal Kembali</th>
+                    <th>Waktu Kembali</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             @if ($laporan_makanan->isEmpty())
-                <td colspan="8"><small class="text-muted">Tidak Laporan Makan Jumat-Sabtu Mahasiswa.</small></td>
+                <td colspan="8"><small class="text-muted">Tidak Laporan Izin Mahasiswa Mahasiswa.</small></td>
             @else
                 <tbody>
                     @php $i=1 @endphp
@@ -46,30 +47,56 @@
                             {{-- <td></td> --}}
                             <td>{{ $reports->user->nim }}</td>
                             <td>{{ $reports->user->name }}</td>
-                            <td>{{ $reports->user->prodi }}</td>
-                            <td>{{ $reports->user->angkatan }}</td>
-                            <td>{{ $reports->user->asrama }}</td>
-                            <td>{{ strftime('%A, %e %B %Y', strtotime($reports->tanggal)) }}</td>
-                            {{-- <td>{{ date('l, j F Y', strtotime($reports->tanggal)) }}</td> --}}
-                            {{-- <td>{{$reports->tanggal}}</td> --}}
                             <td>
-                                @foreach (json_decode($reports->waktu_makan) as $waktu)
-                                    @if ($waktu == 'Pagi')
-                                        <span class="badge badge-success">{{ $waktu }}</span>
-                                    @elseif ($waktu == 'Siang')
-                                        <span class="badge badge-warning">{{ $waktu }}</span>
-                                    @elseif ($waktu == 'Malam')
-                                        <span class="badge badge-primary">{{ $waktu }}</span>
-                                    @else
-                                        {{ $waktu }}
-                                    @endif
-
-                                    @if (!$loop->last)
-                                        ,
-                                    @endif
-                                @endforeach
+                                @if ($reports->is_makan == 0)
+                                    <span class="badge badge-warning">Menunggu</span>
+                                @elseif ($reports->is_makan == 1)
+                                    <span class="badge badge-success">Disetujui</span>
+                                @elseif ($reports->is_makan == 2)
+                                    <span class="badge badge-danger">Ditolak</span>
+                                @endif
                             </td>
-                            {{-- <td><button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></td> --}}
+                            <td>{{ $reports->user->asrama }}</td>
+                            <td>{{ $reports->tanggal_berangkat }}</td>
+                            <td>{{ $reports->jam_berangkat }}</td>
+                            <td>{{ $reports->tanggal_kembali }}</td>
+                            <td>{{ $reports->jam_kembali }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <a class=" dropdown-toggle" type="button" id="toolsDropdown"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-cogs"></i> Tools
+                                </a>
+                                    <div class="dropdown-menu" aria-labelledby="toolsDropdown">
+                                        @if ($reports)
+                                            @if ($reports->is_makan == 1)
+                                                <form class="d-inline-block"
+                                                    action="{{ route('IB.decline', ['reports' => $reports->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <!-- Ubah metode menjadi POST -->
+                                                    <button type="submit" class="btn btn-sm dropdown-item">
+                                                        <i class="fas fa-times-circle"></i> Decline
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form class="d-inline-block"
+                                                    action="{{ route('IB.approve', ['reports' => $reports->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <!-- Ubah metode menjadi POST -->
+                                                    <button type="submit" class="btn btn-sm dropdown-item">
+                                                        <i class="fas fa-check-circle"></i> Approve
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        @endif
+
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

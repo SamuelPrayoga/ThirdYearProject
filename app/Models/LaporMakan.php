@@ -14,8 +14,10 @@ class LaporMakan extends Model
 
     protected $fillable = [
         'user_id',
-        'tanggal',
-        'waktu_makan',
+        'tanggal_berangkat',
+        'jam_berangkat',
+        'tanggal_kembali',
+        'jam_kembali',
         'is_makan',
     ];
 

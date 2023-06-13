@@ -60,6 +60,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/report/export', [ReportController::class, 'exportExcel'])->name('report.export');
         Route::delete('/admin/allergy-reports/{id}', [AllergyReportController::class, 'destroy'])->name('admin.destroy');
 
+        //IzinBermalam
+        Route::post('/admin/IzinBermalam/{reports}/approve', [LaporMakanController::class, 'approved'])->name('IB.approve');
+        Route::post('/admin/IzinBermalam/{reports}/decline', [LaporMakanController::class, 'decline'])->name('IB.decline');
+
 
         //Barang
         Route::get('/barang/all', [BarangController::class, 'show'])->name('barang.show');
@@ -129,7 +133,8 @@ Route::middleware('auth')->group(function () {
         // Lapor Makan
         Route::get('/check-lapor-makan', [HomeController::class, 'checkLaporMakan'])->name('check.lapor.makan');
         Route::post('/lapor-saya-makan', [LaporMakanController::class, 'store'])->name('lapor.makan');
-
+        Route::post('/izin-bermalam/{id}/edit', [LaporMakanController::class, 'edit'])->name('IB.edit');
+        //Route::post('/LaporIzinBermalam/Request', [LaporMakanController::class, 'show'])->name('lapor.IB');
         Route::get('/edit-profile', [UpdateProfileController::class, 'edit'])->name('edit.profile');
         Route::put('/update-profile', [UpdateProfileController::class, 'update'])->name('update.profile');
 

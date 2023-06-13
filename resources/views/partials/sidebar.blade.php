@@ -96,7 +96,7 @@
                     <a class="nav-link"
                         href="{{route('admin.lapmakan.index')}}">
                         <i class="fas fa-file-alt"></i>
-                        Data Laporan Makan
+                        Data Mahasiswa IB
                     </a>
                 </li>
             {{-- @endif

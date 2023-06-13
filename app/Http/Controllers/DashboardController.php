@@ -19,31 +19,31 @@ class DashboardController extends Controller
         // mendapatkan tanggal hari Sabtu
         $tanggal_sabtu = date('Y-m-d', strtotime("next Saturday", strtotime($tanggal)));
 
-        $makan_pagi = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Pagi'])
-            ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
-            ->count();
-        $makan_siang = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Siang'])
-            ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
-            ->count();
-        $makan_malam = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Malam'])
-            ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
-            ->count();
+        // $makan_pagi = DB::table('laporan_makanan')
+        //     ->whereJsonContains('waktu_makan', ['Pagi'])
+        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
+        //     ->count();
+        // $makan_siang = DB::table('laporan_makanan')
+        //     ->whereJsonContains('waktu_makan', ['Siang'])
+        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
+        //     ->count();
+        // $makan_malam = DB::table('laporan_makanan')
+        //     ->whereJsonContains('waktu_makan', ['Malam'])
+        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
+        //     ->count();
 
-        $pagi_sabtu = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Pagi'])
-            ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
-            ->count();
-        $siang_sabtu = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Siang'])
-            ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
-            ->count();
-        $malam_sabtu = DB::table('laporan_makanan')
-            ->whereJsonContains('waktu_makan', ['Malam'])
-            ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
-            ->count();
+        // $pagi_sabtu = DB::table('laporan_makanan')
+        //     ->whereJsonContains('waktu_makan', ['Pagi'])
+        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
+        //     ->count();
+        // $siang_sabtu = DB::table('laporan_makanan')
+        //     ->whereJsonContains('waktu_makan', ['Siang'])
+        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
+        //     ->count();
+        // $malam_sabtu = DB::table('laporan_makanan')
+        //     ->whereJsonContains('waktu_makan', ['Malam'])
+        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
+        //     ->count();
         $approvedData = AllergyReport::where('approved', 1)
             ->selectRaw('COUNT(*) as count, MONTH(created_at) as month')
             ->groupBy('month')
@@ -149,12 +149,12 @@ class DashboardController extends Controller
             "title" => "Dashboard",
             "positionCount" => Position::count(),
             "userCount" => $userCount,
-            "makan_pagi" => $makan_pagi,
-            "makan_siang" => $makan_siang,
-            "makan_malam" => $makan_malam,
-            "pagi_sabtu" => $pagi_sabtu,
-            "siang_sabtu" => $siang_sabtu,
-            "malam_sabtu" => $malam_sabtu,
+            // "makan_pagi" => $makan_pagi,
+            // "makan_siang" => $makan_siang,
+            // "makan_malam" => $makan_malam,
+            // "pagi_sabtu" => $pagi_sabtu,
+            // "siang_sabtu" => $siang_sabtu,
+            // "malam_sabtu" => $malam_sabtu,
             "approvedData" => $approvedData,
             "categories" => $categories,
             "data" => $data,
