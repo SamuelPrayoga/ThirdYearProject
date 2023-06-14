@@ -62,16 +62,22 @@ class HomeController extends Controller
             ->where('attendance_id', $attendance->id)
             ->where('user_id', auth()->user()->id)
             ->first();
-        // $is_makan = LaporMakan::query()
-        //     ->where('tanggal', now()->toDateString())
-        //     ->value('is_makan');
+
+        $is_makan = LaporMakan::query()
+            ->where('user_id', auth()->user()->id)
+            ->where('tanggal_berangkat', '<=', now()->toDateString())
+            ->where('tanggal_kembali', '>=', now()->toDateString())
+            ->where('jam_berangkat', '<=', now()->toTimeString())
+            ->where('jam_kembali', '>=', now()->toTimeString())
+            ->where('is_makan', 1)
+            ->count();
 
         $data = [
             'is_has_enter_today' => $isHasEnterToday, // sudah absen masuk
             'is_not_out_yet' => $presences->where('presence_out_time', null)->isNotEmpty(), // belum absen pulang
             'is_there_permission' => (bool) $isTherePermission,
             'is_permission_accepted' => $isTherePermission?->is_accepted ?? false,
-            // 'is_makan' => $is_makan,
+            'is_IB' => $is_makan > 0, // is_IB bernilai true jika is_makan pada rentang waktu tersebut adalah 1
         ];
 
         $holiday = $attendance->data->is_holiday_today ? Holiday::query()
@@ -83,7 +89,7 @@ class HomeController extends Controller
             ->where('attendance_id', $attendance->id)
             ->get();
 
-        // untuku melihat mahasiswa yang tidak hadir
+        // untuk melihat mahasiswa yang tidak hadir
         $priodDate = CarbonPeriod::create($attendance->created_at->toDateString(), now()->toDateString())
             ->toArray();
 
@@ -93,16 +99,21 @@ class HomeController extends Controller
 
         $priodDate = array_slice(array_reverse($priodDate), 0, 30);
 
+        $hideScanQRCodeButton = $holiday || ($attendance->data->is_using_qrcode && !$data['is_there_permission'] && !$data['is_IB']);
+        $hidePermissionButton = $hideScanQRCodeButton;
+
         return view('home.show', [
             "title" => "Informasi Kehadiran Makan",
             "attendance" => $attendance,
             "data" => $data,
             "holiday" => $holiday,
             'history' => $history,
-            'priodDate' => $priodDate
-            // 'is_makan' => $is_makan
+            'priodDate' => $priodDate,
+            'hideScanQRCodeButton' => $hideScanQRCodeButton,
+            'hidePermissionButton' => $hidePermissionButton
         ]);
     }
+
 
     public function permission(Attendance $attendance)
     {
