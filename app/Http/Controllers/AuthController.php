@@ -15,26 +15,23 @@ class AuthController extends Controller
         ]);
     }
     public function authenticate(LoginRequest $request)
-    {
-        $remember = $request->boolean('remember');
-        $credentials = $request->only(['email', 'password']);
+{
+    $remember = $request->boolean('remember');
+    $credentials = $request->only(['email', 'password']);
 
+    try {
         if (Auth::attempt($credentials, $remember)) { // login berhasil
             request()->session()->regenerate();
-            $data = [
-                "success" => true,
-                "redirect_to" => auth()->user()->isUser() ? route('home.index') : route('dashboard.index'),
-                "message" => "Login berhasil, silahkan klik tombol kembali!"
-            ];
-            return response()->json($data);
+            return redirect()->route(auth()->user()->isUser() ? 'home.index' : 'dashboard.index')
+                ->with('success', 'Login Berhasil, Selamat Datang!');
         }
 
-        $data = [
-            "success" => false,
-            "message" => "Email atau password salah, silahkan coba lagi!"
-        ];
-        return response()->json($data, 400);
+        return back()->with('error', 'Username atau password Anda salah, silahkan coba lagi!');
+    } catch (\Exception $error) {
+        return back()->with('error', 'Terjadi kesalahan saat melakukan autentikasi. Silakan coba lagi nanti.');
     }
+}
+
 
 
 

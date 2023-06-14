@@ -14,6 +14,7 @@
                 <h3 class="h3 mb-3 fw-normal" id="judul">Kantin Institut Teknologi Del</h3>
             </center>
             <form method="POST" action="{{ route('auth.login') }}" id="login-form">
+                @csrf
                 <div class="mb-3">
                     <label for="floatingInputEmail" id="labels">Email Zimbra</label>
                     <input type="email" class="form-control" id="floatingInputEmail" name="email" required>
@@ -57,5 +58,5 @@
     </script>
 @endsection
 @push('script')
-    <script type="module" src="{{ asset('js/auth/login.js') }}"></script>
+    {{-- <script type="module" src="{{ asset('js/auth/login.js') }}"></script> --}}
 @endpush
