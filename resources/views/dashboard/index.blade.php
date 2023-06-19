@@ -67,7 +67,7 @@
         @endif
         @if ($izinMakan > 0)
             <div class="alert alert-danger">
-                Anda memiliki {{ $izinMakan }} Izin Makan dari Mahasiswa baru yang perlu dikonfirmasi<a href="/presences/{attendance}/permissions"> Konfirmasi Sekarang</a>
+                Anda memiliki {{ $izinMakan }} Izin Makan dari Mahasiswa baru yang perlu dikonfirmasi<a href="/presences"> Konfirmasi Sekarang</a>
             </div>
         @else
         @endif

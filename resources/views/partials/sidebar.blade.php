@@ -180,17 +180,4 @@
         });
     });
 </script>
-<script>
-    // JavaScript
 
-    // Toggle sidebar expand-collapse
-    function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('sidebar-expanded');
-        sidebar.classList.toggle('sidebar-collapsed');
-    }
-
-    // Menggunakan event listener untuk memanggil fungsi toggleSidebar saat tombol di klik
-    const toggleButton = document.querySelector('#toggleButton');
-    toggleButton.addEventListener('click', toggleSidebar);
-</script>

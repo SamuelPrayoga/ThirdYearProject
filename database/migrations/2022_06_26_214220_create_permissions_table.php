@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description', 500);
             $table->string('file', 500);
+            $table->string('alasan_penolakan')->nullable();
             $table->timestamps();
         });
     }
