@@ -124,7 +124,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/presences/{attendance}/acceptPermission', [PresenceController::class, 'acceptPermission'])->name('presences.acceptPermission');
         Route::delete('/presences/{attendance}/declinePermission', [PresenceController::class, 'declinePermission'])->name('presences.declinePermission');
         // employees permissions
-
+        // Route::get('/presences/permissions', [PresenceController::class, 'permissions'])->name('permissions.dashboard');
         Route::get('/presences/{attendance}/permissions', [PresenceController::class, 'permissions'])->name('presences.permissions');
     });
 

@@ -3,9 +3,19 @@
 @push('style')
     @powerGridStyles
 @endpush
+@section('buttons')
+    {{-- <div class="btn-toolbar mb-2 mb-md-0">
+        <div>
+            <a href="" class="btn btn-sm btn-light">
+                <span data-feather="arrow-left-circle" class="align-text-bottom"></span>
+                Kembali
+            </a>
+        </div>
+    </div> --}}
+@endsection
 
 @section('content')
-    <div class="float-end mt-2">
+    {{-- <div class="float-end mt-2">
         <form id="hapus-semua-form" action="{{ route('admin.lap.hapussemua') }}" method="POST" style="display: inline;">
             @csrf
             @method('DELETE')
@@ -16,12 +26,24 @@
             </button>
         </form>
         &nbsp;
+    </div> --}}
+    {{-- <div class="row">
+        <div class="col-md-6 offset-md-6">
+            <form action="#" method="get">
+                <div class="mb-3">
+                    <label for="filterDate" class="form-label fw-bold">Tampilkan Berdasarkan Tanggal</label>
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control" id="filterDate" name="display-by-date"
+                            value="{{ request('display-by-date') }}">
+                        <button class="btn btn-primary" type="submit" id="button-addon1">Tampilkan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> --}}
 
-    </div>
-    <br>
-    <br>
     <div class="card mb-3 table-responsive">
-        <table class="table table-bordered table-striped table-hover" id="exampls">
+        <table class="table table-bordered table-striped table-hover" id="examples">
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
@@ -37,7 +59,7 @@
                 </tr>
             </thead>
             @if ($laporan_makanan->isEmpty())
-                <td colspan="8"><small class="text-muted">Tidak Laporan Izin Mahasiswa Mahasiswa.</small></td>
+                <td colspan="8"><small class="text-muted">Tidak Ada Laporan Izin Mahasiswa.</small></td>
             @else
                 <tbody>
                     @php $i=1 @endphp
@@ -63,37 +85,34 @@
                             <td>{{ $reports->jam_kembali }}</td>
                             <td>
                                 <div class="dropdown">
-                                    <a class=" dropdown-toggle" type="button" id="toolsDropdown"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="dropdown-toggle" type="button" id="toolsDropdown" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-cogs"></i> Tools
-                                </a>
+                                    </a>
                                     <div class="dropdown-menu" aria-labelledby="toolsDropdown">
-                                        @if ($reports)
-                                            @if ($reports->is_makan == 1)
-                                                <form class="d-inline-block"
-                                                    action="{{ route('IB.decline', ['reports' => $reports->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('POST')
-                                                    <!-- Ubah metode menjadi POST -->
-                                                    <button type="submit" class="btn btn-sm dropdown-item">
-                                                        <i class="fas fa-times-circle"></i> Decline
-                                                    </button>
-                                                </form>
-                                            @else
-                                                <form class="d-inline-block"
-                                                    action="{{ route('IB.approve', ['reports' => $reports->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('POST')
-                                                    <!-- Ubah metode menjadi POST -->
-                                                    <button type="submit" class="btn btn-sm dropdown-item">
-                                                        <i class="fas fa-check-circle"></i> Approve
-                                                    </button>
-                                                </form>
-                                            @endif
+                                        @if ($reports->is_makan == 1)
+                                            <form class="d-inline-block"
+                                                action="{{ route('IB.decline', ['reports' => $reports->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('POST')
+                                                <!-- Ubah metode menjadi POST -->
+                                                <button type="submit" class="btn btn-sm dropdown-item">
+                                                    <i class="fas fa-times-circle"></i> Decline
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form class="d-inline-block"
+                                                action="{{ route('IB.approve', ['reports' => $reports->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('POST')
+                                                <!-- Ubah metode menjadi POST -->
+                                                <button type="submit" class="btn btn-sm dropdown-item">
+                                                    <i class="fas fa-check-circle"></i> Approve
+                                                </button>
+                                            </form>
                                         @endif
-
                                     </div>
                                 </div>
                             </td>

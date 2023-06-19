@@ -48,78 +48,134 @@
         .highcharts-data-table tr:hover {
             background: #f1f7ff;
         }
+
+        .card.shadow {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card.shadow:hover {
+            transform: scale(1.05);
+        }
     </style>
     <div>
+        @if ($alergiBaruCount > 0)
+            <div class="alert alert-warning">
+                Anda memiliki {{ $alergiBaruCount }} Laporan baru yang perlu dikonfirmasi mengenai alergi makanan oleh
+                mahasiswa <a href="{{ route('admin.allergy-reports.index') }}">Konfirmasi Sekarang</a>
+            </div>
+        @else
+        @endif
+        @if ($izinMakan > 0)
+            <div class="alert alert-danger">
+                Anda memiliki {{ $izinMakan }} Izin Makan dari Mahasiswa baru yang perlu dikonfirmasi<a href="/presences/{attendance}/permissions"> Konfirmasi Sekarang</a>
+            </div>
+        @else
+        @endif
+        @if ($izinIB > 0)
+            <div class="alert alert-danger">
+                Anda memiliki {{ $izinIB }} Data Laporan Izin Bermalam perlu diperiksa<a href="{{ route('admin.lapmakan.index') }}"> Periksa Sekarang</a>
+            </div>
+        @else
+        @endif
+
         <div class="row">
             <div class="col-md-3">
-                <div class="card shadow">
+                <div class="card shadow bg-primary text-white">
                     <div class="card-body">
-                        <h6 class="fs-6 fw-light">Jumlah Mahasiswa Makan</h6>
-                        {{-- <h4 class="fw-bold">{{ $userCount }}</h4> --}}
+                        <h6 class="fs-6 fw-light">
+                            <i class="fas fa-users"></i> Jumlah Seluruh Mahasiswa
+                        </h6>
+                        <h4 class="fw-bold">{{ $userCount }}</h4>
                         <p class="text-muted">Mahasiswa</p>
-                        <small class="text-muted">Minggu ini</small>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card shadow">
+                <div class="card shadow bg-info text-white">
                     <div class="card-body">
-                        <h6 class="fs-6 fw-light">Makan Pagi, Hari: Jumat </h6>
-                        {{-- <h4 class="fw-bold">{{ $makan_pagi }}</h4> --}}
+                        <h6 class="fs-6 fw-light">
+                            <i class="fas fa-calendar-check"></i> Jumlah Mahasiswa IB Hari ini
+                        </h6>
+                        <h4 class="fw-bold">{{ $userIB }}</h4>
                         <p class="text-muted">Mahasiswa</p>
-                        <small class="text-muted">Minggu ini</small>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card shadow">
+                <div class="card shadow bg-success text-white">
                     <div class="card-body">
-                        <h6 class="fs-6 fw-light">Makan Siang, Hari: Jumat </h6>
-                        {{-- <h4 class="fw-bold">{{ $makan_siang }}</h4> --}}
+                        <h6 class="fs-6 fw-light">
+                            <i class="fas fa-utensils"></i> Jumlah Porsi Makan Hari ini
+                        </h6>
+                        <h4 class="fw-bold">{{ $mahasiswaMakan }}</h4>
                         <p class="text-muted">Mahasiswa</p>
-                        <small class="text-muted">Minggu ini</small>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card shadow">
+                <div class="card shadow bg-danger text-white">
                     <div class="card-body">
-                        <h6 class="fs-6 fw-light">Makan Malam, Hari: Jumat </h6>
-                        {{-- <h4 class="fw-bold">{{ $makan_malam }}</h4> --}}
+                        <h6 class="fs-6 fw-light">
+                            <i class="fas fa-allergies"></i> Jumlah Mahasiswa Alergi
+                        </h6>
+                        <h4 class="fw-bold">{{ $userAllergy }}</h4>
                         <p class="text-muted">Mahasiswa</p>
-                        <small class="text-muted">Minggu ini</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card shadow bg-warning text-dark">
+                    <div class="card-body">
+                        <h6 class="fs-6 fw-light">
+                            <i class="fas fa-coffee"></i> Menu Makan Pagi
+                        </h6>
+                        @if ($menus)
+                            <p>{!! $menus->menu_pagi !!}</p>
+                        @else
+                            <p class="text-muted">Belum ada menu pagi hari ini.</p>
+                        @endif
+                        <p class="text-muted">Hari ini</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow bg-secondary text-white">
+                    <div class="card-body">
+                        <h6 class="fs-6 fw-light">
+                            <i class="fas fa-utensil-spoon"></i> Menu Makan Siang
+                        </h6>
+                        @if ($menus)
+                            <p>{!! $menus->menu_siang !!}</p>
+                        @else
+                            <p class="text-muted">Belum ada menu siang hari ini.</p>
+                        @endif
+                        <p class="text-muted">Hari ini</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow bg-primary text-white">
+                    <div class="card-body">
+                        <h6 class="fs-6 fw-light">
+                            <i class="fas fa-utensils-alt"></i> Menu Makan Malam
+                        </h6>
+                        @if ($menus)
+                            <p>{!! $menus->menu_malam !!}</p>
+                        @else
+                            <p class="text-muted">Belum ada menu malam hari ini.</p>
+                        @endif
+                        <p class="text-muted">Hari ini</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <br>
-    <div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h6 class="fs-6 fw-light">Makan Pagi, Hari: Sabtu </h6>
-                        {{-- <h4 class="fw-bold">{{ $pagi_sabtu }}</h4> --}}
-                        <p class="text-muted">Mahasiswa</p>
-                        <small class="text-muted">Minggu ini</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h6 class="fs-6 fw-light">Makan Siang, Hari: Sabtu </h6>
-                        {{-- <h4 class="fw-bold">{{ $siang_sabtu }}</h4> --}}
-                        <p class="text-muted">Mahasiswa</p>
-                        <small class="text-muted">Minggu ini</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="container">
+    <div class="containers">
         <div class="row">
             <div class="col">
                 <figure class="highcharts-figure">
@@ -164,6 +220,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
         var allergyData = @json($approvedData);
         var pendingData = @json($pendingData);
@@ -304,7 +361,7 @@
             }]
         });
     </script>
-    <script>
+    {{-- <script>
         var kebersihanData = @json($kebersihanData);
         var pendingData = @json($pendingData);
 
@@ -383,13 +440,12 @@
                 data: pendingData.map(function(data) {
                     return data.count;
                 })
-            },{
+            }, {
                 name: 'Sistem Informasi Kantin',
                 data: pendingData.map(function(data) {
                     return data.count;
                 })
             }]
         });
-    </script>
-
+    </script> --}}
 @endsection

@@ -70,7 +70,7 @@
                                             <input type="hidden" name="published" value="0">
                                             <!-- Tambahkan input hidden untuk mengubah nilai 'published' -->
                                             <button type="submit" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-ban"></i>
+                                                <i class="fas fa-eye-slash"></i>
                                             </button>
                                         </form>
                                     @else
@@ -82,7 +82,7 @@
                                             <input type="hidden" name="published" value="1">
                                             <!-- Tambahkan input hidden untuk mengubah nilai 'published' -->
                                             <button type="submit" class="btn btn-success btn-sm">
-                                                <i class="fas fa-check-circle"></i>
+                                                <i class="fas fa-eye"></i>
                                             </button>
                                         </form>
                                     @endif

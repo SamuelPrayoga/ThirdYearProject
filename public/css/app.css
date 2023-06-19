@@ -11,8 +11,7 @@ body {
   /*
    * Sidebar
    */
-
-  .sidebar {
+   .sidebar {
     position: fixed;
     top: 10px;
     right: 0;
@@ -21,6 +20,8 @@ body {
     z-index: 100;
     padding: 48px 0 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    overflow-y: auto;
+    background-color: #f8f9fa; /* Warna latar belakang sidebar */
   }
 
   @media (max-width: 767.98px) {
@@ -35,7 +36,6 @@ body {
     height: calc(100vh - 50px);
     padding-top: .5rem;
     overflow-x: hidden;
-    overflow-y: auto;
   }
 
   .sidebar .nav-link {
@@ -60,6 +60,21 @@ body {
 
   .sidebar-heading {
     font-size: .75rem;
+    color: #6c757d; /* Warna teks heading sidebar */
+  }
+
+  .sidebar-collapsed {
+    width: 50px;
+    transition: width 0.2s ease-in-out;
+  }
+
+  .sidebar-collapsed .nav-link {
+    text-align: center;
+  }
+
+  .sidebar-expanded {
+    width: 200px;
+    transition: width 0.2s ease-in-out;
   }
 
   /*

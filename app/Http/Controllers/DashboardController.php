@@ -7,7 +7,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\AllergyReport;
+use App\Models\barang;
 use App\Models\Feedback;
+use Illuminate\Support\Carbon;
+use App\Models\LaporMakan;
+use App\Models\MenuMakanan;
+use App\Models\Permission;
 
 class DashboardController extends Controller
 {
@@ -19,31 +24,6 @@ class DashboardController extends Controller
         // mendapatkan tanggal hari Sabtu
         $tanggal_sabtu = date('Y-m-d', strtotime("next Saturday", strtotime($tanggal)));
 
-        // $makan_pagi = DB::table('laporan_makanan')
-        //     ->whereJsonContains('waktu_makan', ['Pagi'])
-        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
-        //     ->count();
-        // $makan_siang = DB::table('laporan_makanan')
-        //     ->whereJsonContains('waktu_makan', ['Siang'])
-        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
-        //     ->count();
-        // $makan_malam = DB::table('laporan_makanan')
-        //     ->whereJsonContains('waktu_makan', ['Malam'])
-        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Friday'])
-        //     ->count();
-
-        // $pagi_sabtu = DB::table('laporan_makanan')
-        //     ->whereJsonContains('waktu_makan', ['Pagi'])
-        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
-        //     ->count();
-        // $siang_sabtu = DB::table('laporan_makanan')
-        //     ->whereJsonContains('waktu_makan', ['Siang'])
-        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
-        //     ->count();
-        // $malam_sabtu = DB::table('laporan_makanan')
-        //     ->whereJsonContains('waktu_makan', ['Malam'])
-        //     ->whereRaw('DAYNAME(tanggal) = ?', ['Saturday'])
-        //     ->count();
         $approvedData = AllergyReport::where('approved', 1)
             ->selectRaw('COUNT(*) as count, MONTH(created_at) as month')
             ->groupBy('month')
@@ -135,26 +115,25 @@ class DashboardController extends Controller
             ->whereJsonContains('allergies', ['Jamur'])
             ->where('Approved', 1)
             ->count();
-        // $sangattidakSukaMenu = Feedback::where('subject_review', 'Menu Makanan')
-        //     ->where('value_rating', 'Sangat Tidak Menyukai')
-        //     ->count();
-        // $tidakSukaMenu = Feedback::where('subject_review', 'Menu Makanan')
-        //     ->where('value_rating', 'Tidak Menyukai')
-        //     ->count();
-        // $SukaMenu = Feedback::where('subject_review', 'Menu Makanan')
-        //     ->where('value_rating', 'Menyukai')
-        //     ->count();
+
+        $today = Carbon::now()->format('Y-m-d');
+        $userIB = LaporMakan::where('is_makan', 1)
+            ->whereDate('tanggal_berangkat', '<=', $today)
+            ->whereDate('tanggal_kembali', '>=', $today)
+            ->count();
+        $mahasiswaMakan = $userCount - $userIB;
+        $today = Carbon::now()->format('Y-m-d');
+        $menus = MenuMakanan::whereDate('tanggal_makan', $today)->first();
+
+        $userAllergy = AllergyReport::where('approved', '=', 1)->count();
+        $alergiBaruCount = AllergyReport::where('approved', 0)->count();
+        $izinMakan = Permission::where('is_accepted', 0)->count();
+        $izinIB = LaporMakan::where('is_makan', 0)->count();
 
         return view('dashboard.index', [
             "title" => "Dashboard",
             "positionCount" => Position::count(),
             "userCount" => $userCount,
-            // "makan_pagi" => $makan_pagi,
-            // "makan_siang" => $makan_siang,
-            // "makan_malam" => $makan_malam,
-            // "pagi_sabtu" => $pagi_sabtu,
-            // "siang_sabtu" => $siang_sabtu,
-            // "malam_sabtu" => $malam_sabtu,
             "approvedData" => $approvedData,
             "categories" => $categories,
             "data" => $data,
@@ -178,9 +157,14 @@ class DashboardController extends Controller
             "countAllergiesPepaya" => $countAllergiesPepaya,
             "countAllergiesGori" => $countAllergiesGori,
             "countAllergiesJamur" => $countAllergiesJamur,
-            // "sangattidakSukaMenu" => $sangattidakSukaMenu,
-            // "sukaMenu" => $SukaMenu,
-            // "tidakSukaMenu" => $tidakSukaMenu
+            "userIB" => $userIB,
+            "mahasiswaMakan" => $mahasiswaMakan,
+            "menus" => $menus,
+            "userAllergy" => $userAllergy,
+            "alergiBaruCount" => $alergiBaruCount,
+            "izinMakan" => $izinMakan,
+            "izinIB" => $izinIB,
+
         ]);
     }
 }

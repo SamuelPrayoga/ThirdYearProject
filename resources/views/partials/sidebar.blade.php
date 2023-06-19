@@ -1,4 +1,6 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <!-- HTML -->
+
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             @if (auth()->user()->isAdmin() or
@@ -11,12 +13,12 @@
                     </a>
                 </li>
                 @if (auth()->user()->isKeasramaan())
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pengumuman.index') }}">
-                        <i class="fas fa-bullhorn"></i>
-                        Pengumuman
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pengumuman.index') }}">
+                            <i class="fas fa-bullhorn"></i>
+                            Pengumuman
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('barang.show') }}">
@@ -92,16 +94,15 @@
                         Data Hari Libur
                     </a>
                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link"
-                        href="{{route('admin.lapmakan.index')}}">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.lapmakan.index') }}">
                         <i class="fas fa-file-alt"></i>
                         Data Mahasiswa IB
                     </a>
                 </li>
-            {{-- @endif
+                {{-- @endif
             @if (auth()->user()->isDepkebdis() or
-                    auth()->user()->isAdmin())
+    auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="bi bi-clipboard2-minus"></i>
@@ -150,7 +151,7 @@
                 </li>
             @endif
             <li class="nav-item">
-                <form action="{{ route('auth.logout') }}" method="POST">
+                <form id="logout-form" action="{{ route('auth.logout') }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="nav-link btn btn-link" type="submit">
@@ -161,9 +162,35 @@
         </ul>
     </div>
 </nav>
-<style>
-    #sidebarMenu {
-        overflow-y: auto;
-    }
-</style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    document.getElementById('logout-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Mencegah form submit langsung
 
+        Swal.fire({
+            title: 'Apakah anda yakin ingin keluar?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit(); // Jika pengguna mengklik "Ya", submit form
+            }
+        });
+    });
+</script>
+<script>
+    // JavaScript
+
+    // Toggle sidebar expand-collapse
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('sidebar-expanded');
+        sidebar.classList.toggle('sidebar-collapsed');
+    }
+
+    // Menggunakan event listener untuk memanggil fungsi toggleSidebar saat tombol di klik
+    const toggleButton = document.querySelector('#toggleButton');
+    toggleButton.addEventListener('click', toggleSidebar);
+</script>

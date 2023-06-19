@@ -76,7 +76,7 @@
                         <li><a class="dropdown-item" type="button" href="{{ route('home.feedbackku') }}"><i
                                     class="fas fa-comment"></i> Kritik dan Saranku</a></li>
                         <li>
-                            <form action="{{ route('auth.logout') }}" method="POST">
+                            <form id="logout-form" action="{{ route('auth.logout') }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="dropdown-item">
@@ -90,3 +90,21 @@
         </div>
     </div>
 </nav>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    document.getElementById('logout-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Mencegah form submit langsung
+
+        Swal.fire({
+            title: 'Apakah anda yakin ingin keluar?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit(); // Jika pengguna mengklik "Ya", submit form
+            }
+        });
+    });
+</script>
