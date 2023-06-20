@@ -40,10 +40,44 @@
                 <div class="alert alert-info">
                     <small class="fw-bold">Permintaan izin sedang diproses.</small>
                 </div>
-            @elseif ($data['is_permission_accepted'] == 0)
+                {{-- @elseif ($data['is_permission_accepted'] == 2)
                 <div class="alert alert-danger">
-                    <small class="fw-bold">Permintaan izin Anda ditolak.</small>
+                    <small class="fw-bold">Permintaan Izin Anda Ditolak. Silahkan tetap mengikuti kegiatan makan di kantin</small>
+                    <br>
                 </div>
+                @if ($attendance->data->is_start && !$data['is_has_enter_today'])
+                    <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" data-bs-toggle="modal"
+                        data-bs-target="#qrcode-scanner-modal" data-is-enter="1">Scan QR Code</button>
+                @endif
+            @else --}}
+            @elseif ($data['is_permission_accepted'] == 2)
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Sebelumnya, Permintaan Izin Anda Ditolak',
+                        text: 'Silahkan tetap mengikuti kegiatan makan di kantin',
+                        showConfirmButton: false
+                    });
+                </script>
+                @php
+                    $data['is_permission_alert_shown'] = true;
+                @endphp
+                @if ($attendance->data->is_start && !$data['is_has_enter_today'])
+                    <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" data-bs-toggle="modal"
+                        data-bs-target="#qrcode-scanner-modal" data-is-enter="1">Scan QR Code</button>
+                @endif
+                @if ($attendance->data->is_end && $data['is_has_enter_today'] && $data['is_not_out_yet'])
+                    <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100" data-bs-toggle="modal"
+                        data-bs-target="#qrcode-scanner-modal" data-is-enter="0">Scan QRCode Pulang</button>
+                @endif
+
+                @if ($data['is_has_enter_today'] && !$data['is_not_out_yet'])
+                    <div class="alert alert-success">
+                        <small class="d-block fw-bold text-success">Terimakasih! Anda sudah makan dan Scan pulang,
+                            Semoga
+                            hari Anda menyenangkan.</small>
+                    </div>
+                @endif
             @else
                 <div class="alert alert-success">
                     <small class="fw-bold">Permintaan izin sudah diterima.</small>

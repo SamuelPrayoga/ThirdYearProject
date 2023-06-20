@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin,keasramaan,depkebdis,pengelola,')->group(function () {
 
         //LapMakan
-        Route::get('/LaporanMakan/JumatSabtu', [LaporMakanController::class, 'index'])->name('admin.lapmakan.index');
+        Route::get('/LaporanMakan/IzinBermalam', [LaporMakanController::class, 'index'])->name('admin.lapmakan.index');
         Route::delete('/laporan/hapus-semua', [LaporMakanController::class, 'hapusSemuaLaporan'])->name('admin.lap.hapussemua');
 
 
@@ -122,7 +122,7 @@ Route::middleware('auth')->group(function () {
         // present (url untuk menambahkan/mengubah user yang tidak hadir menjadi hadir)
         Route::post('/presences/{attendance}/present', [PresenceController::class, 'presentUser'])->name('presences.present');
         Route::post('/presences/{attendance}/acceptPermission', [PresenceController::class, 'acceptPermission'])->name('presences.acceptPermission');
-        Route::delete('/presences/{attendance}/declinePermission', [PresenceController::class, 'declinePermission'])->name('presences.declinePermission');
+        Route::put('/presences/{attendance}/declinePermission', [PresenceController::class, 'declinePermission'])->name('presences.declinePermission');
         // employees permissions
         // Route::get('/presences/permissions', [PresenceController::class, 'permissions'])->name('permissions.dashboard');
         Route::get('/presences/{attendance}/permissions', [PresenceController::class, 'permissions'])->name('presences.permissions');

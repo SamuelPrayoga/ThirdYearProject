@@ -76,14 +76,21 @@
                                     <a href="tel:{{ $permission->user->phone }}">{{ $permission->user->phone }}</a>
                                 </td>
                                 <td>{{ $permission->user->position->name }}</td>
-                                @if ($permission->is_accepted)
+                                @if ($permission->is_accepted == 1)
                                     <td>
                                         <span class="badge text-bg-success border-0">Sudah Diterima</span>
                                         <button class="badge text-bg-info border-0 permission-detail-modal-triggers"
                                             data-permission-id="{{ $permission->id }}" data-bs-toggle="modal"
                                             data-bs-target="#permission-detail-modal"><i class="bi bi-info-circle-fill"></i>
-                                            Lihat
-                                            Alasan</button>
+                                            Lihat Alasan</button>
+                                    </td>
+                                @elseif ($permission->is_accepted == 2)
+                                    <td>
+                                        <span class="badge text-bg-danger border-0">Izin Ditolak</span>
+                                        <button class="badge text-bg-info border-0 permission-detail-modal-triggers"
+                                            data-permission-id="{{ $permission->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#permission-detail-modal"><i class="bi bi-info-circle-fill"></i>
+                                            Lihat Alasan</button>
                                     </td>
                                 @else
                                     <td>
@@ -94,78 +101,55 @@
                                             <input type="hidden" name="permission_date"
                                                 value="{{ $permission->permission_date }}">
                                             <button class="badge text-bg-success border-0" type="submit"><i
-                                                    class="bi bi-check-circle-fill"></i> Terima</button>
+                                                    class="bi bi-check-circle-fill"></i>
+                                                Terima</button>
                                         </form>
                                         {{-- Declining --}}
+
                                         <form
                                             action="{{ route('presences.declinePermission', [$attendance->id, $permission->id]) }}"
                                             method="post">
                                             @csrf
-                                            @method('DELETE')
+                                            @method('PUT')
+                                            <!-- Mengubah method menjadi PUT -->
                                             <input type="hidden" name="user_id" value="{{ $permission->user->id }}">
                                             <input type="hidden" name="permission_date"
                                                 value="{{ $permission->permission_date }}">
-                                            <button class="badge text-bg-danger border-0" type="submit"><i
+                                            <button class="badge text-bg-danger border-0" type="button"
+                                                data-bs-toggle="modal" data-bs-target="#declineModal"><i
                                                     class="bi bi-x-circle-fill"></i> Tolak</button>
-                                        </form>
-                                        {{-- <form action="{{ route('presences.declinePermission', $attendance->id) }}"
-                                            method="post">
-                                            @csrf
-                                            <input type="hidden" name="user_id" value="{{ $permission->user->id }}">
-                                            <input type="hidden" name="permission_date"
-                                                value="{{ $permission->permission_date }}">
-                                            <button class="badge text-bg-danger border-0" type="submit"><i
-                                                    class="bi bi-x-circle-fill"></i> Tolak</button>
-                                        </form> --}}
-                                        @if ($permission->is_decline)
-                                            <div class="mt-2 text-danger">
-                                                Alasan ditolak: {{ $permission->decline_reason }}
-                                            </div>
-                                        @endif
 
+                                            <!-- Modal Alasan Penolakan -->
+                                            <div class="modal fade" id="declineModal" tabindex="-1"
+                                                aria-labelledby="declineModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="declineModalLabel">Alasan Penolakan
+                                                            </h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <textarea class="form-control" name="alasan_penolakan" rows="4" placeholder="Masukkan alasan penolakan" required></textarea>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary btn-sm"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <button class="badge text-bg-primary border-0 permission-detail-modal-triggers"
                                             data-permission-id="{{ $permission->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#permission-detail-modal"><i class="bi bi-info-circle-fill"></i>
-                                            Lihat
-                                            Alasan</button>
+                                            data-bs-target="#permission-detail-modal"><i
+                                                class="bi bi-info-circle-fill"></i>
+                                            Lihat Alasan</button>
                                     </td>
                                 @endif
 
-                                {{-- <td>{{ $permission->user->position->name }}</td>
-                                @if ($permission->is_accepted)
-                                    <td>
-                                        <span class="badge text-bg-success border-0">Sudah Diterima</span>
-                                        <button class="badge text-bg-info border-0 permission-detail-modal-triggers"
-                                            data-permission-id="{{ $permission->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#permission-detail-modal"><i class="bi bi-info-circle-fill"></i>
-                                            Lihat
-                                            Alasan</button>
-                                    </td>
-                                @else
-                                    <td>
-                                        <form action="{{ route('presences.acceptPermission', $attendance->id) }}"
-                                            method="post">
-                                            @csrf
-                                            <input type="hidden" name="user_id" value="{{ $permission->user->id }}">
-                                            <input type="hidden" name="permission_date"
-                                                value="{{ $permission->permission_date }}">
-                                            <button class="badge text-bg-success border-0" type="submit"><i
-                                                    class="bi bi-check-circle-fill"></i> Terima</button>
-                                        </form>
-                                        <form action="{{ route('presences.declinePermission', $attendance->id) }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="user_id" value="{{ $permission->user->id }}">
-                                            <input type="hidden" name="permission_date" value="{{ $permission->permission_date }}">
-                                            <button class="badge text-bg-danger border-0" type="submit"><i class="bi bi-x-circle-fill"></i> Tolak</button>
-                                        </form>
-
-                                        <button class="badge text-bg-primary border-0 permission-detail-modal-triggers"
-                                            data-permission-id="{{ $permission->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#permission-detail-modal"><i class="bi bi-info-circle-fill"></i>
-                                            Lihat
-                                            Alasan</button>
-                                    </td>
-                                @endif --}}
                             </tr>
                         @endforeach
                     </tbody>

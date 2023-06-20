@@ -11,7 +11,8 @@ use App\Models\Pengumuman;
 use App\Models\Presence;
 use App\Models\User;
 use Carbon\CarbonPeriod;
-use Illuminate\Support\Carbon;
+// use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,19 @@ class HomeController extends Controller
             ->where('user_id', auth()->user()->id)
             ->first();
 
+        // $tanggalSekarang = Carbon::now()->toDateString(); // Mendapatkan tanggal saat ini
+        // $jamSekarang = Carbon::now()->toTimeString(); // Mendapatkan waktu saat ini
+
+        // $izinIB = LaporMakan::where('is_makan', 1)
+        //     ->whereDate('tanggal_berangkat', '<=', $tanggalSekarang)
+        //     ->whereDate('tanggal_kembali', '>=', $tanggalSekarang)
+        //     ->where(function ($query) use ($jamSekarang) {
+        //         $query->whereTime('jam_berangkat', '<=', $jamSekarang)
+        //             ->whereTime('jam_kembali', '>=', $jamSekarang);
+        //     })
+        //     ->latest('created_at')
+        //     ->first();
+
         $data = [
             'is_has_enter_today' => $isHasEnterToday, // sudah absen masuk
             'is_not_out_yet' => $presences->where('presence_out_time', null)->isNotEmpty(), // belum absen pulang
@@ -90,13 +104,18 @@ class HomeController extends Controller
 
         $priodDate = array_slice(array_reverse($priodDate), 0, 30);
 
+        // $alasanTolak = Permission(Attendance $attendance, Permission $isTherePermission);
+
         return view('home.show', [
             "title" => "Informasi Kehadiran Makan",
             "attendance" => $attendance,
             "data" => $data,
             "holiday" => $holiday,
             'history' => $history,
-            'priodDate' => $priodDate
+            'priodDate' => $priodDate,
+            // 'izinIB' => $izinIB,
+            // 'isIB' => $isIB,
+            // 'alasanTolak' => $alasanTolak,
         ]);
     }
     public function permission(Attendance $attendance)
