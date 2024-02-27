@@ -6,25 +6,6 @@
             <div class="col-md-8">
                 <div class="card shadow-sm mb-2">
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                    {{-- <script>
-                        // Mendapatkan tombol berdasarkan ID
-                        var button = document.getElementById('btn-day');
-
-                        // Mengecek apakah tombol ada atau tidak
-                        if (button) {
-                            // Menampilkan SweetAlert dan mengarahkan ke modal
-                            Swal.fire({
-                                title: "Anda Belum melaporkan Apakah Anda Izin Bermalam, Laporkan Sekarang",
-                                icon: "info",
-                                confirmButtonText: "Laporkan Sekarang",
-                                allowOutsideClick: false
-                            }).then(() => {
-                                // Mengarahkan ke modal dengan ID "exampleModal1"
-                                $('#exampleModal1').modal('show');
-                            });
-                        }
-                    </script> --}}
-
                     <div class="card-header" id="fonts">
                         <i class="bi bi-pin-fill"></i> Pengumuman Penting
                     </div>
